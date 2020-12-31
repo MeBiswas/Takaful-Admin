@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth/auth.service'
 })
 export class LoginComponent implements OnInit {
 
+  url = "/auth/login"
+
   loginUserData = {
     userId: '',
     password: ''
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     console.log('Form Data', this.loginUserData);
-    this._auth.loginRequest(this.loginUserData)
+    this._auth.loginRequest(this.url, this.loginUserData)
       .subscribe(
         res => {
           console.log("Response in Login Service", res)
