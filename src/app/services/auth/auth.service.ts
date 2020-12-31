@@ -14,4 +14,8 @@ export class AuthService {
   public loginRequest(url, user): Observable<any> {
     return this.http.post((this.base_url + url), user);
   }
+
+  public forgotPasswordRequest(url, user): Observable<any> {
+    return this.http.post((this.base_url + url), user);
+  }
 }
