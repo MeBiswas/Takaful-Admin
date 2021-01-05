@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
           console.log("Response in Login Service", res)
           if (res.status.code === 0) {
             this._toast.success(res.status.message);
-            localStorage.setItem('user', res.user)
+            localStorage.setItem('user', res.user);
+            this._router.navigate(['/dashboard']);
           } else {
             this._toast.warning(res.status.message);
             this._router.navigate(['/invalid']);

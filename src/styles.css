@@ -77,3 +77,87 @@ body {
   font-weight: 400;
   font-family: "roboto";
 }
+
+
+/* Dashboard Css Start */
+
+.dashboard_right_sidebar {
+  background-color: #fff;
+  width: 100%;
+  min-height: 600px;
+}
+
+.card.card-sales-widget {
+  height: 143px;
+}
+
+.card.card-sales-widget .card-header {
+  padding: 0;
+  padding-top: 5px;
+  display: flex;
+  flex-flow: inherit;
+}
+
+.card-wrap .card-header {
+  background-color: unset;
+}
+
+.card-one {
+  height: 9.938rem;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card-two {
+  height: 9.938rem;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card-three {
+  height: 9.938rem;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card-four {
+  height: 9.938rem;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.card-bottom-footer .count_no {
+  color: #F89036;
+}
+
+.box_right_border_one::before {
+  content: '';
+  border-left: 4px solid #248332;
+  height: 42px;
+  position: absolute;
+}
+
+.box_right_border_two::before {
+  content: '';
+  border-left: 4px solid #FECB3E;
+  height: 42px;
+  position: absolute;
+}
+
+.box_right_border_three::before {
+  content: '';
+  border-left: 4px solid #094AAC;
+  height: 42px;
+  position: absolute;
+}
+
+.dashboard-box {
+  margin-bottom: 15px;
+}
+
+.dashboard-box .card {
+  margin-bottom: 0px !important;
+}
+
+
+/* Dashboard Css End */
