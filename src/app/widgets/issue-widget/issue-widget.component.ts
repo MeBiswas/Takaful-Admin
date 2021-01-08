@@ -51,7 +51,7 @@ export class IssueWidgetComponent implements OnInit {
         },
         (err) => {
           console.log('Error in Most Recent Issues Service', err);
-          this._toast.error(err.status.message);
+          this._toast.error('Oops! Something went wrong.');
         }
       );
     this._spin.hide();

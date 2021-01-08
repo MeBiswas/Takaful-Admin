@@ -5,9 +5,10 @@ import { AdminRoutingModule } from './admin-routing.module';
 // Pages
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
-  declarations: [AdminComponent, DashboardComponent],
+  declarations: [AdminComponent, DashboardComponent, UserManagementComponent],
   imports: [CommonModule, AdminRoutingModule],
 })
 export class AdminModule {}

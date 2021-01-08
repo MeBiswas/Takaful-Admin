@@ -7,6 +7,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { InvalidComponent } from './auth/invalid/invalid.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,7 +23,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: AdminComponent,
-    children: [{ path: 'dashboard', component: DashboardComponent }],
+    children: [
+      { path: '', component: DashboardComponent },
+      { path: 'user', component: UserManagementComponent },
+    ],
   },
   {
     path: '**',
@@ -42,4 +46,5 @@ export const RoutingComponents = [
   NotFoundComponent,
   DashboardComponent,
   ForgotPasswordComponent,
+  UserManagementComponent,
 ];

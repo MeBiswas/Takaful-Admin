@@ -16,7 +16,7 @@ export class BasketWidgetComponent implements OnInit {
     list: [],
   };
 
-  basketStatisticsUrl = '/admin/dashboard/basketstatistic/monthly';
+  basketStatisticsUrl = '/admin/dashboard/basketstatistic';
 
   constructor(
     private _admin: AdminService,
@@ -25,7 +25,7 @@ export class BasketWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getBasketStatistics();
+    // this.getBasketStatistics();
   }
 
   getBasketStatistics() {
@@ -39,8 +39,8 @@ export class BasketWidgetComponent implements OnInit {
         console.log('Response in Basket Statistic Service', res);
       },
       (err) => {
-        // console.log('Error in Basket Statistic Service', err);
-        this._toast.error(err.status.message);
+        console.log('Error in Basket Statistic Service', err);
+        this._toast.error('Oops! Something went wrong.');
       }
     );
     this._spin.hide();

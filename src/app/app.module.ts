@@ -26,8 +26,10 @@ import { NullPipe } from './pipes/null.pipe';
 import { SaleWidgetComponent } from './widgets/sale-widget/sale-widget.component';
 import { NoteWidgetComponent } from './widgets/note-widget/note-widget.component';
 import { IssueWidgetComponent } from './widgets/issue-widget/issue-widget.component';
-import { BasketWidgetComponent } from './widgets/basket-widget/basket-widget.component';
 import { QuoteWidgetComponent } from './widgets/quote-widget/quote-widget.component';
+import { BasketWidgetComponent } from './widgets/basket-widget/basket-widget.component';
+// Modals
+import { ModalModule } from './_modal';
 
 @NgModule({
   declarations: [
@@ -39,20 +41,21 @@ import { QuoteWidgetComponent } from './widgets/quote-widget/quote-widget.compon
     SaleWidgetComponent,
     NoteWidgetComponent,
     IssueWidgetComponent,
-    BasketWidgetComponent,
     QuoteWidgetComponent,
+    BasketWidgetComponent,
   ],
   imports: [
+    ModalModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     NgxSpinnerModule,
+    AppRoutingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [AuthService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -1,81 +1,39 @@
-<div class="row mb-4 mt-4">
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-    <div class="section-header-breadcrumb-content">
-      <h1 class="font-23 mb-1">Hello, Mr Admin!</h1>
-      <span class="text-muted font-weight-bolder">Welcome back to insurance portal Admin</span>
-      <form>
-        <select class="font-weight-600 float-lg-right float-md-right form-control mt-lg-5 mt-md-5 mt-sm-2 width-per-35">
-          <option *ngFor="let item of filters" [(value)]="item.value">{{item.option}}</option>
-        </select>
-      </form>
+<div class="row">
+  <!-- left right content code start -->
+  <div class="col-md-9">
+    <div class="row mb-4 mt-4">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <div class="section-header-breadcrumb-content">
+          <h1 class="font-23 mb-1">Hello, Mr Admin!</h1>
+          <span class="text-muted font-weight-bolder">Welcome back to insurance portal Admin</span>
+          <form>
+            <select
+              class="font-weight-600 float-lg-right float-md-right form-control mt-lg-5 mt-md-5 mt-sm-2 width-per-35">
+              <option *ngFor="let item of filters" [(value)]="item.value">{{item.option}}</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-0">
+        <app-sale-widget></app-sale-widget>
+      </div>
     </div>
-  </div>
-  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-0">
-    <app-sale-widget></app-sale-widget>
-  </div>
-</div>
-<div class="row dashboard-box">
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 pr-0 mb-md-3 mb-sm-3">
     <app-note-widget></app-note-widget>
-  </div>
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 pr-0 mb-md-3 mb-sm-3">
-    <div class="card card-sales-widget">
-      <div class="card-wrap">
-        <div class="card-header mt-2">
-          <div class="d-lg-inline-block text-left">
-            <div class="box_right_border_one ml-2">
-              <h4 class="text-muted font-15 ml-2 font-weight-bold">Cover Note</h4>
-              <h4 class="mt-1 font-19 font-weight-bold text-dark ml-2">Takaful Malasyia</h4>
-            </div>
-          </div>
-        </div>
-        <div class="card-bottom-footer">
-          <h1 class="count_no text-left ml-4">121</h1>
-        </div>
+    <div class="row dashboard-box">
+      <div class="col-md-6">
+        <app-quote-widget></app-quote-widget>
+      </div>
+      <div class="col-md-6 bg-white rounded text-dark">
+        <h4 class="font-15 mb-4 mt-4 text-muted">Activity List</h4>
+        <app-basket-widget></app-basket-widget>
       </div>
     </div>
   </div>
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 pr-0 mb-md-3 mb-sm-3">
-    <div class="card card-sales-widget">
-      <div class="card-wrap">
-        <div class="card-header mt-2">
-          <div class="d-lg-inline-block text-left">
-            <div class="box_right_border_two ml-2">
-              <h4 class="text-muted font-15 ml-2 font-weight-bold">Cover Note</h4>
-              <h4 class="mt-1 font-19 font-weight-bold text-dark ml-2">Takaful Malasyia</h4>
-            </div>
-          </div>
-        </div>
-        <div class="card-bottom-footer">
-          <h1 class="count_no text-left ml-4">121</h1>
-        </div>
-      </div>
-    </div>
+  <!-- left right content code End -->
+
+  <!-- right side bar code start -->
+  <div class="col-md-3">
+    <app-issue-widget></app-issue-widget>
   </div>
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 pr-0 mb-md-3 mb-sm-3">
-    <div class="card card-sales-widget">
-      <div class="card-wrap">
-        <div class="card-header mt-2">
-          <div class="d-lg-inline-block text-left">
-            <div class="box_right_border_three ml-2">
-              <h4 class="text-muted font-15 ml-2 font-weight-bold">Cover Note</h4>
-              <h4 class="mt-1 font-19 font-weight-bold text-dark ml-2">Takaful Malasyia</h4>
-            </div>
-          </div>
-        </div>
-        <div class="card-bottom-footer">
-          <h1 class="count_no text-left ml-4">121</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row dashboard-box">
-  <div class="col-md-6">
-    <app-quote-widget></app-quote-widget>
-  </div>
-  <div class="col-md-6 bg-white rounded text-dark">
-    <h4 class="font-15 mb-4 mt-4 text-muted">Activity List</h4>
-    <app-basket-widget></app-basket-widget>
-  </div>
+  <!-- right side bar code end -->
 </div>

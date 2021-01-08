@@ -27,13 +27,11 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   forgotPassword() {
-    // console.log('Forgot Password Component', this.forgotPasswordData);
     this._spin.show();
     this._auth
       .forgotPasswordRequest(this.url, this.forgotPasswordData)
       .subscribe(
         (res) => {
-          console.log('Response in Forgot Password Service', res);
           if (res.status.code === 0) {
             this._toast.success(res.status.message);
           } else {
@@ -42,7 +40,7 @@ export class ForgotPasswordComponent implements OnInit {
         },
         (err) => {
           console.log('Error in Forgot Password Service', err);
-          this._toast.error(err.status.message);
+          this._toast.error('Oops! Something went wrong.');
         }
       );
     this._spin.hide();

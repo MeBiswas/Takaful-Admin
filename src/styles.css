@@ -76,3 +76,8 @@ body {
   font-weight: 400;
   font-family: "roboto";
 }
+
+#toast-container > .toast-error:before,
+#toast-container > .toast-success:before {
+  content: "";
+}

@@ -16,7 +16,7 @@ export class QuoteWidgetComponent implements OnInit {
     total: null,
   };
 
-  quoteStatisticsUrl = '/admin/dashboard/totalquotation/monthly';
+  quoteStatisticsUrl = '/admin/dashboard/totalquotation';
 
   constructor(
     private _admin: AdminService,
@@ -25,7 +25,7 @@ export class QuoteWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getQuoteStatistics();
+    // this.getQuoteStatistics();
   }
 
   getQuoteStatistics() {
@@ -39,8 +39,8 @@ export class QuoteWidgetComponent implements OnInit {
         console.log('Response in Quote Statistic Service', res);
       },
       (err) => {
-        // console.log('Error in Quote Statistic Service', err);
-        this._toast.error(err.status.message);
+        console.log('Error in Quote Statistic Service', err);
+        this._toast.error('Oops! Something went wrong.');
       }
     );
     this._spin.hide();

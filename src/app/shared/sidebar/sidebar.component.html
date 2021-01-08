@@ -1,13 +1,13 @@
 <aside id="sidebar-wrapper">
   <div class="sidebar-brand text-center mt-3 pb-3">
-    <a href="javascript:;">
+    <a href="javascript:;" routerLink="/dashboard">
       <img alt="image" src="assets/img/logo.png" class="logo-name" />
       <img alt="image" src="assets/img/mini_logo.png" class="header-logo mini_logo" />
     </a>
   </div>
   <ul class="sidebar-menu">
     <li class="dropdown">
-      <a href="javascript:;" class="nav-link" data-toggle="sidebar">
+      <a href="javascript:;" class="nav-link" data-toggle="sidebar" routerLink="/dashboard">
         <img alt="image" src="assets/img/icons/dashboard_icon.png">
         <span>Dashboard</span>
       </a>
@@ -110,11 +110,13 @@
     </li>
 
     <li class="dropdown">
-      <a href="javascript:;" class="nav-link">
+      <a href="javascript:;" class="nav-link" routerLink="/dashboard/user">
         <img alt="image" src="assets/img/icons/admin_user.png">
         <span>User Management</span></a>
       <ul class="dropdown-menu bg-transparent">
-        <li class="pb-0 pt-0"><a class="nav-link" href="javascript:;">User Management</a></li>
+        <li class="pb-0 pt-0">
+          <a class="nav-link" href="javascript:;">User Management</a>
+        </li>
       </ul>
     </li>
   </ul>

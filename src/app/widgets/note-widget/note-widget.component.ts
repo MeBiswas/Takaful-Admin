@@ -13,14 +13,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NoteWidgetComponent implements OnInit {
   coverNoteStatisticResponseData = {
-    principal: null,
-    coverNoteTotal: null,
+    list: [],
   };
 
   coverNoteStatisticUrl = '/admin/dashboard/covernotestatistic';
 
   coverNoteStatisticsData = {
-    principalName: 'Takaful Malaysia',
     filter: 'Monthly',
   };
 
@@ -44,11 +42,14 @@ export class NoteWidgetComponent implements OnInit {
             ...this.coverNoteStatisticResponseData,
             ...res,
           };
-          console.log('Response in Cover Note Statistics Service', res);
+          console.log(
+            'Response in Cover Note Statistics Service',
+            this.coverNoteStatisticResponseData
+          );
         },
         (err) => {
-          // console.log('Error in Cover Note Statistics Service', err);
-          this._toast.error(err.status.message);
+          console.log('Error in Cover Note Statistics Service', err);
+          this._toast.error('Oops! Something went wrong.');
         }
       );
     this._spin.hide();

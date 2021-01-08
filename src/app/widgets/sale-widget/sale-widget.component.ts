@@ -41,8 +41,8 @@ export class SaleWidgetComponent implements OnInit {
         console.log('Response in Sale Statistic Service', res);
       },
       (err) => {
-        // console.log('Error in Sale Statistic Service', err);
-        this._toast.error(err.status.message);
+        console.log('Error in Sale Statistic Service', err);
+        this._toast.error('Oops! Something went wrong.');
       }
     );
     this._spin.hide();
