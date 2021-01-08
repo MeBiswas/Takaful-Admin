@@ -21,7 +21,7 @@ export class IssueWidgetComponent implements OnInit {
   mostRecentIssuesUrl = '/admin/dashboard/recentissues';
 
   mostRecentIssuesData = {
-    date: '2020-12-24',
+    date: '',
   };
 
   constructor(
@@ -34,8 +34,32 @@ export class IssueWidgetComponent implements OnInit {
     this.getMostRecentIssues();
   }
 
+  getDateFormat() {
+    let months = [
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
+    ];
+    let d = new Date();
+    let dt = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
+    let m = d.getMonth();
+    let y = d.getFullYear();
+    let date = `${y}-${months[m]}-${dt}`;
+    return date;
+  }
+
   getMostRecentIssues() {
     this._spin.show();
+    this.mostRecentIssuesData.date = this.getDateFormat();
     this._admin
       .postApiWithAuth(this.mostRecentIssuesUrl, this.mostRecentIssuesData)
       .subscribe(

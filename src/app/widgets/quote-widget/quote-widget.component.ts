@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 // Spinner
@@ -12,8 +12,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./quote-widget.component.css'],
 })
 export class QuoteWidgetComponent implements OnInit {
+  @Input() _filter: string;
+
   totalQuotationResponseData = {
-    total: null,
+    totalQuotation: null,
+    totalCoverNote: null,
   };
 
   quoteStatisticsUrl = '/admin/dashboard/totalquotation';
@@ -25,12 +28,23 @@ export class QuoteWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getQuoteStatistics();
+    this.getQuoteStatistics({
+      filter: this._filter,
+    });
   }
 
-  getQuoteStatistics() {
+  ngOnChanges() {
+    this.onFilterValueChange(this._filter);
+  }
+
+  onFilterValueChange(value) {
+    let data = { filter: value };
+    this.getQuoteStatistics(data);
+  }
+
+  getQuoteStatistics(data) {
     this._spin.show();
-    this._admin.getApiWithAuth(this.quoteStatisticsUrl).subscribe(
+    this._admin.postApiWithAuth(this.quoteStatisticsUrl, data).subscribe(
       (res) => {
         this.totalQuotationResponseData = {
           ...this.totalQuotationResponseData,

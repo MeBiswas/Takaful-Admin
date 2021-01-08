@@ -30,6 +30,7 @@ export class SaleWidgetComponent implements OnInit {
   ngOnInit() {
     this.getSaleStatistic();
   }
+
   getSaleStatistic() {
     this._spin.show();
     this._admin.getApiWithAuth(this.saleStatisticUrl).subscribe(

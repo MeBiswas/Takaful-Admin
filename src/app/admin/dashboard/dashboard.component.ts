@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Provider
+import { DataStorage } from '../../providers/user-data.provider';
 
 // Select Option Interface
 interface Filter {
@@ -12,12 +14,20 @@ interface Filter {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  filter = 'Weekly';
+
   filters: Filter[] = [
     { value: 'Weekly', option: 'This Week' },
     { value: 'Monthly', option: 'This Month' },
   ];
 
-  constructor() {}
+  constructor(private _data: DataStorage) {
+    // console.log('Here at', this._data.data);
+  }
 
   ngOnInit() {}
+
+  onFilterChanged(value) {
+    console.log('Filter Change', value);
+  }
 }

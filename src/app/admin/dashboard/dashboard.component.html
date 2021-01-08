@@ -6,10 +6,10 @@
         <div class="section-header-breadcrumb-content">
           <h1 class="font-23 mb-1">Hello, Mr Admin!</h1>
           <span class="text-muted font-weight-bolder">Welcome back to insurance portal Admin</span>
-          <form>
-            <select
+          <form #filterForm="ngForm">
+            <select [(ngModel)]="filter" name="Filter" (ngModelChange)="onFilterChanged($event)"
               class="font-weight-600 float-lg-right float-md-right form-control mt-lg-5 mt-md-5 mt-sm-2 width-per-35">
-              <option *ngFor="let item of filters" [(value)]="item.value">{{item.option}}</option>
+              <option *ngFor="let item of filters" [value]="item.value">{{item.option}}</option>
             </select>
           </form>
         </div>
@@ -18,14 +18,14 @@
         <app-sale-widget></app-sale-widget>
       </div>
     </div>
-    <app-note-widget></app-note-widget>
+    <app-note-widget [_filter]="filter"></app-note-widget>
     <div class="row dashboard-box">
       <div class="col-md-6">
-        <app-quote-widget></app-quote-widget>
+        <app-quote-widget [_filter]="filter"></app-quote-widget>
       </div>
       <div class="col-md-6 bg-white rounded text-dark">
         <h4 class="font-15 mb-4 mt-4 text-muted">Activity List</h4>
-        <app-basket-widget></app-basket-widget>
+        <app-basket-widget [_filter]="filter"></app-basket-widget>
       </div>
     </div>
   </div>

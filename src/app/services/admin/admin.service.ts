@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+// Configuration
+import { config } from '../../../config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
   httpOptions: { headers: any };
-  private base_url = 'http://ilokensystem.ddns.net:28080/takaful/api';
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,7 @@ export class AdminService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
     };
-    return this.http.get(this.base_url + url, this.httpOptions);
+    return this.http.get(config.apiURL + url, this.httpOptions);
   }
 
   public postApiWithAuth(url, data): Observable<any> {
@@ -28,6 +29,6 @@ export class AdminService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
     };
-    return this.http.post(this.base_url + url, data, this.httpOptions);
+    return this.http.post(config.apiURL + url, data, this.httpOptions);
   }
 }

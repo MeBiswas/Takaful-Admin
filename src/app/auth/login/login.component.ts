@@ -7,6 +7,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Provider
+import { DataStorage } from '../../providers/user-data.provider';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
   };
   constructor(
     private _router: Router,
+    private _data: DataStorage,
     private _auth: AuthService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
     this._auth.loginRequest(this.url, this.loginUserData).subscribe(
       (res) => {
         if (res.status.code === 0) {
+          this._data.data = res.user;
           this._toast.success(res.status.message);
           localStorage.setItem('token', res.user.accessToken);
           this._router.navigate(['/dashboard']);

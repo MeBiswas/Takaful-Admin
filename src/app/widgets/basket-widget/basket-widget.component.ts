@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 // Spinner
@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./basket-widget.component.css'],
 })
 export class BasketWidgetComponent implements OnInit {
+  @Input() _filter: string;
+
   basketStatisticsResponseData = {
     list: [],
   };
@@ -25,12 +27,23 @@ export class BasketWidgetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.getBasketStatistics();
+    this.getBasketStatistics({
+      filter: this._filter,
+    });
   }
 
-  getBasketStatistics() {
+  ngOnChanges() {
+    this.onFilterValueChange(this._filter);
+  }
+
+  onFilterValueChange(value) {
+    let data = { filter: value };
+    this.getBasketStatistics(data);
+  }
+
+  getBasketStatistics(data) {
     this._spin.show();
-    this._admin.getApiWithAuth(this.basketStatisticsUrl).subscribe(
+    this._admin.postApiWithAuth(this.basketStatisticsUrl, data).subscribe(
       (res) => {
         this.basketStatisticsResponseData = {
           ...this.basketStatisticsResponseData,

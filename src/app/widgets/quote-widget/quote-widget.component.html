@@ -1,9 +1,14 @@
 <div class="d-flex bg-white rounded ">
   <div class="col-md-6">
     <h4 class="font-15 mt-3 text-muted">Total Quotation Request</h4>
-    <h4 class="count_no_color font-50 text-right mt-5">{{totalQuotationResponseData.total}}<span
-        class="text-muted font-12">Quote</span>
-    </h4>
+    <ng-template [ngIf]="totalQuotationResponseData.totalQuotation" [ngIfElse]="NoQuote">
+      <h4 class="count_no_color font-50 text-right mt-5">{{totalQuotationResponseData.totalQuotation}}
+        <span class="text-muted font-12">Quote</span>
+      </h4>
+    </ng-template>
+    <ng-template #NoQuote>
+      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-12">Quote</span></h4>
+    </ng-template>
   </div>
   <div class="col-md-6 text-center pb-1">
     <img alt="image" src="assets/img/icons/iconvolt.png">
@@ -11,10 +16,15 @@
 </div>
 <div class="d-flex bg-white rounded mt-4">
   <div class="col-md-6">
-    <h4 class="font-15 mt-3 text-muted">Total Quotation Request</h4>
-    <h4 class="count_no_color font-50 text-right mt-5">{{totalQuotationResponseData.total}}<span
-        class="text-muted font-12">Quote</span>
-    </h4>
+    <h4 class="font-15 mt-3 text-muted">Total All Cover Note</h4>
+    <ng-template [ngIf]="totalQuotationResponseData.totalCoverNote" [ngIfElse]="NoCover">
+      <h4 class="count_no_color font-50 text-right mt-5">{{totalQuotationResponseData.totalCoverNote}}
+        <span class="text-muted font-12">Cover Note</span>
+      </h4>
+    </ng-template>
+    <ng-template #NoCover>
+      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-12">Cover Note</span></h4>
+    </ng-template>
   </div>
   <div class="col-md-6 text-center pb-1">
     <img alt="image" src="assets/img/icons/iconvolt-second.png">

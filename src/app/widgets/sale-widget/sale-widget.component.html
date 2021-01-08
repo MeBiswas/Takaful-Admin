@@ -2,24 +2,31 @@
   <div class="col-sm-4">
     <img src="assets/img/icons/target.png">
   </div>
-  <div class="col-sm-8">
-    <div class="col-sm-12 p-0">
-      <h4 class="font-19 text-center text-white">CONGRATULATIONS</h4>
-      <h4 class="font-13 text-center text-white font-weight-normal">Total {{saleStatisticResponseData.month |
-        null}}
-        {{saleStatisticResponseData.year | null}} Sale All
-        Takaful
-      </h4>
-    </div>
-    <div class="d-flex">
-      <div class="col-sm-6 p-0 text-center">
-        <span class="text-white font-weight-normal">Target</span>
-        <h4 class="text-white font-20 mt-1">RM {{saleStatisticResponseData.targetValue | null}}</h4>
+  <ng-template [ngIf]="saleStatisticResponseData.targetValue" [ngIfElse]="elseBlock">
+    <div class="col-sm-8">
+      <div class="col-sm-12 p-0">
+        <h4 class="font-19 text-center text-white">CONGRATULATIONS</h4>
+        <h4 class="font-13 text-center text-white font-weight-normal">
+          Total {{saleStatisticResponseData.month}} {{saleStatisticResponseData.year}} Sale All Takaful
+        </h4>
       </div>
-      <div class="col-sm-6 p-0 text-center">
-        <span class="text-white font-weight-normal">Archiever</span>
-        <h4 class="text-white font-20 mt-1">RM {{saleStatisticResponseData.targetAchievement | null}}</h4>
+      <div class="d-flex">
+        <div class="col-sm-6 p-0 text-center">
+          <span class="text-white font-weight-normal">Target</span>
+          <h4 class="text-white font-20 mt-1">RM {{saleStatisticResponseData.targetValue}}</h4>
+        </div>
+        <div class="col-sm-6 p-0 text-center">
+          <span class="text-white font-weight-normal">Archiever</span>
+          <h4 class="text-white font-20 mt-1">RM {{saleStatisticResponseData.targetAchievement}}</h4>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-template>
+  <ng-template #elseBlock>
+    <div class="col-sm-8">
+      <div class="col-sm-12 p-0">
+        <h4 class="font-19 text-center text-white">No Sale Takaful</h4>
+      </div>
+    </div>
+  </ng-template>
 </div>
