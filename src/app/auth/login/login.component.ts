@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
           this._data.data = res.user;
           this._toast.success(res.status.message);
           localStorage.setItem('token', res.user.accessToken);
-          this._router.navigate(['/dashboard']);
+          this._router.navigate(['/admin/dashboard']);
         } else {
           this._toast.warning('Oops! Something went wrong.');
-          this._router.navigate(['/invalid']);
+          this._router.navigate(['/auth/invalid']);
         }
       },
       (err) => {

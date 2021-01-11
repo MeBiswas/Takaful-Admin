@@ -12,6 +12,17 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
+  getUsersList() {
+    const url = '/security/userlist/0';
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }),
+    };
+    return this.http.get(config.apiURL + url, this.httpOptions);
+  }
+
   public getApiWithAuth(url): Observable<any> {
     this.httpOptions = {
       headers: new HttpHeaders({

@@ -17,4 +17,8 @@ export class AuthService {
   public forgotPasswordRequest(url, user): Observable<any> {
     return this.http.post(config.apiURL + url, user);
   }
+
+  public isLoggedIn() {
+    return !!localStorage.getItem('token');
+  }
 }

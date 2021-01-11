@@ -1,32 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// Guard
+import { AuthGuard } from './guard/auth.guard';
 // Components
-import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './auth/login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { InvalidComponent } from './auth/invalid/invalid.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { UserManagementComponent } from './admin/user-management/user-management.component';
+// Modules
+import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
-    path: 'invalid',
-    component: InvalidComponent,
+    path: 'auth',
+    loadChildren: () => import(`./auth/auth.module`).then((m) => m.AuthModule),
   },
   {
-    path: 'forgot-password',
-    component: ForgotPasswordComponent,
-  },
-  {
-    path: 'dashboard',
-    component: AdminComponent,
-    children: [
-      { path: '', component: DashboardComponent },
-      { path: 'user', component: UserManagementComponent },
-    ],
+    path: 'admin',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import(`./admin/admin.module`).then((m) => m.AdminModule),
   },
   {
     path: '**',
@@ -35,16 +27,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const RoutingComponents = [
-  AdminComponent,
-  LoginComponent,
-  InvalidComponent,
-  NotFoundComponent,
-  DashboardComponent,
-  ForgotPasswordComponent,
-  UserManagementComponent,
-];
+export const RoutingComponents = [NotFoundComponent];

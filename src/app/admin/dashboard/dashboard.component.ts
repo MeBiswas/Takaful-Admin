@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     // console.log('Here at', this._data.data);
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   onFilterChanged(value) {
     console.log('Filter Change', value);
