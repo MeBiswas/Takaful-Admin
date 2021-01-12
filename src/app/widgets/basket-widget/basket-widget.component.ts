@@ -26,11 +26,7 @@ export class BasketWidgetComponent implements OnInit {
     private _spin: NgxSpinnerService
   ) {}
 
-  ngOnInit() {
-    this.getBasketStatistics({
-      filter: this._filter,
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {
     this.onFilterValueChange(this._filter);
@@ -45,10 +41,7 @@ export class BasketWidgetComponent implements OnInit {
     this._spin.show();
     this._admin.postApiWithAuth(this.basketStatisticsUrl, data).subscribe(
       (res) => {
-        this.basketStatisticsResponseData = {
-          ...this.basketStatisticsResponseData,
-          ...res,
-        };
+        this.basketStatisticsResponseData = { ...res };
         console.log('Response in Basket Statistic Service', res);
       },
       (err) => {

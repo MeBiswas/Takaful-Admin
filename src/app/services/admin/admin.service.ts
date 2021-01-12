@@ -12,7 +12,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  getUsersList() {
+  public getUsersList() {
     const url = '/security/userlist/0';
     this.httpOptions = {
       headers: new HttpHeaders({

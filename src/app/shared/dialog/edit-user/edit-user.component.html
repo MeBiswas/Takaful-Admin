@@ -1,0 +1,84 @@
+<div class="user-managment-modal">
+  <div class="modal fade" id="user-edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" [ngClass]="{'show': showModal}">
+    <div class="modal-dialog modal-lg" role="document">
+      <form>
+        <div class="modal-content">
+          <div class="modal-header text-center d-block text-white bg-success pt-3 pb-3">
+            <h5 class="modal-title  font-16">Edit User</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">User Name:</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="userName" [(ngModel)]="updateData.userName"
+                        required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">User ID:</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="userId" [(ngModel)]="updateData.userId" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Email:</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="email" [(ngModel)]="updateData.email" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Role:</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" name="role" [(ngModel)]="updateData.role">
+                        <option hidden="">Select</option>
+                        <option value="Administrator">Administrator</option>
+                        <option value="Telemarketing">Telemarketing</option>
+                        <option value="Customer Service">Customer Service</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Supervisor">Supervisor</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Department:</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="department" [(ngModel)]="updateData.department"
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">New Password:</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="password" [(ngModel)]="updateData.password"
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Repeat Password:</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" name="repeatPassword"
+                        [(ngModel)]="updateData.repeatPassword" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer bg-whitesmoke br">
+            <button type="button" class="btn btn-secondary border-0 shadow-none font-weight-normal"
+              (click)="showModal=false">Cancel</button>
+            <button type="submit" class="btn btn-primary font-weight-normal" (click)="editUser()">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

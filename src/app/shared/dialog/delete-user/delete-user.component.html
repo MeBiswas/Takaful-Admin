@@ -1,0 +1,22 @@
+<div class="user-managment-modal delete-modal">
+  <div class="modal fade" id="user-delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" [ngClass]="{'show': showModal}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="p-15 text-center">
+            <img class="pb-4 pt-4" src="assets/img/icons/delete.svg">
+            <h2 class="font-28 text-dark">You are about to delete this user</h2>
+            <p class="font-16 font-weight-normal">
+              This will delete your user from user management Are you sure?</p>
+          </div>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <button type="button" class="btn btn-secondary border-0 shadow-none font-weight-normal"
+            (click)="showModal=false">Cancel</button>
+          <button type="submit" class="btn btn-primary font-weight-normal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

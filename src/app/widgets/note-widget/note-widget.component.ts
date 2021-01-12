@@ -26,9 +26,7 @@ export class NoteWidgetComponent implements OnInit {
     private _spin: NgxSpinnerService
   ) {}
 
-  ngOnInit() {
-    this.getCoverNoteStatistics({ filter: this._filter });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {
     this.onFilterValueChange(this._filter);

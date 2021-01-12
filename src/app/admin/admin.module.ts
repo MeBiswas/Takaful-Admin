@@ -8,10 +8,15 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 // Material
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 // Header Component
 import { HeaderComponent } from '../shared/header/header.component';
 // Sidebar Component
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+// Dialog
+import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
+import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
+import { DeleteUserComponent } from '../shared/dialog/delete-user/delete-user.component';
 // Widgets
 import { SaleWidgetComponent } from '../widgets/sale-widget/sale-widget.component';
 import { NoteWidgetComponent } from '../widgets/note-widget/note-widget.component';
@@ -23,7 +28,10 @@ import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.co
   declarations: [
     HeaderComponent,
     SidebarComponent,
+    AddUserComponent,
+    EditUserComponent,
     RoutingComponents,
+    DeleteUserComponent,
     SaleWidgetComponent,
     NoteWidgetComponent,
     IssueWidgetComponent,
@@ -36,6 +44,7 @@ import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.co
     MatTableModule,
     NgxSpinnerModule,
     AdminRoutingModule,
+    MatPaginatorModule,
   ],
 })
 export class AdminModule {}

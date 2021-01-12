@@ -27,11 +27,7 @@ export class QuoteWidgetComponent implements OnInit {
     private _spin: NgxSpinnerService
   ) {}
 
-  ngOnInit() {
-    this.getQuoteStatistics({
-      filter: this._filter,
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {
     this.onFilterValueChange(this._filter);
