@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
           this._data.data = res.user;
           this._toast.success(res.status.message);
           localStorage.setItem('token', res.user.accessToken);
+          sessionStorage.setItem('auth', JSON.stringify(res.user));
           this._router.navigate(['/admin/dashboard']);
         } else {
           this._toast.warning('Oops! Something went wrong.');

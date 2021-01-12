@@ -42,4 +42,14 @@ export class AdminService {
     };
     return this.http.post(config.apiURL + url, data, this.httpOptions);
   }
+
+  public deleteApiWithAuth(url): Observable<any> {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }),
+    };
+    return this.http.delete(config.apiURL + url, this.httpOptions);
+  }
 }

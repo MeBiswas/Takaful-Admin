@@ -153,41 +153,6 @@
   padding-top: 10px;
 }
 
-.RCTI_table .publish_button,
-.RCTI_table .publish_button:hover {
-  font-family: Lato;
-  font-size: 0.6rem !important;
-  border-radius: 6px !important;
-  background-color: #31b18b !important;
-  box-shadow: unset !important;
-  padding: 0px 15px 0 15px;
-  height: 2rem;
-  min-width: 110px;
-}
-
-.RCTI_table .close_button,
-.RCTI_table .close_button:hover {
-  font-size: 0.7rem !important;
-  border-radius: 6px;
-  background-color: #696969 !important;
-  border: none;
-  box-shadow: unset;
-  padding: 0px 34px 0 34px;
-  height: 2rem;
-  min-width: 110px;
-}
-
-.RCTI_table .pdf_button {
-  height: 2rem;
-}
-
-.RCTI_table .pdf_button img {
-  -webkit-box-shadow: unset;
-  box-shadow: unset;
-  border: unset;
-  border-radius: unset;
-}
-
 .notification-card-wraper .timeline-activity-widget {
   height: 300px;
   overflow-y: scroll;
@@ -522,3 +487,30 @@ div.dataTables_wrapper div.dataTables_info {
   background-color: #dcdbdb;
 }
 /* Account Page Css Code End */
+
+/* All Pages Side Bar Menu Css Start  */
+.sidebar-mini .main-sidebar .sidebar-menu > li .menu_title {
+  display: none !important;
+}
+.main-sidebar .sidebar-menu > li span {
+  font-weight: 600;
+}
+.main-sidebar .sidebar-menu li a {
+  width: unset;
+}
+.sidebar-mini .main-sidebar .sidebar-menu li a {
+  padding-right: 5px !important;
+}
+.main-sidebar .sidebar-menu li a {
+  padding-right: 0px !important;
+}
+.sidebar-mini .sidebar-menu .dropdown .float_mini_sidebar {
+  float: unset !important;
+}
+.sidebar-menu .dropdown .float_mini_sidebar {
+  float: left !important;
+}
+.main-sidebar .sidebar-menu li ul.dropdown-menu li {
+  padding: 0px;
+}
+/* All Pages Side Bar Menu Css End */

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 // Service
 import { AdminService } from '../../../services/admin/admin.service';
 // Toaster
@@ -11,8 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DeleteUserComponent implements OnInit {
   @Input() data;
+  @ViewChild('closeBtn') closeBtn;
 
-  showModal = false;
+  userID;
 
   updateUserURL = '/security/deleteuser';
 
@@ -21,6 +22,23 @@ export class DeleteUserComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges() {
-    this.showModal = this.data;
+    this.userID = this.data;
+  }
+
+  deleteUser() {
+    this.updateUserURL = `${this.updateUserURL}/${this.userID}`;
+    this._admin.deleteApiWithAuth(this.updateUserURL).subscribe(
+      (res) => {
+        console.log('Delete User Service Response', res);
+        this.closeModal();
+      },
+      (err) => {
+        console.log('Delete User Service Response Error', err);
+      }
+    );
+  }
+
+  private closeModal(): void {
+    this.closeBtn.nativeElement.click();
   }
 }

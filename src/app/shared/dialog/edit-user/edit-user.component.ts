@@ -11,8 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditUserComponent implements OnInit {
   @Input() data;
-  @Input() userData;
-  showModal = false;
 
   updateUserURL = '/security/addupdateuser';
 
@@ -31,8 +29,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {}
 
   ngOnChanges() {
-    this.showModal = this.data;
-    this.updateData = { ...this.userData };
+    this.updateData = { ...this.data };
   }
 
   editUser() {
@@ -41,10 +38,23 @@ export class EditUserComponent implements OnInit {
         this._toast.success(res.status.message);
       },
       (err) => {
-        console.log('Edit User Service Response', err);
+        // console.log('Edit User Service Response', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this.showModal = false;
+    this.closeModal();
+  }
+
+  closeModal() {
+    this.updateData = {
+      role: '',
+      email: '',
+      userId: '',
+      password: '',
+      userName: '',
+      department: '',
+      repeatPassword: '',
+    };
+    console.log('Modal Close');
   }
 }

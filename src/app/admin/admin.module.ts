@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 // Routing Module
 import { AdminRoutingModule, RoutingComponents } from './admin-routing.module';
 // Forms Module
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
 // Material
@@ -45,6 +45,7 @@ import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.co
     NgxSpinnerModule,
     AdminRoutingModule,
     MatPaginatorModule,
+    ReactiveFormsModule,
   ],
 })
 export class AdminModule {}

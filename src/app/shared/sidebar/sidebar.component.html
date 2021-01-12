@@ -5,27 +5,32 @@
       <img alt="image" src="assets/img/mini_logo.png" class="header-logo mini_logo" />
     </a>
   </div>
+
   <ul class="sidebar-menu">
     <li class="dropdown">
-      <a class="nav-link" data-toggle="sidebar" routerLink="/admin/dashboard">
+      <a class="nav-link" data-toggle="sidebar">
         <img alt="image" src="assets/img/icons/dashboard_icon.png">
         <span>Dashboard</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
-        <li><a class="nav-link">Dashboard</a></li>
+        <li><a class="nav-link" routerLink="/admin/dashboard">Dashboard</a></li>
       </ul>
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link has-dropdown">
-        <img alt="image" src="assets/img/icons/markunread_mail.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/markunread_mail.png">
+        </a>
+      </div>
+      <a class="nav-link has-dropdown menu_title p-0">
         <span>Follow Up</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
         <span class="font-14 font-weight-600 ml-5 pl-2">Urgent</span>
-        <li class="pb-0 pt-0"><a class="nav-link">NCD</a></li>
-        <li class="pb-0 pt-0"><a class="nav-link">High Risk</a></li>
-        <li class="pb-0 pt-0"><a class="nav-link">Roadtax</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/follow/urgent/ncd">NCD</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/follow/urgent/high-risk">High Risk</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/follow/urgent/roadtax">Roadtax</a></li>
       </ul>
       <ul class="dropdown-menu bg-transparent">
         <span class="font-14 font-weight-600 ml-5 pl-2">Assist</span>
@@ -35,8 +40,12 @@
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link has-dropdown">
-        <img alt="image" src="assets/img/icons/thumb_up.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/thumb_up.png">
+        </a>
+      </div>
+      <a class="nav-link has-dropdown menu_title p-0">
         <span>Endorsement</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
@@ -53,8 +62,12 @@
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link has-dropdown">
-        <img alt="image" src="assets/img/icons/verified.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/verified.png">
+        </a>
+      </div>
+      <a class="nav-link has-dropdown menu_title p-0">
         <span>Claim</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
@@ -63,61 +76,86 @@
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link has-dropdown">
-        <img alt="image" src="assets/img/icons/moped.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/moped.png">
+        </a>
+      </div>
+      <a class="nav-link has-dropdown menu_title p-0">
         <span>Delivery</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
-        <li class="pb-0 pt-0"><a class="nav-link">POST Office</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link">POS Office</a></li>
       </ul>
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link ">
-        <img alt="image" src="assets/img/icons/dollar_icon.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/dollar_icon.png">
+        </a>
+      </div>
+      <a class="nav-link menu_title p-0">
         <span>Refund</span>
       </a>
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link">
-        <img alt="image" src="assets/img/icons/maps_ugc.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/maps_ugc.png">
+        </a>
+      </div>
+      <a class="nav-link menu_title p-0">
         <span>Notifications</span>
       </a>
     </li>
 
     <li class="dropdown ">
-      <a class="nav-link">
-        <img alt="image" src="assets/img/icons/headset_mic.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/headset_mic.png">
+        </a>
+      </div>
+      <a class="nav-link menu_title p-0">
         <span>Telemarketing</span>
       </a>
     </li>
 
     <li class="dropdown">
-      <a class="nav-link has-dropdown">
-        <img alt="image" src="assets/img/icons/content_icon.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/content_icon.png">
+        </a>
+      </div>
+      <a class="nav-link has-dropdown menu_title p-0">
         <span>Report</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
         <li class="pb-0 pt-0"><a class="nav-link">Roadtax</a></li>
       </ul>
     </li>
+
     <li class="dropdown">
-      <a class="nav-link">
-        <img alt="image" src="assets/img/icons/folder_icon.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/folder_icon.png">
+        </a>
+      </div>
+      <a class="nav-link menu_title p-0">
         <span>Customer Database</span>
       </a>
     </li>
 
     <li class="dropdown">
-      <a class="nav-link" routerLink="/admin/user">
-        <img alt="image" src="assets/img/icons/admin_user.png">
-        <span>User Management</span></a>
-      <ul class="dropdown-menu bg-transparent">
-        <li class="pb-0 pt-0">
-          <a class="nav-link">User Management</a>
-        </li>
-      </ul>
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img alt="image" src="assets/img/icons/admin_user.png">
+        </a>
+      </div>
+      <a class="nav-link menu_title p-0" routerLink="/admin/user">
+        <span>User Management</span>
+      </a>
     </li>
   </ul>
 </aside>

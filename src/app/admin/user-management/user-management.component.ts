@@ -19,9 +19,7 @@ export class UserManagementComponent implements OnInit {
   users: any = [];
   errorMessage = '';
   editUserData = {};
-  addUserDialog = false;
-  editUserDialog = false;
-  deleteUserDialog = false;
+  deleteUserData = '';
   dataSource = new MatTableDataSource();
 
   displayedColumns: string[] = [
@@ -69,11 +67,10 @@ export class UserManagementComponent implements OnInit {
   // Edit Dialog Event Handler
   editDialog(a) {
     this.editUserData = { ...a, role: a.roleName };
-    this.editUserDialog = !this.editUserDialog;
   }
 
   // Delete Dialog Event Handler
   deleteDialog(e) {
-    this.deleteUserDialog = !this.deleteUserDialog;
+    this.deleteUserData = e;
   }
 }

@@ -1,8 +1,8 @@
 <div class="user-managment-modal">
   <div class="modal fade" id="user-create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true" [ngClass]="{'show': showModal}">
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <form>
+      <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
         <div class="modal-content">
           <div class="modal-header text-center d-block text-white bg-success pt-3 pb-3">
             <h5 class="modal-title  font-16">Create New User</h5>
@@ -14,25 +14,31 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">User Name:</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" name="userName" [(ngModel)]="userData.userName" required>
+                      <input type="text" class="form-control" formControlName="userName">
+                      <small [class.d-none]="addUserForm.get('userName').valid || addUserForm.get('userName').untouched"
+                        class="text-danger">User Name is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">User ID:</label>
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" name="userId" [(ngModel)]="userData.userId" required>
+                      <input type="email" class="form-control" formControlName="userId">
+                      <small [class.d-none]="addUserForm.get('userId').valid || addUserForm.get('userId').untouched"
+                        class="text-danger">User ID is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" name="email" [(ngModel)]="userData.email" required>
+                      <input type="email" class="form-control" formControlName="email">
+                      <small [class.d-none]="addUserForm.get('email').valid || addUserForm.get('email').untouched"
+                        class="text-danger">Email is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Role:</label>
                     <div class="col-sm-9">
-                      <select class="form-control" name="role" [(ngModel)]="userData.role">
+                      <select class="form-control" formControlName="role">
                         <option hidden="">Select</option>
                         <option value="Administrator">Administrator</option>
                         <option value="Telemarketing">Telemarketing</option>
@@ -40,27 +46,36 @@
                         <option value="Finance">Finance</option>
                         <option value="Supervisor">Supervisor</option>
                       </select>
+                      <small [class.d-none]="addUserForm.get('role').valid || addUserForm.get('role').untouched"
+                        class="text-danger">Role is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Department:</label>
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" name="department" [(ngModel)]="userData.department"
-                        required>
+                      <input type="email" class="form-control" formControlName="department">
+                      <small
+                        [class.d-none]="addUserForm.get('department').valid || addUserForm.get('department').untouched"
+                        class="text-danger">Department is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">New Password:</label>
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" name="newPassword" [(ngModel)]="userData.newPassword"
-                        required>
+                      <input type="password" class="form-control" formControlName="newPassword">
+                      <small
+                        [class.d-none]="addUserForm.get('newPassword').valid || addUserForm.get('newPassword').untouched"
+                        class="text-danger">Password is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Repeat Password:</label>
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" name="repeatPassword"
-                        [(ngModel)]="userData.repeatPassword" required>
+                      <input type="password" class="form-control" formControlName="repeatPassword">
+                      <small
+                        [class.d-none]="addUserForm.get('repeatPassword').valid || addUserForm.get('repeatPassword').untouched"
+                        class="text-danger">Password is required</small>
+                      <small *ngIf="addUserForm.errors?.misMatch" class="text-danger">Password does not match</small>
                     </div>
                   </div>
                 </div>
@@ -69,8 +84,8 @@
           </div>
           <div class="modal-footer bg-whitesmoke br">
             <button type="button" class="btn btn-secondary border-0 shadow-none font-weight-normal"
-              (click)="showModal=false">Cancel</button>
-            <button type="submit" class="btn btn-primary font-weight-normal" (click)="addUser()">Create</button>
+              (click)="closeModal()" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary font-weight-normal">Create</button>
           </div>
         </div>
       </form>
