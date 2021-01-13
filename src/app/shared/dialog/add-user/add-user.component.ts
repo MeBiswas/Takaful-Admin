@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../../services/admin/admin.service';
-// Validators
+// Custom Validators
 import { PasswordValidator } from '../../../validators/password.validator';
 
 @Component({
