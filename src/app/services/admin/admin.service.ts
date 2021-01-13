@@ -9,6 +9,7 @@ import { config } from '../../../config';
 })
 export class AdminService {
   httpOptions: { headers: any };
+  httpNewOptions: { headers: any; body: any };
 
   constructor(private http: HttpClient) {}
 
@@ -43,13 +44,14 @@ export class AdminService {
     return this.http.post(config.apiURL + url, data, this.httpOptions);
   }
 
-  public deleteApiWithAuth(url): Observable<any> {
-    this.httpOptions = {
+  public deleteApiWithAuth(url, data): Observable<any> {
+    this.httpNewOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
+      body: data,
     };
-    return this.http.delete(config.apiURL + url, this.httpOptions);
+    return this.http.delete(config.apiURL + url, this.httpNewOptions);
   }
 }

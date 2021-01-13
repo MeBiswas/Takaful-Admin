@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Toaster
+import { ToastrService } from 'ngx-toastr';
 // NGRX
 import { Store, select } from '@ngrx/store';
 // Material Table Dependencies
@@ -8,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import * as UserActions from '../../store/actions/user.actions';
 // Selectors
 import * as fromUser from '../../store/selectors/user.selectors';
+// Service
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-user-management',
@@ -17,9 +21,9 @@ import * as fromUser from '../../store/selectors/user.selectors';
 export class UserManagementComponent implements OnInit {
   filter = '';
   users: any = [];
-  errorMessage = '';
   editUserData = {};
   deleteUserData = '';
+  userListURL = '/security/userlist/';
   dataSource = new MatTableDataSource();
 
   displayedColumns: string[] = [
@@ -32,19 +36,38 @@ export class UserManagementComponent implements OnInit {
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private _store: Store) {}
+
+  constructor(
+    private _store: Store,
+    private _admin: AdminService,
+    private _toast: ToastrService
+  ) {}
 
   ngOnInit() {
     // Dispatching Action
-    this._store.dispatch(new UserActions.LoadUsers());
+    // this._store.dispatch(new UserActions.LoadUsers());
     // Selector to get Data
-    this._store.pipe(select(fromUser.getUser)).subscribe((user) => {
-      this.addActionData(user);
-    });
+    // this._store.pipe(select(fromUser.getUser)).subscribe((user) => {
+    //   this.addActionData(user);
+    // });
+    this.getTableData(0);
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  // Service Handler
+  getTableData(p) {
+    this._admin.getApiWithAuth(this.userListURL + p).subscribe(
+      (res) => {
+        this.addActionData(res.userList);
+      },
+      (err) => {
+        // console.log('User List Service Response', err);
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
   }
 
   // Filter Table data as per input search
@@ -54,14 +77,15 @@ export class UserManagementComponent implements OnInit {
 
   // Pagination Event
   pageChanged(e) {
-    console.log('Page Changed', e);
+    e.pageIndex > e.previousPageIndex ? this.getTableData(e.pageIndex) : null;
   }
 
   // Adding Table Action Column Data
   addActionData(d) {
     let newArr = [...d];
     this.users = newArr.map((item) => (item = { ...item, action: item }));
-    this.dataSource.data = this.users;
+    this.dataSource.data = [...this.dataSource.data, ...this.users];
+    this.dataSource.data = this.getUniqueListBy(this.dataSource.data, 'email');
   }
 
   // Edit Dialog Event Handler
@@ -72,5 +96,10 @@ export class UserManagementComponent implements OnInit {
   // Delete Dialog Event Handler
   deleteDialog(e) {
     this.deleteUserData = e;
+  }
+
+  // Filter Array for Unique Objcts
+  getUniqueListBy(arr, key) {
+    return [...new Map(arr.map((item) => [item[key], item])).values()];
   }
 }

@@ -2,7 +2,7 @@
   <div class="modal fade" id="user-edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="editUserForm" (ngSubmit)="onSubmit(editUserForm.valid)">
         <div class="modal-content">
           <div class="modal-header text-center d-block text-white bg-success pt-3 pb-3">
             <h5 class="modal-title font-16">Edit User</h5>
@@ -43,12 +43,7 @@
                     <label class="col-sm-3 col-form-label">Role:</label>
                     <div class="col-sm-9">
                       <select class="form-control" formControlName="role">
-                        <option disabled>Select Role</option>
-                        <option value="Administrator">Administrator</option>
-                        <option value="Telemarketing">Telemarketing</option>
-                        <option value="Customer Service">Customer Service</option>
-                        <option value="Finance">Finance</option>
-                        <option value="Supervisor">Supervisor</option>
+                        <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
                       </select>
                       <small [class.d-none]="editUserForm.get('role').valid || editUserForm.get('role').untouched"
                         class="text-danger">Role is
@@ -83,7 +78,6 @@
                       <small
                         [class.d-none]="editUserForm.get('repeatPassword').valid || editUserForm.get('repeatPassword').untouched"
                         class="text-danger">Password is required</small>
-                      <!-- <small *ngIf="editUserForm.errors?.misMatch" class="text-danger">Password does not match</small> -->
                     </div>
                   </div>
                 </div>
@@ -92,9 +86,8 @@
           </div>
           <div class="modal-footer bg-whitesmoke br">
             <button type="button" class="btn btn-secondary border-0 shadow-none font-weight-normal"
-              (click)="closeModal()" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary font-weight-normal"
-              [disabled]="!editUserForm.valid">Create</button>
+              (click)="closeModal()" data-dismiss="modal" #closeBtn>Cancel</button>
+            <button type="submit" class="btn btn-primary font-weight-normal">Update</button>
           </div>
         </div>
       </form>

@@ -1,0 +1,21 @@
+.main-content {
+  width: 100%;
+  padding-top: none;
+  position: relative;
+  padding-right: none;
+}
+.second_top_bar {
+  left: 0;
+  right: 0;
+  z-index: 0;
+  width: 100%;
+  padding-top: 15px;
+  position: absolute;
+  padding-bottom: 10px;
+}
+.section {
+  margin-top: 66px;
+}
+table.mat-table {
+  background-color: #fff;
+}

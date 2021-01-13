@@ -2,7 +2,7 @@
   <div class="modal fade" id="user-create-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="addUserForm" (ngSubmit)="onSubmit(addUserForm.valid)">
         <div class="modal-content">
           <div class="modal-header text-center d-block text-white bg-success pt-3 pb-3">
             <h5 class="modal-title  font-16">Create New User</h5>
@@ -12,7 +12,7 @@
               <div class="col-12 col-md-12 col-lg-12">
                 <div class="card-body">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">User Name:</label>
+                    <label class="col-sm-3 col-form-label">User Name: *</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" formControlName="userName">
                       <small [class.d-none]="addUserForm.get('userName').valid || addUserForm.get('userName').untouched"
@@ -20,7 +20,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">User ID:</label>
+                    <label class="col-sm-3 col-form-label">User ID: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="userId">
                       <small [class.d-none]="addUserForm.get('userId').valid || addUserForm.get('userId').untouched"
@@ -28,7 +28,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Email:</label>
+                    <label class="col-sm-3 col-form-label">Email: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="email">
                       <small [class.d-none]="addUserForm.get('email').valid || addUserForm.get('email').untouched"
@@ -36,22 +36,17 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Role:</label>
+                    <label class="col-sm-3 col-form-label">Role: *</label>
                     <div class="col-sm-9">
-                      <select class="form-control" formControlName="role">
-                        <option hidden="">Select</option>
-                        <option value="Administrator">Administrator</option>
-                        <option value="Telemarketing">Telemarketing</option>
-                        <option value="Customer Service">Customer Service</option>
-                        <option value="Finance">Finance</option>
-                        <option value="Supervisor">Supervisor</option>
+                      <select class="form-control custom-select custom-select-lg" formControlName="role">
+                        <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
                       </select>
                       <small [class.d-none]="addUserForm.get('role').valid || addUserForm.get('role').untouched"
                         class="text-danger">Role is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Department:</label>
+                    <label class="col-sm-3 col-form-label">Department: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="department">
                       <small
@@ -60,22 +55,22 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">New Password:</label>
+                    <label class="col-sm-3 col-form-label">New Password: *</label>
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" formControlName="newPassword">
-                      <small
-                        [class.d-none]="addUserForm.get('newPassword').valid || addUserForm.get('newPassword').untouched"
+                      <input type="password" class="form-control" formControlName="password">
+                      <small [class.d-none]="addUserForm.get('password').valid || addUserForm.get('password').untouched"
                         class="text-danger">Password is required</small>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Repeat Password:</label>
+                    <label class="col-sm-3 col-form-label">Repeat Password: *</label>
                     <div class="col-sm-9">
                       <input type="password" class="form-control" formControlName="repeatPassword">
                       <small
                         [class.d-none]="addUserForm.get('repeatPassword').valid || addUserForm.get('repeatPassword').untouched"
-                        class="text-danger">Password is required</small>
-                      <small *ngIf="addUserForm.errors?.misMatch" class="text-danger">Password does not match</small>
+                        class="text-danger">Repeat Password is required</small>
+                      <small *ngIf="addUserForm.errors?.misMatch" class="text-danger">Password and Repeat Password does
+                        not match</small>
                     </div>
                   </div>
                 </div>
@@ -84,7 +79,7 @@
           </div>
           <div class="modal-footer bg-whitesmoke br">
             <button type="button" class="btn btn-secondary border-0 shadow-none font-weight-normal"
-              (click)="closeModal()" data-dismiss="modal">Cancel</button>
+              (click)="closeModal()" data-dismiss="modal" #closeBtn>Cancel</button>
             <button type="submit" class="btn btn-primary font-weight-normal">Create</button>
           </div>
         </div>

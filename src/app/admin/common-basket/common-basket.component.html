@@ -1,0 +1,80 @@
+<div class="second_top_bar bg-white p-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pl-0 align-self-lg-center">
+        <h4 class="font-17 text-dark">
+          <span class="font-weight-600">{{routeData.category}}/{{routeData.subCategory}}/</span>{{routeData.page
+          === 'NCD' ? 'No Claim Discount (NCD)' : routeData.page}}
+        </h4>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end pr-0">
+        <form #filterForm="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <i class="fa-search fas ml-3 position-absolute text-muted" aria-hidden="true"></i>
+              <input class="form-control pl-5 w-100" type="text" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-md-6">
+              <select [(ngModel)]="filter" name="Filter" class="font-weight-600 form-control"
+                (ngModelChange)="onFilterChanged($event)">
+                <option *ngFor="let filter of filters" value="{{filter.value}}">{{filter.option}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="table table-bordered mb-0">
+        <ng-container matColumnDef="vehiclePlateNo">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Car Register </th>
+          <td mat-cell *matCellDef="let element"> {{element.vehiclePlateNo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerName">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="paymentDate">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Payment Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.paymentDate | date: 'dd MMM YYYY'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="principal">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Takaful Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.principal}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="carModel">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Model Car </th>
+          <td mat-cell *matCellDef="let element"> {{element.carModel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">{{element.status}}</button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customerService">
+          <th scope="col" mat-header-cell *matHeaderCellDef> Customer Service </th>
+          <td mat-cell *matCellDef="let element">
+            <button *ngIf="element.customerService !== '' " class="btn btn-light rounded-pill font-weight-600">
+              {{element.customerService}}
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+</section>

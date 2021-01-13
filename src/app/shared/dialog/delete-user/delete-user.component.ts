@@ -26,16 +26,26 @@ export class DeleteUserComponent implements OnInit {
   }
 
   deleteUser() {
-    this.updateUserURL = `${this.updateUserURL}/${this.userID}`;
-    this._admin.deleteApiWithAuth(this.updateUserURL).subscribe(
+    let data = {
+      userId: this.userID,
+    };
+    this._admin.deleteApiWithAuth(this.updateUserURL, data).subscribe(
       (res) => {
-        console.log('Delete User Service Response', res);
-        this.closeModal();
+        if (res.status.code === 0) {
+          this._toast.success('User deleted successfully');
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else {
+          this._toast.warning(res.status.message);
+        }
       },
       (err) => {
-        console.log('Delete User Service Response Error', err);
+        this._toast.error('Oops! Something went wrong.');
+        // console.log('Delete User Service Response Error', err);
       }
     );
+    this.closeModal();
   }
 
   private closeModal(): void {

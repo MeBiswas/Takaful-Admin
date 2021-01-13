@@ -3,7 +3,7 @@ import { AbstractControl } from '@angular/forms';
 export function PasswordValidator(
   control: AbstractControl
 ): { [key: string]: boolean } | null {
-  const password = control.get('newPassword');
+  const password = control.get('password');
   const repeatPassword = control.get('repeatPassword');
   if (password.pristine || repeatPassword.pristine) {
     return null;

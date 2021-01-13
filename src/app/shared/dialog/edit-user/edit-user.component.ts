@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Form
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../../services/admin/admin.service';
-// Custom Validators
-import { PasswordValidator } from '../../../validators/password.validator';
-
+// Email Regex
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
@@ -17,7 +17,10 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 })
 export class EditUserComponent implements OnInit {
   @Input() data;
-  updateUserURL = '/security/addupdateuser';
+  @ViewChild('closeBtn') closeBtn;
+  roles = [];
+  roleListURL = '/security/rolelist';
+  updateUserURL = '/security/updateuser';
 
   editUserForm = this._fb.group({
     role: ['', Validators.required],
@@ -30,33 +33,58 @@ export class EditUserComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _fb: FormBuilder,
     private _admin: AdminService,
     private _toast: ToastrService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getRoleList();
+  }
 
   ngOnChanges() {
     this.editUserForm.patchValue({ ...this.data });
   }
 
-  onSubmit() {
-    this._admin
-      .postApiWithAuth(this.updateUserURL, this.editUserForm.value)
-      .subscribe(
-        (res) => {
-          this._toast.success(res.status.message);
-        },
-        (err) => {
-          console.log('Edit User Service Response', err);
-          this._toast.error('Oops! Something went wrong.');
+  getRoleList() {
+    this._admin.getApiWithAuth(this.roleListURL).subscribe(
+      (res) => {
+        this.roles = [...res.roleList];
+      },
+      (err) => {
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
+  }
+
+  onSubmit(v) {
+    !v
+      ? this._toast.error('Please fill all required fields')
+      : this.editUser(this.editUserForm.value);
+  }
+
+  private editUser(d) {
+    this._admin.postApiWithAuth(this.updateUserURL, d).subscribe(
+      (res) => {
+        if (res.status.code === 0) {
+          this._toast.success('User updated successfully');
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else {
+          this._toast.warning(res.status.message);
         }
-      );
+      },
+      (err) => {
+        // console.log('Edit User Service Response', err);
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
     this.closeModal();
   }
 
-  closeModal() {
+  closeModal(): void {
     this.editUserForm.setValue({
       role: '',
       email: '',
@@ -66,6 +94,6 @@ export class EditUserComponent implements OnInit {
       department: '',
       repeatPassword: '',
     });
-    console.log('Modal Close');
+    this.closeBtn.nativeElement.click();
   }
 }

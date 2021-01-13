@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonTableComponent } from './common-table/common-table.component';
+import { CommonBasketComponent } from './common-basket/common-basket.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
@@ -24,16 +25,16 @@ const routes: Routes = [
     children: [
       {
         path: 'urgent/ncd',
-        component: CommonTableComponent,
+        component: CommonBasketComponent,
         data: {
+          page: 'NCD',
           category: 'Follow Up',
           subCategory: 'Urgent',
-          page: 'No Claim Discount (NCD)',
         },
       },
       {
         path: 'urgent/high-risk',
-        component: CommonTableComponent,
+        component: CommonBasketComponent,
         data: {
           category: 'Follow Up',
           subCategory: 'Urgent',
@@ -42,8 +43,26 @@ const routes: Routes = [
       },
       {
         path: 'urgent/roadtax',
-        component: CommonTableComponent,
+        component: CommonBasketComponent,
         data: { category: 'Follow Up', subCategory: 'Urgent', page: 'Roadtax' },
+      },
+      {
+        path: 'assist/ncd',
+        component: CommonBasketComponent,
+        data: {
+          page: 'NCD',
+          category: 'Follow Up',
+          subCategory: 'Assist',
+        },
+      },
+      {
+        path: 'assist/market-value',
+        component: CommonBasketComponent,
+        data: {
+          page: 'Market Value',
+          category: 'Follow Up',
+          subCategory: 'Assist',
+        },
       },
     ],
   },
@@ -58,5 +77,6 @@ export const RoutingComponents = [
   AdminComponent,
   DashboardComponent,
   CommonTableComponent,
+  CommonBasketComponent,
   UserManagementComponent,
 ];
