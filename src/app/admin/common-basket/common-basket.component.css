@@ -16,6 +16,32 @@
 .section {
   margin-top: 66px;
 }
-table.mat-table {
+table {
+  width: 100%;
+}
+tr.mat-row {
   background-color: #fff;
+}
+tr.example-detail-row {
+  height: 0;
+  padding: 0;
+}
+tr.example-detail-row > td {
+  padding: 0;
+}
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+.example-element-row td {
+  border-bottom-width: 0;
+}
+.example-element-detail {
+  display: flex;
+  overflow: hidden;
+}
+.example-element-description {
+  width: 100%;
 }

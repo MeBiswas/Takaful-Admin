@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CommonTableComponent } from './common-table/common-table.component';
 import { CommonBasketComponent } from './common-basket/common-basket.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
@@ -76,7 +75,6 @@ export class AdminRoutingModule {}
 export const RoutingComponents = [
   AdminComponent,
   DashboardComponent,
-  CommonTableComponent,
   CommonBasketComponent,
   UserManagementComponent,
 ];

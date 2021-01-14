@@ -7,7 +7,6 @@
           <i class="fas fa-bars"></i>
         </a>
       </li>
-
     </ul>
   </div>
   <ul class="navbar-nav navbar-right">
@@ -35,7 +34,6 @@
               <p class="font-weight-normal">John Doe INS043 just assign <span class="text-success">Sling/shackle
                   inspection.</span></p>
             </div>
-
           </div>
         </div>
         <div class="dropdown-footer text-center">
@@ -48,21 +46,18 @@
     <li class="dropdown">
       <a data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
         <img alt="image" src="assets/img/icons/user_profile_icon.png" class="mr-2">
-        <span class="d-sm-none d-lg-inline-block"></span> john doe Admin <i class="fa fa-chevron-down ml-4"></i></a>
+        <span class="d-sm-none d-lg-inline-block"></span> {{userData.userName}}
+        <i class="fa fa-chevron-down ml-5"></i>
+      </a>
       <div class="dropdown-menu dropdown-menu-right">
-        <div class="dropdown-title">Hello Alexa Lopez <i class="fa fa-chevron-gown"></i></div>
-        <a class="dropdown-item has-icon">
-          <i class="far fa-user"></i> Profile
+        <a class="dropdown-item">
+          Account Settings
         </a>
-        <a class="dropdown-item has-icon">
-          <i class="fas fa-bolt"></i> Activities
+        <a class="dropdown-item">
+          Target / Achievement
         </a>
-        <a href="" class="dropdown-item has-icon">
-          <i class="fas fa-cog"></i> Settings
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item has-icon text-danger" (click)="logout()">
-          <i class="fas fa-sign-out-alt"></i> Logout
+        <a class="dropdown-item" (click)="logout()">
+          Logout
         </a>
       </div>
     </li>

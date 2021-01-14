@@ -23,6 +23,8 @@ import { NoteWidgetComponent } from '../widgets/note-widget/note-widget.componen
 import { IssueWidgetComponent } from '../widgets/issue-widget/issue-widget.component';
 import { QuoteWidgetComponent } from '../widgets/quote-widget/quote-widget.component';
 import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.component';
+// Basket Detail Components
+import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/follow-urgent-ncd.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.co
     IssueWidgetComponent,
     QuoteWidgetComponent,
     BasketWidgetComponent,
+    FollowUrgentNcdComponent,
   ],
   imports: [
     FormsModule,
