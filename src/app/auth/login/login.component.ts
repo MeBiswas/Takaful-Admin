@@ -52,6 +52,6 @@ export class LoginComponent implements OnInit {
         this._toast.error(err.status.message);
       }
     );
-    this._spin.hide();
+    // this._spin.hide();
   }
 }

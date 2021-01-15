@@ -42,10 +42,8 @@ export class BasketWidgetComponent implements OnInit {
     this._admin.postApiWithAuth(this.basketStatisticsUrl, data).subscribe(
       (res) => {
         this.basketStatisticsResponseData = { ...res };
-        console.log('Response in Basket Statistic Service', res);
       },
       (err) => {
-        console.log('Error in Basket Statistic Service', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );

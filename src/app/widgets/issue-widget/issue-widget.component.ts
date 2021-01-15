@@ -68,13 +68,8 @@ export class IssueWidgetComponent implements OnInit {
             ...this.recentIssuesResponseData,
             ...res,
           };
-          console.log(
-            'Response in Most Recent Issues Service',
-            this.recentIssuesResponseData
-          );
         },
         (err) => {
-          console.log('Error in Most Recent Issues Service', err);
           this._toast.error('Oops! Something went wrong.');
         }
       );

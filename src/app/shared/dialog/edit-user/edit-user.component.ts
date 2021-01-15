@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-// Router
-import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Form
@@ -18,6 +16,7 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 export class EditUserComponent implements OnInit {
   @Input() data;
   @ViewChild('closeBtn') closeBtn;
+
   roles = [];
   roleListURL = '/security/rolelist';
   updateUserURL = '/security/updateuser';
@@ -33,7 +32,6 @@ export class EditUserComponent implements OnInit {
   });
 
   constructor(
-    private _router: Router,
     private _fb: FormBuilder,
     private _admin: AdminService,
     private _toast: ToastrService

@@ -8,7 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 // Material
 import { MatTableModule } from '@angular/material/table';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 // Header Component
 import { HeaderComponent } from '../shared/header/header.component';
 // Sidebar Component
@@ -25,6 +27,7 @@ import { QuoteWidgetComponent } from '../widgets/quote-widget/quote-widget.compo
 import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.component';
 // Basket Detail Components
 import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/follow-urgent-ncd.component';
+import { FollowUrgentRiskComponent } from '../basket-details/follow-urgent-risk/follow-urgent-risk.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/fo
     QuoteWidgetComponent,
     BasketWidgetComponent,
     FollowUrgentNcdComponent,
+    FollowUrgentRiskComponent,
   ],
   imports: [
     FormsModule,
@@ -49,6 +53,8 @@ import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/fo
     AdminRoutingModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class AdminModule {}

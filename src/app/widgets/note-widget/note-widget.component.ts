@@ -45,13 +45,8 @@ export class NoteWidgetComponent implements OnInit {
           ...this.coverNoteStatisticResponseData,
           ...res,
         };
-        console.log(
-          'Response in Cover Note Statistics Service',
-          this.coverNoteStatisticResponseData
-        );
       },
       (err) => {
-        console.log('Error in Cover Note Statistics Service', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );

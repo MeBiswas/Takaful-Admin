@@ -86,7 +86,17 @@
           <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
             <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
               <div class="example-element-description">
-                <app-follow-urgent-ncd [data]="element.vehiclePlateNo"></app-follow-urgent-ncd>
+                <ng-container [ngSwitch]="routeData.page">
+                  <div *ngSwitchCase="'NCD'" [item]="routeData">
+                    <app-follow-urgent-ncd [currentData]="detailComponentData"
+                      *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
+                    </app-follow-urgent-ncd>
+                  </div>
+                  <div *ngSwitchCase="'High Risk'" [item]="routeData">
+                    <app-follow-urgent-risk></app-follow-urgent-risk>
+                  </div>
+                  <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
+                </ng-container>
               </div>
             </div>
           </td>
@@ -94,7 +104,7 @@
 
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
-          [class.example-expanded-row]="expandedElement === element"
+          [class.example-expanded-row]="expandedElement === element" (click)="onTableExpand(element.vehiclePlateNo)"
           (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>

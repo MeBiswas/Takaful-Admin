@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Toaster
+import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Activated Route
 import { ActivatedRoute } from '@angular/router';
 // Material Table Dependencies
@@ -41,6 +45,7 @@ export class CommonBasketComponent implements OnInit {
   search = '';
   basket: any = [];
   filter = 'Monthly';
+  detailComponentData = '';
   dataSource = new MatTableDataSource();
   basketURL = '/admin/dashboard/followup/list';
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -62,6 +67,8 @@ export class CommonBasketComponent implements OnInit {
 
   constructor(
     private _admin: AdminService,
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService,
     private activatedroute: ActivatedRoute
   ) {}
 
@@ -104,24 +111,32 @@ export class CommonBasketComponent implements OnInit {
 
   // Service Call to get Table Data
   private getTableData(filter) {
+    this._spin.show();
     let d = this.tableBodyData(this.routeData, filter);
     this._admin.postApiWithAuth(this.basketURL, d).subscribe(
       (res) => {
         this.dataSource.data = res.list;
       },
       (err) => {
-        console.log('Basket Table Data Service Response', err);
+        this._toast.error('Oops! Something went wrong.');
       }
     );
+    this._spin.hide();
   }
 
   // Pagination Event
   pageChanged(e) {
-    console.log('Pagination Event', e);
+    // console.log('Pagination Event', e);
   }
 
   // Filter Table with Search Input
   searchFor(s: string) {
     this.dataSource.filter = s.trim().toLocaleLowerCase();
+  }
+
+  // On Expanding Table
+  onTableExpand(d) {
+    // console.log('ehthe aaa', d);
+    this.detailComponentData = d;
   }
 }

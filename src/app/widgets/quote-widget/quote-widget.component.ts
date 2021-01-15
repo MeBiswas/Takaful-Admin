@@ -46,10 +46,8 @@ export class QuoteWidgetComponent implements OnInit {
           ...this.totalQuotationResponseData,
           ...res,
         };
-        console.log('Response in Quote Statistic Service', res);
       },
       (err) => {
-        console.log('Error in Quote Statistic Service', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );
