@@ -6,16 +6,16 @@ import { DatePipe } from '@angular/common';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-follow-urgent-ncd',
-  templateUrl: './follow-urgent-ncd.component.html',
-  styleUrls: ['./follow-urgent-ncd.component.css'],
+  selector: 'app-follow-assist-market',
+  templateUrl: './follow-assist-market.component.html',
+  styleUrls: ['./follow-assist-market.component.css'],
 })
-export class FollowUrgentNcdComponent implements OnInit {
+export class FollowAssistMarketComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
@@ -35,13 +35,9 @@ export class FollowUrgentNcdComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    topupRemark: [''],
-    refundRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
-    topupAmount: ['', Validators.required],
-    refundAmount: ['', Validators.required],
   });
 
   constructor(

@@ -136,7 +136,6 @@ export class CommonBasketComponent implements OnInit {
 
   // On Expanding Table
   onTableExpand(d) {
-    // console.log('ehthe aaa', d);
     this.detailComponentData = d;
   }
 }

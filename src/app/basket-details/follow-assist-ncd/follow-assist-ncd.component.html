@@ -99,39 +99,24 @@
         <label class="col-form-label col-sm-4 font-weight-bold align-self-center">Step Procedure</label>
       </div>
       <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-5 col-form-label font-weight-bold">1. Check & Update (NCD)</label>
+        <label class="col-sm-5 col-form-label "><span class="font-weight-bold">1. Check & Update</span> (NCD)</label>
         <div class="col-sm-5">
           <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
         </div>
       </div>
       <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-5 col-form-label font-weight-bold">2. Requote</label>
+        <label class="col-sm-5 col-form-label font-weight-bold">2. Change NCD</label>
         <div class="col-sm-5">
-          <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
+          <select class="font-weight-600 form-control">
+            <option>Select</option>
+          </select>
         </div>
       </div>
       <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-3 col-form-label font-weight-bold">3. Refund</label>
-        <div class="col-sm-9">
-          <select class="form-control w-75 form-group">
-            <option>Select</option>
-          </select>
-          <input type="text" class="form-control w-75 form-group text-muted" formControlName="refundAmount">
-          <div *ngIf="basketDetailForm.get('refundAmount').invalid && basketDetailForm.get('refundAmount').touched"
-            class="error">Refund amount is required</div>
-          <textarea class="form-control" rows="3" formControlName="refundRemark"></textarea>
-        </div>
-      </div>
-      <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-3 col-form-label font-weight-bold">4. Topup</label>
-        <div class="col-sm-9">
-          <select class="form-control w-75 form-group">
-            <option>Select</option>
-          </select>
-          <input type="text" class="form-control w-75 form-group text-muted" formControlName="topupAmount">
-          <div *ngIf="basketDetailForm.get('topupAmount').invalid && basketDetailForm.get('topupAmount').touched"
-            class="error">Topup amount is required</div>
-          <textarea class="form-control mt-2" rows="3" formControlName="topupRemark"></textarea>
+        <label class="col-sm-5 col-form-label font-weight-bold">3. Send Link to Customer</label>
+        <div class="col-sm-6">
+          <button class="bg-light border-0 btn btn-lg form-group rounded-pill text-dark text-white"><img class="pr-2"
+              src="assets/img/icons/whatsapp.png" />SEND WHATSAPP</button>
         </div>
       </div>
       <div class="row">

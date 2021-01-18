@@ -26,14 +26,12 @@ import { IssueWidgetComponent } from '../widgets/issue-widget/issue-widget.compo
 import { QuoteWidgetComponent } from '../widgets/quote-widget/quote-widget.component';
 import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.component';
 // Basket Detail Components
+import { EndorsePayFailComponent } from '../basket-details/endorse-pay-fail/endorse-pay-fail.component';
 import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/follow-urgent-ncd.component';
+import { FollowUrgentTaxComponent } from '../basket-details/follow-urgent-tax/follow-urgent-tax.component';
+import { FollowAssistNcdComponent } from '../basket-details/follow-assist-ncd/follow-assist-ncd.component';
 import { FollowUrgentRiskComponent } from '../basket-details/follow-urgent-risk/follow-urgent-risk.component';
-import { NotificationComponent } from './notification/notification.component';
-import { TelemarketingComponent } from './telemarketing/telemarketing.component';
-import { ReportRoadtaxComponent } from './report-roadtax/report-roadtax.component';
-import { CustomerDatabaseComponent } from './customer-database/customer-database.component';
-import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { TargetAchieverComponent } from './target-achiever/target-achiever.component';
+import { FollowAssistMarketComponent } from '../basket-details/follow-assist-market/follow-assist-market.component';
 
 @NgModule({
   declarations: [
@@ -48,14 +46,12 @@ import { TargetAchieverComponent } from './target-achiever/target-achiever.compo
     IssueWidgetComponent,
     QuoteWidgetComponent,
     BasketWidgetComponent,
+    EndorsePayFailComponent,
+    FollowUrgentTaxComponent,
     FollowUrgentNcdComponent,
+    FollowAssistNcdComponent,
     FollowUrgentRiskComponent,
-    NotificationComponent,
-    TelemarketingComponent,
-    ReportRoadtaxComponent,
-    CustomerDatabaseComponent,
-    AccountSettingsComponent,
-    TargetAchieverComponent,
+    FollowAssistMarketComponent,
   ],
   imports: [
     FormsModule,

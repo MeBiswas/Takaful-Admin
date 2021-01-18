@@ -11,11 +11,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-follow-urgent-ncd',
-  templateUrl: './follow-urgent-ncd.component.html',
-  styleUrls: ['./follow-urgent-ncd.component.css'],
+  selector: 'app-follow-urgent-tax',
+  templateUrl: './follow-urgent-tax.component.html',
+  styleUrls: ['./follow-urgent-tax.component.css'],
 })
-export class FollowUrgentNcdComponent implements OnInit {
+export class FollowUrgentTaxComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
@@ -35,13 +35,9 @@ export class FollowUrgentNcdComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    topupRemark: [''],
-    refundRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
-    topupAmount: ['', Validators.required],
-    refundAmount: ['', Validators.required],
   });
 
   constructor(

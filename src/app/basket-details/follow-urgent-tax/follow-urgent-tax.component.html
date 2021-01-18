@@ -94,23 +94,23 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="form-group row mt-3 pl-4 pr-5">
+    <div class="form-group row mt-3  pl-4 pr-5">
       <label class="col-form-label col-sm-4 font-weight-bold align-self-center">Step Procedure</label>
     </div>
-    <div class="form-group row pl-4 pr-5">
-      <label class="col-sm-5 col-form-label font-weight-bold">1. Get Approval</label>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-5 col-form-label font-weight-bold">1. Check Summon</label>
+      <div class="col-sm-5">
+        <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
+      </div>
     </div>
-    <div class="form-group row pl-4 pr-5">
-      <label class="col-sm-3 col-form-label font-weight-bold">3. Refund</label>
-      <div class="col-sm-9">
-        <select class="form-control w-75 form-group">
-          <option>Select</option>
-        </select>
-        <input type="text" class="form-control w-75 form-group text-muted" formControlName="refundAmount">
-        <div *ngIf="basketDetailForm.get('refundAmount').invalid && basketDetailForm.get('refundAmount').touched"
-          class="error">
-          Refund amount is required</div>
-        <textarea class="form-control" rows="3"></textarea>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-5 col-form-label font-weight-bold">2. Call Customer </label>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-5 col-form-label font-weight-bold">3. Refund/Topup</label>
+      <div class="col-sm-6">
+        <button class="bg-light-blue border-0 btn btn-lg text-white form-group">Refund - Go to Mail</button>
+        <button class="bg-light-blue border-0 btn btn-lg text-white">Topup - Go to Summary Price</button>
       </div>
     </div>
     <div class="row">

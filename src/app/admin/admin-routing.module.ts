@@ -3,8 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotificationComponent } from './notification/notification.component';
 import { CommonBasketComponent } from './common-basket/common-basket.component';
+import { TelemarketingComponent } from './telemarketing/telemarketing.component';
+import { ReportRoadtaxComponent } from './report-roadtax/report-roadtax.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { TargetAchieverComponent } from './target-achiever/target-achiever.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { CustomerDatabaseComponent } from './customer-database/customer-database.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -118,9 +124,8 @@ const routes: Routes = [
         path: 'payment-fail',
         component: CommonBasketComponent,
         data: {
-          page: 'Fail',
+          page: 'Payment Failed',
           category: 'Endorsement',
-          subCategory: 'Payment',
         },
       },
     ],
@@ -152,6 +157,79 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'notifications',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: NotificationComponent,
+        data: {
+          page: 'Notification',
+        },
+      },
+    ],
+  },
+  {
+    path: 'telemarketing',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: TelemarketingComponent,
+        data: {
+          page: 'Telemarketing',
+        },
+      },
+    ],
+  },
+  {
+    path: 'report',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'roadtax',
+        component: ReportRoadtaxComponent,
+        data: {
+          page: 'Roadtax',
+          category: 'Report',
+        },
+      },
+    ],
+  },
+  {
+    path: 'customer-database',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: CustomerDatabaseComponent,
+        data: {
+          page: 'Database',
+        },
+      },
+    ],
+  },
+  {
+    path: 'settings',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: AccountSettingsComponent,
+      },
+    ],
+  },
+  {
+    path: 'target-achievement',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: TargetAchieverComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -163,5 +241,11 @@ export const RoutingComponents = [
   AdminComponent,
   DashboardComponent,
   CommonBasketComponent,
+  NotificationComponent,
+  TelemarketingComponent,
+  ReportRoadtaxComponent,
+  TargetAchieverComponent,
   UserManagementComponent,
+  AccountSettingsComponent,
+  CustomerDatabaseComponent,
 ];
