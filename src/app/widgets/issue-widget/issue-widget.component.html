@@ -1,26 +1,28 @@
-<div class="dashboard_right_sidebar">
-  <div class="col-sm-12 pt-3">
+<div class="d-flex dashboard_right_sidebar flex-wrap">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 pt-3">
     <span class="font-15 font-weight-600 text-muted">Today</span>
     <h4 class="font-18 theme_color">{{today | date: 'dd MMM YYYY'}}</h4>
   </div>
   <ng-template [ngIf]="recentIssuesResponseData.recentList?.length > 0" [ngIfElse]="elseBlock">
-    <div class="col-sm-12 mt-3">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 pt-3">
       <span class="font-15 font-weight-600 text-muted">Recents Follow up</span>
-      <div class="border p-2 rounded mt-2" *ngFor="let item of recentIssuesResponseData.recentList">
+    </div>
+    <div class="col-lg-12 col-md-6 col-sm-6 col-xl-12 mt-3">
+      <div class="border mt-2 pb-1 pl-2 pr-2 pt-2 rounded" *ngFor="let item of recentIssuesResponseData.recentList">
         <h4 class="font-16">{{item.vehiclePlateNo}} - {{item.basketType}}</h4>
         <h5 class="font-13 text-muted">{{item.date}}</h5>
-        <button class="bg-light btn text-muted mr-1">
+        <button class="bg-light btn text-muted mb-2">
           <img alt="image" src="assets/img/icons/markunread_mail_small.png"> Open
         </button>
-        <button class="bg-light btn text-muted width-per-63">
+        <button class="bg-light btn mb-2 text-muted">
           Urgent - {{item.basketType}}
         </button>
       </div>
     </div>
   </ng-template>
   <ng-template #elseBlock>
-    <div class="p-2 mt-2">
-      <h4 class="font-16">No Recent Follow up</h4>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 pt-3">
+      <span class="font-15 font-weight-600 text-muted">No Recent Follow up</span>
     </div>
   </ng-template>
 </div>

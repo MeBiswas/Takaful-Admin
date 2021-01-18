@@ -3,8 +3,16 @@
     <div class="row">
       <div class="col-md-6 pl-0 align-self-lg-center">
         <h4 class="font-17 text-dark">
-          <span class="font-weight-600">{{routeData.category}}/{{routeData.subCategory}}/</span>{{routeData.page
-          === 'NCD' ? 'No Claim Discount (NCD)' : routeData.page}}
+          <span class="font-weight-600" *ngIf="routeData.category !== undefined">
+            {{routeData.category}}/
+          </span>
+          <span class="font-weight-600" *ngIf="routeData.subCategory !== undefined ">
+            {{routeData.subCategory}}/
+          </span>
+          <span>
+            {{routeData.page
+            === 'NCD' ? 'No Claim Discount (NCD)' : routeData.page}}
+          </span>
         </h4>
       </div>
       <div class="col-md-6 d-flex justify-content-end pr-0">

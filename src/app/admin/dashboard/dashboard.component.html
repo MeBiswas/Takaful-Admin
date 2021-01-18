@@ -1,8 +1,8 @@
 <section class="section">
   <div class="row">
     <!-- left right content code start -->
-    <div class="col-md-9">
-      <div class="row mb-4 mt-4">
+    <div class="col-lg-9 col-md-12 col-xl-9">
+      <div class="row first_row mb-4 mt-4">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
           <div class="section-header-breadcrumb-content">
             <h1 class="font-23 mb-1">Hello, Mr Admin!</h1>
@@ -20,11 +20,11 @@
         </div>
       </div>
       <app-note-widget [_filter]="filter"></app-note-widget>
-      <div class="row dashboard-box">
-        <div class="col-md-6">
+      <div class="row third_row dashboard-box">
+        <div class="col-md-6 third_row_first_col">
           <app-quote-widget [_filter]="filter"></app-quote-widget>
         </div>
-        <div class="col-md-6 bg-white rounded text-dark">
+        <div class="col-md-6 bg-white rounded text-dark third_row_second_col">
           <h4 class="font-15 mb-4 mt-4 text-muted">Activity List</h4>
           <app-basket-widget [_filter]="filter"></app-basket-widget>
         </div>
@@ -33,7 +33,7 @@
     <!-- left right content code End -->
 
     <!-- right side bar code start -->
-    <div class="col-md-3">
+    <div class="col-md-12 col-lg-3 col-xl-3">
       <app-issue-widget></app-issue-widget>
     </div>
     <!-- right side bar code end -->

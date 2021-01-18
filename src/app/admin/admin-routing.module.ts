@@ -65,6 +65,93 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'endorsement',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'urgent/ncd',
+        component: CommonBasketComponent,
+        data: {
+          page: 'NCD',
+          category: 'Endorsement',
+          subCategory: 'Urgent',
+        },
+      },
+      {
+        path: 'urgent/high-risk',
+        component: CommonBasketComponent,
+        data: {
+          category: 'Endorsement',
+          subCategory: 'Urgent',
+          page: 'High Risk',
+        },
+      },
+      {
+        path: 'urgent/roadtax',
+        component: CommonBasketComponent,
+        data: {
+          category: 'Endorsement',
+          subCategory: 'Urgent',
+          page: 'Roadtax',
+        },
+      },
+      {
+        path: 'assist/ncd',
+        component: CommonBasketComponent,
+        data: {
+          page: 'NCD',
+          category: 'Endorsement',
+          subCategory: 'Assist',
+        },
+      },
+      {
+        path: 'assist/market-value',
+        component: CommonBasketComponent,
+        data: {
+          page: 'Market Value',
+          category: 'Endorsement',
+          subCategory: 'Assist',
+        },
+      },
+      {
+        path: 'payment-fail',
+        component: CommonBasketComponent,
+        data: {
+          page: 'Fail',
+          category: 'Endorsement',
+          subCategory: 'Payment',
+        },
+      },
+    ],
+  },
+  {
+    path: 'claim',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'windscreen',
+        component: CommonBasketComponent,
+        data: {
+          page: 'Windscreen',
+          category: 'Claim',
+        },
+      },
+    ],
+  },
+  {
+    path: 'refund',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: CommonBasketComponent,
+        data: {
+          page: 'Refund',
+        },
+      },
+    ],
+  },
 ];
 
 @NgModule({

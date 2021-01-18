@@ -294,6 +294,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .select-certificate-modal .modal-content {
+  background: url(../img/box_a14.png) no-repeat center;
   background-size: cover;
 }
 
@@ -314,7 +315,6 @@ div.dataTables_wrapper div.dataTables_info {
     background-size: cover;*/
   padding: 15vh 0vh 15vh 0vh !important;
 }
-
 /* Smartphones (portrait and landscape) ----------- */
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 480px) {
@@ -343,13 +343,13 @@ div.dataTables_wrapper div.dataTables_info {
   }
   .navbar .nav-link {
     padding-left: 4px !important;
-    padding-right: 4px !important;
+    padding-right: 29px !important;
   }
 }
 
 @media (min-width: 768px) {
   .table-responsive {
-    height: 550px;
+    /*  height: 550px;*/
     overflow-y: scroll;
   }
 }
@@ -362,6 +362,7 @@ div.dataTables_wrapper div.dataTables_info {
     max-width: 700px;
   }
 }
+
 @media (min-width: 576px) {
   .delete-modal .modal-dialog,
   .select-certificate-modal .modal-dialog {
@@ -369,148 +370,456 @@ div.dataTables_wrapper div.dataTables_info {
     margin: 1.75rem auto;
   }
 }
+
 .export-data-button button:focus {
   outline: unset;
   outline: unset;
 }
+
 .main-sidebar .sidebar-brand a .header-logo {
   display: none;
 }
+
 .sidebar-mini .main-sidebar .sidebar-brand a .header-logo {
   display: unset;
 }
+
 .reset-btn {
   background-color: #1baa9e;
   border: #1baa9e;
 }
+
 .reset-btn.btn-info:hover {
   background-color: #1baa9e !important;
   border: #1baa9e;
 }
 /* Dashboard Css Start */
+
+@media only screen and (min-device-width: 200px) and (max-device-width: 575px) {
+  .dashboard-box .card.card-sales-widget {
+    margin-bottom: 15px !important;
+  }
+}
+@media only screen and (min-device-width: 200px) and (max-device-width: 767px) {
+  .first_row .section-header-breadcrumb-content,
+  .first_row .section-header-breadcrumb-content form {
+    text-align: -webkit-center !important;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .first_row .target_bg.section-header-breadcrumb-content img {
+    margin-bottom: 15px;
+  }
+  .third_row .third_row_second_col {
+    margin: 20px 15px;
+  }
+}
+@media only screen and (min-device-width: 200px) and (max-device-width: 360px) {
+  .third_row .third_row_first_col img {
+    min-height: 112px !important;
+    max-width: 96px;
+  }
+}
+@media only screen and (min-device-width: 992px) and (max-device-width: 1347px) {
+  .dashboard_right_sidebar button {
+    display: block;
+    width: 100%;
+  }
+}
+@media only screen and (min-device-width: 200px) and (max-device-width: 343px) {
+  .dashboard_right_sidebar button {
+    display: block;
+    width: 100%;
+  }
+}
+
 .dashboard_right_sidebar {
   background-color: #fff;
   width: 100%;
   min-height: 100%;
 }
+
 .card.card-sales-widget {
   height: 143px;
 }
+
 .card.card-sales-widget .card-header {
   padding: 0;
   padding-top: 5px;
   display: flex;
   flex-flow: inherit;
 }
+
 .card-wrap .card-header {
   background-color: unset;
 }
+
 .card-one {
   height: 9.938rem;
   border-radius: 5px;
   background-color: #fff;
 }
+
 .card-two {
   height: 9.938rem;
   border-radius: 5px;
   background-color: #fff;
 }
+
 .card-three {
   height: 9.938rem;
   border-radius: 5px;
   background-color: #fff;
 }
+
 .card-four {
   height: 9.938rem;
   border-radius: 5px;
   background-color: #fff;
 }
+
 .card-bottom-footer .count_no {
   color: #f89036;
 }
+
 .box_right_border_one::before {
   content: "";
   border-left: 4px solid #248332;
   height: 42px;
   position: absolute;
 }
+
 .box_right_border_two::before {
   content: "";
   border-left: 4px solid #fecb3e;
   height: 42px;
   position: absolute;
 }
+
 .box_right_border_three::before {
   content: "";
   border-left: 4px solid #094aac;
   height: 42px;
   position: absolute;
 }
+
 .dashboard-box {
   margin-bottom: 15px;
 }
+
 .dashboard-box .card {
   margin-bottom: 0px !important;
 }
+
 .dashboard-box .count_no_color {
   color: #696c9d;
 }
+
 .box.bg-light {
   background-color: #f8f8fb !important;
 }
+
 .target_bg {
   background-color: #54e3f6;
 }
+
 .theme_color {
   color: #1baa9e;
 }
+
 .theme_bg_color {
   background-color: #1baa9e;
 }
 /* Dashboard Css End */
 /* Follow up urgent NCD Code Start */
+
 .second_top_bar {
   position: relative;
   top: 71px;
   z-index: 880;
 }
+
 .sidebar-mini .main-content {
-  padding-left: 105px;
+  padding-left: 100px;
 }
+
 .table tr {
   cursor: pointer;
 }
 /* Folow Up urgent NCD code End */
-
 /* Account Page Css Code Start */
+
 .account_form_bg {
   background-color: #dcdbdb;
 }
 /* Account Page Css Code End */
+/* Telemarketing Css Start */
 
-/* All Pages Side Bar Menu Css Start  */
+.new_email_model .modal.left .modal-dialog {
+  position: fixed;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.new_email_model .modal.left .modal-content {
+  height: 100%;
+  /* overflow-y: auto; */
+  overflow: scroll;
+}
+
+.new_email_model .modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+.new_email_model .modal.right.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.new_email_model .modal.right.fade.show .modal-dialog {
+  right: 0;
+}
+/* ----- MODAL STYLE ----- */
+
+.new_email_model .modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.new_email_model .modal-header,
+.new_email_model .modal-footer {
+  border-bottom-color: #eeeeee;
+  background-color: #f6f6f6;
+}
+
+.new_email_model .modal-content textarea.form-control {
+  min-height: 200px !important;
+}
+
+.new_email_model
+  .modal-footer
+  .bg-transparent.border-0.btn.btn-secondary.shadow-none.text-dark:hover {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+@media (min-width: 576px) {
+  .new_email_model .modal-dialog {
+    max-width: 645px;
+    margin: 1.75rem auto;
+  }
+}
+
+.new_email_model .modal-content .fa-paperclip {
+  transform: rotate(-45deg);
+}
+/* Telemarketing Css End */
+/* Notification Configuration page css start */
+/* Email Task Schedule css start */
+
+.email_task_schedule_model .modal.left .modal-dialog {
+  position: fixed;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.email_task_schedule_model .modal.left .modal-content {
+  height: 100%;
+  /* overflow-y: auto; */
+  overflow-y: scroll;
+}
+
+.email_task_schedule_model .modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+.email_task_schedule_model .modal.right.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.email_task_schedule_model .modal.right.fade.show .modal-dialog {
+  right: 0;
+}
+/* ----- MODAL STYLE ----- */
+
+.email_task_schedule_model .modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.email_task_schedule_model .modal-header,
+.email_task_schedule_model .modal-footer {
+  border-bottom-color: #eeeeee;
+  background-color: #f6f6f6;
+}
+
+.email_task_schedule_model .modal-content textarea.form-control {
+  min-height: 120px !important;
+}
+
+.email_task_schedule_model
+  .modal-footer
+  .bg-transparent.border-0.btn.btn-secondary.shadow-none.text-dark:hover {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+@media (min-width: 576px) {
+  .email_task_schedule_model .modal-dialog {
+    max-width: 645px;
+    margin: 1.75rem auto;
+  }
+}
+
+.email_task_schedule_model .modal-content .fa-paperclip {
+  transform: rotate(-45deg);
+}
+/* Email Task Schedule css End */
+/*SMS Chat Modal css start */
+
+.sms_chat_model .modal.left .modal-dialog {
+  position: fixed;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.sms_chat_model .modal.left .modal-content {
+  height: 100%;
+  /* overflow-y: auto; */
+  overflow-y: scroll;
+}
+
+.sms_chat_model .modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+.sms_chat_model .modal.right.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.sms_chat_model .modal.right.fade.show .modal-dialog {
+  right: 0;
+}
+/* ----- MODAL STYLE ----- */
+
+.sms_chat_model .modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.sms_chat_model .modal-header,
+.sms_chat_model .modal-footer {
+  border-bottom-color: #eeeeee;
+  background-color: #f6f6f6;
+}
+
+.sms_chat_model .modal-content textarea.form-control {
+  min-height: 120px !important;
+}
+
+.sms_chat_model
+  .modal-footer
+  .bg-transparent.border-0.btn.btn-secondary.shadow-none.text-dark:hover {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+@media (min-width: 576px) {
+  .sms_chat_model .modal-dialog {
+    max-width: 645px;
+    margin: 1.75rem auto;
+  }
+}
+
+.sms_chat_model .modal-content .fa-paperclip {
+  transform: rotate(-45deg);
+}
+/* SMS Chat Modal css End */
+/* Notification Configuration page css End */
+/* All Pages Side Bar Menu Css Start */
+
+/* All Pages Side Bar Menu Css Start */
 .sidebar-mini .main-sidebar .sidebar-menu > li .menu_title {
   display: none !important;
 }
+
 .main-sidebar .sidebar-menu > li span {
   font-weight: 600;
 }
+
 .main-sidebar .sidebar-menu li a {
   width: unset;
 }
+
 .sidebar-mini .main-sidebar .sidebar-menu li a {
   padding-right: 5px !important;
 }
+
 .main-sidebar .sidebar-menu li a {
   padding-right: 0px !important;
 }
+
 .sidebar-mini .sidebar-menu .dropdown .float_mini_sidebar {
   float: unset !important;
 }
+
 .sidebar-menu .dropdown .float_mini_sidebar {
   float: left !important;
 }
+
 .main-sidebar .sidebar-menu li ul.dropdown-menu li {
   padding: 0px;
+}
+
+.sidebar-menu .dropdown .float_mini_sidebar a img.active_icon {
+  display: block;
+}
+
+.sidebar-menu .dropdown .float_mini_sidebar a img {
+  display: none;
+}
+.purple-sidebar .main-sidebar .sidebar-menu .dropdown a.active,
+.purple-sidebar .main-sidebar .sidebar-menu .dropdown .dropdown-menu a.active,
+.purple-sidebar
+  .main-sidebar
+  .sidebar-menu
+  li
+  ul.dropdown-menu
+  li
+  a.active:before {
+  color: #1baa9e;
+}
+
+.nicescroll-cursors {
+  display: none;
 }
 /* All Pages Side Bar Menu Css End */

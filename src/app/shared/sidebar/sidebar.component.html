@@ -8,19 +8,22 @@
 
   <ul class="sidebar-menu">
     <li class="dropdown">
-      <a class="nav-link" data-toggle="sidebar">
-        <img alt="image" src="assets/img/icons/dashboard_icon.png">
+      <div class="float_mini_sidebar">
+        <a data-toggle="sidebar">
+          <img class="active_icon" src="assets/img/icons/dashboard_icon_active.png">
+          <img src="assets/img/icons/dashboard_icon.png">
+        </a>
+      </div>
+      <a class="nav-link  menu_title p-0 active" routerLink="/admin/dashboard">
         <span>Dashboard</span>
       </a>
-      <ul class="dropdown-menu bg-transparent">
-        <li><a class="nav-link" routerLink="/admin/dashboard">Dashboard</a></li>
-      </ul>
     </li>
 
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/markunread_mail.png">
+          <img src="assets/img/icons/markunread_mail_active.png">
+          <img class="active_icon" src="assets/img/icons/markunread_mail.png">
         </a>
       </div>
       <a class="nav-link has-dropdown menu_title p-0">
@@ -42,7 +45,8 @@
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/thumb_up.png">
+          <img alt="image" src="assets/img/icons/thumb_up_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/thumb_up.png">
         </a>
       </div>
       <a class="nav-link has-dropdown menu_title p-0">
@@ -50,35 +54,38 @@
       </a>
       <ul class="dropdown-menu bg-transparent">
         <span class="font-14 font-weight-600 ml-5 pl-2">Urgent</span>
-        <li class="pb-0 pt-0"><a class="nav-link">NCD</a></li>
-        <li class="pb-0 pt-0"><a class="nav-link">High Risk</a></li>
-        <li class="pb-0 pt-0"><a class="nav-link">Roadtax</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/endorsement/urgent/ncd">NCD</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/endorsement/urgent/high-risk">High Risk</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/endorsement/urgent/roadtax">Roadtax</a></li>
       </ul>
       <ul class="dropdown-menu bg-transparent">
         <span class="font-14 font-weight-600 ml-5 pl-2">Assist</span>
-        <li class="pb-0 pt-0"><a class="nav-link">NCD</a></li>
-        <li class="pb-0 pt-0"><a class="nav-link">Market Value</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/endorsement/assist/ncd">NCD</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/endorsement/assist/market-value">Market Value</a>
+        </li>
       </ul>
     </li>
 
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/verified.png">
+          <img alt="image" src="assets/img/icons/verified_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/verified.png">
         </a>
       </div>
       <a class="nav-link has-dropdown menu_title p-0">
         <span>Claim</span>
       </a>
       <ul class="dropdown-menu bg-transparent">
-        <li class="pb-0 pt-0"><a class="nav-link">Windscreen</a></li>
+        <li class="pb-0 pt-0"><a class="nav-link" routerLink="/admin/claim/windscreen">Windscreen</a></li>
       </ul>
     </li>
 
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/moped.png">
+          <img alt="image" src="assets/img/icons/moped_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/moped.png">
         </a>
       </div>
       <a class="nav-link has-dropdown menu_title p-0">
@@ -92,10 +99,11 @@
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/dollar_icon.png">
+          <img alt="image" src="assets/img/icons/dollar_icon_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/dollar_icon.png">
         </a>
       </div>
-      <a class="nav-link menu_title p-0">
+      <a class="nav-link menu_title p-0" routerLink="/admin/refund">
         <span>Refund</span>
       </a>
     </li>
@@ -103,7 +111,8 @@
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/maps_ugc.png">
+          <img alt="image" src="assets/img/icons/maps_ugc_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/maps_ugc.png">
         </a>
       </div>
       <a class="nav-link menu_title p-0">
@@ -114,7 +123,8 @@
     <li class="dropdown ">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/headset_mic.png">
+          <img alt="image" src="assets/img/icons/headset_mic_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/headset_mic.png">
         </a>
       </div>
       <a class="nav-link menu_title p-0">
@@ -125,7 +135,8 @@
     <li class="dropdown">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/content_icon.png">
+          <img alt="image" src="assets/img/icons/content_icon_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/content_icon.png">
         </a>
       </div>
       <a class="nav-link has-dropdown menu_title p-0">
@@ -139,7 +150,8 @@
     <li class="dropdown">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/folder_icon.png">
+          <img alt="image" src="assets/img/icons/folder_icon_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/folder_icon.png">
         </a>
       </div>
       <a class="nav-link menu_title p-0">
@@ -150,7 +162,8 @@
     <li class="dropdown">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
-          <img alt="image" src="assets/img/icons/admin_user.png">
+          <img alt="image" src="assets/img/icons/admin_user_active.png">
+          <img class="active_icon" alt="image" src="assets/img/icons/admin_user.png">
         </a>
       </div>
       <a class="nav-link menu_title p-0" routerLink="/admin/user">

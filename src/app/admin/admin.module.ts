@@ -28,6 +28,12 @@ import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.co
 // Basket Detail Components
 import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/follow-urgent-ncd.component';
 import { FollowUrgentRiskComponent } from '../basket-details/follow-urgent-risk/follow-urgent-risk.component';
+import { NotificationComponent } from './notification/notification.component';
+import { TelemarketingComponent } from './telemarketing/telemarketing.component';
+import { ReportRoadtaxComponent } from './report-roadtax/report-roadtax.component';
+import { CustomerDatabaseComponent } from './customer-database/customer-database.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { TargetAchieverComponent } from './target-achiever/target-achiever.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,12 @@ import { FollowUrgentRiskComponent } from '../basket-details/follow-urgent-risk/
     BasketWidgetComponent,
     FollowUrgentNcdComponent,
     FollowUrgentRiskComponent,
+    NotificationComponent,
+    TelemarketingComponent,
+    ReportRoadtaxComponent,
+    CustomerDatabaseComponent,
+    AccountSettingsComponent,
+    TargetAchieverComponent,
   ],
   imports: [
     FormsModule,
