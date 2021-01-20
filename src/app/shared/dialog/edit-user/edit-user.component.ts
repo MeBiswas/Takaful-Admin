@@ -5,6 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../../services/admin/admin.service';
+// Custom Validators
+// import { EmailValidator } from '../../../validators/email.validator';
+import { PasswordValidator } from '../../../validators/password.validator';
 // Email Regex
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -21,15 +24,18 @@ export class EditUserComponent implements OnInit {
   roleListURL = '/security/rolelist';
   updateUserURL = '/security/updateuser';
 
-  editUserForm = this._fb.group({
-    role: ['', Validators.required],
-    userId: ['', Validators.required],
-    userName: ['', Validators.required],
-    department: ['', Validators.required],
-    password: ['', [Validators.minLength(8)]],
-    repeatPassword: ['', [Validators.minLength(8)]],
-    email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
-  });
+  editUserForm = this._fb.group(
+    {
+      role: ['', Validators.required],
+      userId: ['', Validators.required],
+      userName: ['', Validators.required],
+      department: ['', Validators.required],
+      password: ['', [Validators.minLength(8)]],
+      repeatPassword: ['', [Validators.minLength(8)]],
+      email: ['', [Validators.required]],
+    },
+    { validator: PasswordValidator }
+  );
 
   constructor(
     private _fb: FormBuilder,

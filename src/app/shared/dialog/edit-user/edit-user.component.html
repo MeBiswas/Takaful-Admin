@@ -33,8 +33,8 @@
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="email">
                       <div [class.d-none]="editUserForm.get('email').valid || editUserForm.get('email').untouched"
-                        class="error">Email
-                        is required</div>
+                        class="error">Email is required</div>
+                      <!-- <div *ngIf="editUserForm.get('email').emailPattern" class="error">Email is not correct</div> -->
                     </div>
                   </div>
                   <div class="form-group row">
