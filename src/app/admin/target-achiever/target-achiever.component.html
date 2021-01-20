@@ -1,1 +1,72 @@
-<p>target-achiever works!</p>
+<div class="second_top_bar bg-white p-10">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 pl-0 align-self-lg-center">
+        <h4 class="font-17 text-dark">
+          <span class="font-weight-600">Target/</span>
+          <span>Achiever</span>
+        </h4>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end pr-0">
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <i class="fa-search fas ml-3 position-absolute text-muted" aria-hidden="true"></i>
+              <input class="form-control pl-5 w-100" type="text" placeholder="Search" aria-label="Search" name="search">
+            </div>
+            <div class="col-md-6">
+              <select name="Filter" class="font-weight-600 form-control">
+                <option>Monthly</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <ng-template>
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+          <ng-container matColumnDef="userId">
+            <th scope="col" mat-header-cell *matHeaderCellDef>User ID</th>
+            <td mat-cell *matCellDef="let element">{{element.userId}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="role">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Role</th>
+            <td mat-cell *matCellDef="let element">{{element.role}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Department</th>
+            <td mat-cell *matCellDef="let element">{{element.department}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="target">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Target</th>
+            <td mat-cell *matCellDef="let element">{{element.target}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Achiever">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Achiever</th>
+            <td mat-cell *matCellDef="let element">{{element.Achiever}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">
+              <button class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">Update</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
+      </ng-template>
+    </div>
+  </div>
+</section>

@@ -1,15 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
-// NGRX
-import { Store, select } from '@ngrx/store';
 // Material Table Dependencies
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-// Actions
-import * as UserActions from '../../store/actions/user.actions';
-// Selectors
-import * as fromUser from '../../store/selectors/user.selectors';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
@@ -37,22 +31,14 @@ export class UserManagementComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(
-    private _store: Store,
-    private _admin: AdminService,
-    private _toast: ToastrService
-  ) {}
+  constructor(private _admin: AdminService, private _toast: ToastrService) {}
 
+  // LifeCycle Method
   ngOnInit() {
-    // Dispatching Action
-    // this._store.dispatch(new UserActions.LoadUsers());
-    // Selector to get Data
-    // this._store.pipe(select(fromUser.getUser)).subscribe((user) => {
-    //   this.addActionData(user);
-    // });
     this.getTableData(0);
   }
 
+  // LifeCycle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
@@ -64,7 +50,6 @@ export class UserManagementComponent implements OnInit {
         this.addActionData(res.userList);
       },
       (err) => {
-        // console.log('User List Service Response', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );

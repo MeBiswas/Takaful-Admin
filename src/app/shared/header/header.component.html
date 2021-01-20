@@ -10,44 +10,11 @@
     </ul>
   </div>
   <ul class="navbar-nav navbar-right">
-    <li class="dropdown dropdown-list-toggle">
-      <a data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg">
-        <i class="far fa-bell" style="font-size: 24px;"></i>
-        <span class="notification-count bg-red">4</span>
-      </a>
-      <div class="dropdown-menu dropdown-list dropdown-menu-right notification-card-wraper">
-        <div class="dropdown-header font-weight-bold text-dark">Notifications</div>
-        <div class="card-body">
-          <div class="timeline-activity-widget ">
-            <div class="widget-activity-item1">
-              <span class="font-12 text-muted">Today 22:20 pm</span>
-              <p class="font-weight-normal">Simon Co INS0021 just assign <span class="text-danger">Load Test
-                  Inspection.</span></p>
-            </div>
-            <div class="widget-activity-item1">
-              <div class="font-12 text-muted">22Jul, 2020 22:30 pm</div>
-              <p class="font-weight-normal">John Doe INS043 just assign <span style="color:#4383b2;">Magnetic
-                  particle inspection.</span></p>
-            </div>
-            <div class="widget-activity-item1">
-              <div class="font-12 text-muted">18 Jul, 2020 10:30 am</div>
-              <p class="font-weight-normal">John Doe INS043 just assign <span class="text-success">Sling/shackle
-                  inspection.</span></p>
-            </div>
-          </div>
-        </div>
-        <div class="dropdown-footer text-center">
-          <a>View All <i class="fas fa-chevron-right"></i></a>
-        </div>
-      </div>
-    </li>
-
-
     <li class="dropdown">
       <a data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-        <img alt="image" src="assets/img/icons/user_profile_icon.png" class="mr-2">
-        <span class="d-sm-none d-lg-inline-block"></span> {{userData.userName}}
-        <i class="fa fa-chevron-down ml-5"></i>
+        <span class="d-sm-none d-lg-inline-block font-16">{{userData.userName}}</span>
+        <img alt="image" src="assets/img/icons/user_profile_icon.png" class="mr-2 ml-2">
+        <i class="fa fa-chevron-down ml-5 font-13"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" routerLink="/admin/settings">

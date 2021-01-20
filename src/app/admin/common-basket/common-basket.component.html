@@ -133,6 +133,12 @@
                       </app-follow-assist-market>
                     </div>
 
+                    <div *ngSwitchCase="'Refund'" [item]="routeData">
+                      <app-follow-assist-ncd [currentData]="detailComponentData"
+                        *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
+                      </app-follow-assist-ncd>
+                    </div>
+
                     <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
                   </ng-container>
                 </div>

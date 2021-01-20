@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-// Service
-import { AuthService } from '../../services/auth/auth.service';
-// Spinner
-import { NgxSpinnerService } from 'ngx-spinner';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
+// Form
+import { FormBuilder, Validators } from '@angular/forms';
+// Service
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,35 +16,41 @@ import { ToastrService } from 'ngx-toastr';
 export class ForgotPasswordComponent implements OnInit {
   url = '/auth/forgotpassword';
 
-  forgotPasswordData = {
-    email: '',
-  };
+  forgotPasswordForm = this._fb.group({
+    email: ['', Validators.required],
+  });
 
   constructor(
+    private _fb: FormBuilder,
     private _auth: AuthService,
-    private _spin: NgxSpinnerService,
-    private _toast: ToastrService
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {}
 
-  forgotPassword() {
+  // Submit Handler
+  onSubmit(v) {
+    !v
+      ? this._toast.error('Please enter email')
+      : this.forgotPassword(this.forgotPasswordForm.value);
+  }
+
+  // Forgot Password Service
+  forgotPassword(d) {
     this._spin.show();
-    this._auth
-      .forgotPasswordRequest(this.url, this.forgotPasswordData)
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-          } else {
-            this._toast.warning(res.status.message);
-          }
-        },
-        (err) => {
-          console.log('Error in Forgot Password Service', err);
-          this._toast.error('Oops! Something went wrong.');
+    this._auth.forgotPasswordRequest(this.url, d).subscribe(
+      (res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+        } else {
+          this._toast.warning(res.status.message);
         }
-      );
+      },
+      (err) => {
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
     this._spin.hide();
   }
 }

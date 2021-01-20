@@ -37,15 +37,18 @@ export class EditUserComponent implements OnInit {
     private _toast: ToastrService
   ) {}
 
+  // LifeCycle Method
   ngOnInit(): void {
     this.getRoleList();
   }
 
+  // LifeCycle Method
   ngOnChanges() {
     this.editUserForm.patchValue({ ...this.data });
   }
 
-  getRoleList() {
+  // Role List Service
+  private getRoleList() {
     this._admin.getApiWithAuth(this.roleListURL).subscribe(
       (res) => {
         this.roles = [...res.roleList];
@@ -56,12 +59,14 @@ export class EditUserComponent implements OnInit {
     );
   }
 
+  // Submit Method
   onSubmit(v) {
     !v
       ? this._toast.error('Please fill all required fields')
       : this.editUser(this.editUserForm.value);
   }
 
+  // Edit User Service
   private editUser(d) {
     this._admin.postApiWithAuth(this.updateUserURL, d).subscribe(
       (res) => {
@@ -82,6 +87,7 @@ export class EditUserComponent implements OnInit {
     this.closeModal();
   }
 
+  // Close Modal Method
   closeModal(): void {
     this.editUserForm.setValue({
       role: '',

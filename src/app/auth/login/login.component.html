@@ -14,24 +14,24 @@
       <div class="row justify-content-center mt-4 text-center">
         <div class="col-md-6">
           <div class="dashboard-login">
-            <form>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.valid)">
               <div class="form-group">
-                <input autofocus id="email" type="email" name="userId" placeholder="Email" class="form-control"
-                  [(ngModel)]="loginUserData.userId" />
+                <input autofocus id="email" type="email" formControlName="userId" placeholder="Email"
+                  class="form-control" />
+                <div *ngIf="loginForm.get('userId').invalid && loginForm.get('userId').touched" class="error">
+                  Email/UserName is required</div>
               </div>
               <div class="form-group">
-                <input id="password" type="password" name="password" class="form-control" placeholder="Password"
-                  [(ngModel)]="loginUserData.password" />
+                <input id="password" type="password" formControlName="password" class="form-control"
+                  placeholder="Password" />
+                <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="error">
+                  Password is required</div>
               </div>
               <div class="form-group mt-5">
-                <button type="button" (click)="loginUser()" class="btn btn-primary rounded-pill w-50">
-                  Login
-                </button>
+                <button type="submit" class="btn btn-primary rounded-pill w-50">Login</button>
               </div>
               <div class="form-group">
-                <a [routerLink]="['/auth/forgot-password']" class="text-dark">
-                  Forgot Password? Reset it.
-                </a>
+                <a [routerLink]="['/auth/forgot-password']" class="text-dark">Forgot Password? Reset it.</a>
               </div>
             </form>
           </div>

@@ -64,7 +64,7 @@
 
               <ng-container matColumnDef="action">
                 <th scope="col" mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element">
+                <td mat-cell *matCellDef="let element" class="d-flex align-items-center">
                   <i (click)="editDialog(element.action)" class="fa fa-pen mr-4 text-dark" data-toggle="modal"
                     data-target="#user-edit-modal"></i>
                   <i (click)="deleteDialog(element.action.userId)" class="fa fa-trash text-dark" data-toggle="modal"

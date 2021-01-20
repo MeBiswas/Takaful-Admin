@@ -15,69 +15,62 @@
                     <label class="col-sm-3 col-form-label">User Name:</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" formControlName="userName">
-                      <small
-                        [class.d-none]="editUserForm.get('userName').valid || editUserForm.get('userName').untouched"
-                        class="text-danger">User Name is required</small>
+                      <div [class.d-none]="editUserForm.get('userName').valid || editUserForm.get('userName').untouched"
+                        class="error">User Name is required</div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">User ID:</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="userId">
-                      <small [class.d-none]="editUserForm.get('userId').valid || editUserForm.get('userId').untouched"
-                        class="text-danger">User
-                        ID is required</small>
+                      <div [class.d-none]="editUserForm.get('userId').valid || editUserForm.get('userId').untouched"
+                        class="error">User
+                        ID is required</div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="email">
-                      <small [class.d-none]="editUserForm.get('email').valid || editUserForm.get('email').untouched"
-                        class="text-danger">Email
-                        is required</small>
+                      <div [class.d-none]="editUserForm.get('email').valid || editUserForm.get('email').untouched"
+                        class="error">Email
+                        is required</div>
                     </div>
                   </div>
-
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Role:</label>
                     <div class="col-sm-9">
                       <select class="form-control" formControlName="role">
                         <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
                       </select>
-                      <small [class.d-none]="editUserForm.get('role').valid || editUserForm.get('role').untouched"
-                        class="text-danger">Role is
-                        required</small>
+                      <div [class.d-none]="editUserForm.get('role').valid || editUserForm.get('role').untouched"
+                        class="error">Role is required</div>
                     </div>
                   </div>
-
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Department:</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="department">
-                      <small
+                      <div
                         [class.d-none]="editUserForm.get('department').valid || editUserForm.get('department').untouched"
-                        class="text-danger">Department is required</small>
+                        class="error">Department is required</div>
                     </div>
                   </div>
-
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">New Password:</label>
                     <div class="col-sm-9">
                       <input type="password" class="form-control" formControlName="password">
-                      <small
-                        [class.d-none]="editUserForm.get('password').valid || editUserForm.get('password').untouched"
-                        class="text-danger">Password is required</small>
+                      <div [class.d-none]="editUserForm.get('password').valid || editUserForm.get('password').untouched"
+                        class="error">Password is required</div>
                     </div>
                   </div>
-
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Repeat Password:</label>
                     <div class="col-sm-9">
                       <input type="password" class="form-control" formControlName="repeatPassword">
-                      <small
+                      <div
                         [class.d-none]="editUserForm.get('repeatPassword').valid || editUserForm.get('repeatPassword').untouched"
-                        class="text-danger">Password is required</small>
+                        class="error">Repeat Password is required</div>
                     </div>
                   </div>
                 </div>

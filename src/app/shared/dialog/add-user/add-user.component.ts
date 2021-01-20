@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Forms
@@ -18,11 +17,10 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
 })
 export class AddUserComponent implements OnInit {
   @ViewChild('closeBtn') closeBtn;
+
   roles = [];
   addUserURL = '/security/adduser';
   roleListURL = '/security/rolelist';
-
-  mySubscription: any;
 
   addUserForm = this._fb.group(
     {
@@ -43,28 +41,31 @@ export class AddUserComponent implements OnInit {
     private _toast: ToastrService
   ) {}
 
+  // LifeCycle Method
   ngOnInit(): void {
     this.getRoleList();
   }
 
-  getRoleList() {
+  // Role List Service
+  private getRoleList() {
     this._admin.getApiWithAuth(this.roleListURL).subscribe(
       (res) => {
         this.roles = [...res.roleList];
       },
       (err) => {
-        // console.log('Add User Service Response', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );
   }
 
+  // Submit Handler
   onSubmit(v) {
     !v
       ? this._toast.error('Please fill all required fields')
       : this.addUser(this.addUserForm.value);
   }
 
+  // Add User Service
   private addUser(d) {
     this._admin.postApiWithAuth(this.addUserURL, d).subscribe(
       (res) => {
@@ -78,21 +79,21 @@ export class AddUserComponent implements OnInit {
         }
       },
       (err) => {
-        // console.log('Add User Service Response', err);
         this._toast.error('Oops! Something went wrong.');
       }
     );
     this.closeModal();
   }
 
+  // Close Modal Method
   closeModal(): void {
     this.addUserForm.setValue({
       role: '',
       email: '',
       userId: '',
       userName: '',
-      department: '',
       password: '',
+      department: '',
       repeatPassword: '',
     });
     this.closeBtn.nativeElement.click();

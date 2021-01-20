@@ -1,1 +1,98 @@
-<p>account-settings works!</p>
+<section class="section">
+  <div class="pb-5 pr-5 pt-5 row">
+    <div class="col-lg-3 pr-0">
+      <div class="bg-white h-100 p-4">
+        <h4 class="pt-lg-5 pt-md-5 pt-sm-5 text-center text-warning">Account Settings</h4>
+        <hr>
+      </div>
+    </div>
+    <div class="col-lg-9 account_form_bg">
+      <div class="p-5">
+        <div class="mb-5">
+          <h4 class="font-45 font-weight-bolder">Account Settings</h4>
+          <span class="font-23">Change your Profile User Settings</span>
+        </div>
+        <form [formGroup]="accountSettingForm" (ngSubmit)="onSubmit(accountSettingForm.valid)">
+          <div class="form-group row mt-3">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">User Name :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control w-75" formControlName="userName">
+              <div
+                [class.d-none]="accountSettingForm.get('userName').valid || accountSettingForm.get('userName').untouched"
+                class="error">User Name
+                is required</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">User ID :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control width-per-40" formControlName="userId">
+              <div [class.d-none]="accountSettingForm.get('userId').valid || accountSettingForm.get('userId').untouched"
+                class="error">User ID is
+                required</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Email :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control w-75" formControlName="email">
+              <div [class.d-none]="accountSettingForm.get('email').valid || accountSettingForm.get('email').untouched"
+                class="error">Email is
+                required</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Role :</label>
+            <div class="col-sm-9">
+              <select class="form-control custom-select width-per-40" formControlName="role">
+                <option [disabled]="true" value="" selected>Select Role</option>
+                <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
+              </select>
+              <div [class.d-none]="accountSettingForm.get('role').valid || accountSettingForm.get('role').untouched"
+                class="error">Role is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Department :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control w-75" formControlName="department">
+              <div
+                [class.d-none]="accountSettingForm.get('department').valid || accountSettingForm.get('department').untouched"
+                class="error">
+                Department is required</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">New Password :</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control w-75" formControlName="password">
+              <div
+                [class.d-none]="accountSettingForm.get('password').valid || accountSettingForm.get('password').untouched"
+                class="error">Password
+                is required</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Repeat Password :</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control w-75" formControlName="repeatPassword">
+              <div
+                [class.d-none]="accountSettingForm.get('repeatPassword').valid || accountSettingForm.get('repeatPassword').untouched"
+                class="error">Repeat Password is required</div>
+              <div *ngIf="accountSettingForm.errors?.misMatch" class="error">Password and Repeat Password does
+                not match</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9 text-center">
+              <button type="reset" class="pb-1 pl-5 pr-5 pt-1 btn bg-transparent border-0">Cancel</button>
+              <button type="submit" class="bg-indigo btn pb-1 pl-5 pr-5 pt-1 text-white">Update</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

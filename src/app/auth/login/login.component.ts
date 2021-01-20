@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
-// Service
-import { AuthService } from '../../services/auth/auth.service';
-// Spinner
-import { NgxSpinnerService } from 'ngx-spinner';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
+// Form
+import { FormBuilder, Validators } from '@angular/forms';
+// Service
+import { AuthService } from '../../services/auth/auth.service';
 // Provider
 import { DataStorage } from '../../providers/user-data.provider';
 
@@ -18,12 +20,14 @@ import { DataStorage } from '../../providers/user-data.provider';
 export class LoginComponent implements OnInit {
   url = '/auth/login';
 
-  loginUserData = {
-    userId: '',
-    password: '',
-  };
+  loginForm = this._fb.group({
+    userId: ['', Validators.required],
+    password: ['', Validators.required],
+  });
+
   constructor(
     private _router: Router,
+    private _fb: FormBuilder,
     private _data: DataStorage,
     private _auth: AuthService,
     private _toast: ToastrService,
@@ -32,9 +36,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  loginUser() {
+  // Submit Method
+  onSubmit(v) {
+    !v
+      ? this._toast.error('Please fill all required fields')
+      : this.loginUser(this.loginForm.value);
+  }
+
+  // Login Service
+  loginUser(d) {
     this._spin.show();
-    this._auth.loginRequest(this.url, this.loginUserData).subscribe(
+    this._auth.loginRequest(this.url, d).subscribe(
       (res) => {
         if (res.status.code === 0) {
           this._data.data = res.user;
@@ -52,6 +64,6 @@ export class LoginComponent implements OnInit {
         this._toast.error(err.status.message);
       }
     );
-    // this._spin.hide();
+    this._spin.hide();
   }
 }
