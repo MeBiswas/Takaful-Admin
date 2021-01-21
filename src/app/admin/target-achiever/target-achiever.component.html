@@ -7,16 +7,18 @@
           <span>Achiever</span>
         </h4>
       </div>
-      <div class="col-md-6 d-flex justify-content-end pr-0">
-        <form>
+      <div class="col-md-6 pr-0">
+        <form #filterForm="ngForm">
           <div class="row">
-            <div class="col-md-6">
-              <i class="fa-search fas ml-3 position-absolute text-muted" aria-hidden="true"></i>
-              <input class="form-control pl-5 w-100" type="text" placeholder="Search" aria-label="Search" name="search">
+            <div class="col-md-8 search_bar">
+              <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
+              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search"
+                [(ngModel)]="search" (keyup)="searchFor($event.target.value)">
             </div>
-            <div class="col-md-6">
-              <select name="Filter" class="font-weight-600 form-control">
-                <option>Monthly</option>
+            <div class="col-md-4 month_bar">
+              <select [(ngModel)]="filter" name="Filter" class="font-weight-600 form-control"
+                (ngModelChange)="onFilterChanged($event)">
+                <option *ngFor="let filter of filters" value="{{filter.value}}">{{filter.option}}</option>
               </select>
             </div>
           </div>
@@ -28,45 +30,58 @@
 <section class="section">
   <div class="row">
     <div class="col-lg-12">
-      <ng-template>
-        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-          <ng-container matColumnDef="userId">
-            <th scope="col" mat-header-cell *matHeaderCellDef>User ID</th>
-            <td mat-cell *matCellDef="let element">{{element.userId}}</td>
-          </ng-container>
+      <ng-template [ngIf]="dataSource.data.length === 0" [ngIfElse]="elseBlock">
+        <h1>No Data</h1>
+      </ng-template>
+      <ng-template #elseBlock>
+        <form>
+          <div class="responsive-table-custom">
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+              <ng-container matColumnDef="user">
+                <th scope="col" mat-header-cell *matHeaderCellDef>User ID</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.user}}</td>
+              </ng-container>
 
-          <ng-container matColumnDef="role">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Role</th>
-            <td mat-cell *matCellDef="let element">{{element.role}}</td>
-          </ng-container>
+              <ng-container matColumnDef="role">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Role</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.role}}</td>
+              </ng-container>
 
-          <ng-container matColumnDef="department">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Department</th>
-            <td mat-cell *matCellDef="let element">{{element.department}}</td>
-          </ng-container>
+              <ng-container matColumnDef="department">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Department</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.department}}</td>
+              </ng-container>
 
-          <ng-container matColumnDef="target">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Target</th>
-            <td mat-cell *matCellDef="let element">{{element.target}}</td>
-          </ng-container>
+              <ng-container matColumnDef="target">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Target</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
+                  <input type="text" class="form-control" name="target" [(ngModel)]="element.target"
+                    (keyup)="targetInput($event.target.value, element.action)">
+                </td>
+              </ng-container>
 
-          <ng-container matColumnDef="Achiever">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Achiever</th>
-            <td mat-cell *matCellDef="let element">{{element.Achiever}}</td>
-          </ng-container>
+              <ng-container matColumnDef="achiever">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Achiever</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
+                  <input type="text" class="form-control" name="achiever" [(ngModel)]="element.achiever">
+                </td>
+              </ng-container>
 
-          <ng-container matColumnDef="action">
-            <th scope="col" mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let element">
-              <button class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">Update</button>
-            </td>
-          </ng-container>
+              <ng-container matColumnDef="action">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element">
+                  <button class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">Update</button>
+                </td>
+              </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </form>
         <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
       </ng-template>
     </div>
   </div>
 </section>
+{{dataSource.data | json}}

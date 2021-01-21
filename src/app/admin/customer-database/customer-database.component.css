@@ -22,3 +22,29 @@ table {
 tr.mat-row {
   background-color: #fff;
 }
+
+@media only screen and (min-device-width: 220px) and (max-device-width: 768px) {
+  .section {
+    margin-top: 185px !important;
+  }
+  .second_top_bar .second_top_bar_title {
+    text-align: center;
+    padding: 5px 0px;
+  }
+  .second_top_bar .search_bar,
+  .second_top_bar .month_bar {
+    margin: 5px 0px;
+  }
+  .second_top_bar .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .responsive-table-custom {
+    width: 100%;
+    display: block;
+    overflow-x: scroll;
+  }
+  .responsive-table-custom table {
+    width: 1000px;
+  }
+}

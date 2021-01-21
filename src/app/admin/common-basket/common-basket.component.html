@@ -107,39 +107,39 @@
 
                       <div *ngSwitchCase="'NCD'" [item]="routeData">
                         <div *ngIf="routeData.subCategory === 'Urgent' ">
-                          <app-follow-urgent-ncd [currentData]="detailComponentData"
+                          <app-urgent-ncd [currentData]="detailComponentData"
                             *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                          </app-follow-urgent-ncd>
+                          </app-urgent-ncd>
                         </div>
                         <div *ngIf="routeData.subCategory === 'Assist' ">
-                          <app-follow-assist-ncd [currentData]="detailComponentData"
+                          <app-assist-ncd [currentData]="detailComponentData"
                             *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                          </app-follow-assist-ncd>
+                          </app-assist-ncd>
                         </div>
                       </div>
 
                       <div *ngSwitchCase="'High Risk'" [item]="routeData">
-                        <app-follow-urgent-risk [currentData]="detailComponentData"
+                        <app-urgent-risk [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                        </app-follow-urgent-risk>
+                        </app-urgent-risk>
                       </div>
 
                       <div *ngSwitchCase="'Roadtax'" [item]="routeData">
-                        <app-follow-urgent-tax [currentData]="detailComponentData"
+                        <app-urgent-tax [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                        </app-follow-urgent-tax>
+                        </app-urgent-tax>
                       </div>
 
                       <div *ngSwitchCase="'Market Value'" [item]="routeData">
-                        <app-follow-assist-market [currentData]="detailComponentData"
+                        <app-assist-market [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                        </app-follow-assist-market>
+                        </app-assist-market>
                       </div>
 
                       <div *ngSwitchCase="'Refund'" [item]="routeData">
-                        <app-follow-assist-ncd [currentData]="detailComponentData"
+                        <app-assist-ncd [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                        </app-follow-assist-ncd>
+                        </app-assist-ncd>
                       </div>
 
                       <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>

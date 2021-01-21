@@ -1,0 +1,32 @@
+@media only screen and (min-device-width: 220px) and (max-device-width: 991px) {
+  .account_page {
+    padding-right: 0px !important;
+  }
+  .account_page .left-col {
+    padding-right: 15px !important;
+  }
+  .account_page .right-col {
+    margin-right: 15px !important;
+    margin-left: 15px !important;
+  }
+}
+@media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .account_page .right-col .custom-padding {
+    padding: 10px !important;
+  }
+  .account_page .right-col h4 {
+    font-size: 22px !important;
+    text-align: -webkit-center;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .account_page .right-col p {
+    font-size: 14px !important;
+    text-align: -webkit-center;
+    text-align: center;
+    margin-top: 14px;
+  }
+  .account_page .right-col .full_width {
+    width: 100% !important;
+  }
+}

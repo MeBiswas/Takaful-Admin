@@ -1,24 +1,36 @@
 <div class="second_top_bar bg-white p-10">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 pl-0 align-self-lg-center">
+      <div class="col-md-4 pl-0 align-self-lg-center">
         <h4 class="font-17 text-dark">
           <span class="font-weight-600">
-            Customer Database
+            Notifications
           </span>
         </h4>
       </div>
-      <div class="col-md-6 d-flex justify-content-end pr-0">
+      <div class="col-md-8 pr-0">
         <form>
           <div class="row">
-            <div class="col-md-6">
-              <i class="fa-search fas ml-3 position-absolute text-muted" aria-hidden="true"></i>
-              <input class="form-control pl-5 w-100" type="text" placeholder="Search" aria-label="Search" name="search">
+            <div class="col-md-4 search_bar">
+              <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
+              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4 month_bar">
               <select name="Filter" class="font-weight-600 form-control">
                 <option>Weekly</option>
               </select>
+            </div>
+            <div class="col-md-2 pr-0">
+              <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
+                data-target="#email_task_schedule_Modal">
+                <img alt="image" src="assets/img/icons/forward_to_inbox.png">
+                Email</button>
+            </div>
+            <div class="col-md-2 pr-0">
+              <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
+                data-target="#sms_chat_model">
+                <img alt="image" src="assets/img/icons/chat.png">
+                SMS</button>
             </div>
           </div>
         </form>

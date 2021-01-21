@@ -45,6 +45,12 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description {
   width: 100%;
 }
+tr.mat-header-row {
+  height: 56px;
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
+}
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 768px) {
   .section {

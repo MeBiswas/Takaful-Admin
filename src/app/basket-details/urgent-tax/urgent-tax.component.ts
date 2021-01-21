@@ -6,16 +6,16 @@ import { DatePipe } from '@angular/common';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-follow-assist-market',
-  templateUrl: './follow-assist-market.component.html',
-  styleUrls: ['./follow-assist-market.component.css'],
+  selector: 'app-urgent-tax',
+  templateUrl: './urgent-tax.component.html',
+  styleUrls: ['./urgent-tax.component.css'],
 })
-export class FollowAssistMarketComponent implements OnInit {
+export class UrgentTaxComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 

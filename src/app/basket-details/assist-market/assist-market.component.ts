@@ -6,16 +6,16 @@ import { DatePipe } from '@angular/common';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-follow-urgent-risk',
-  templateUrl: './follow-urgent-risk.component.html',
-  styleUrls: ['./follow-urgent-risk.component.css'],
+  selector: 'app-assist-market',
+  templateUrl: './assist-market.component.html',
+  styleUrls: ['./assist-market.component.css'],
 })
-export class FollowUrgentRiskComponent implements OnInit {
+export class AssistMarketComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
@@ -35,11 +35,9 @@ export class FollowUrgentRiskComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    refundRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
-    refundAmount: ['', Validators.required],
   });
 
   constructor(

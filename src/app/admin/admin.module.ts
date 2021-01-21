@@ -26,12 +26,12 @@ import { IssueWidgetComponent } from '../widgets/issue-widget/issue-widget.compo
 import { QuoteWidgetComponent } from '../widgets/quote-widget/quote-widget.component';
 import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.component';
 // Basket Detail Components
-import { EndorsePayFailComponent } from '../basket-details/endorse-pay-fail/endorse-pay-fail.component';
-import { FollowUrgentNcdComponent } from '../basket-details/follow-urgent-ncd/follow-urgent-ncd.component';
-import { FollowUrgentTaxComponent } from '../basket-details/follow-urgent-tax/follow-urgent-tax.component';
-import { FollowAssistNcdComponent } from '../basket-details/follow-assist-ncd/follow-assist-ncd.component';
-import { FollowUrgentRiskComponent } from '../basket-details/follow-urgent-risk/follow-urgent-risk.component';
-import { FollowAssistMarketComponent } from '../basket-details/follow-assist-market/follow-assist-market.component';
+import { UrgentNcdComponent } from '../basket-details/urgent-ncd/urgent-ncd.component';
+import { AssistNcdComponent } from '../basket-details/assist-ncd/assist-ncd.component';
+import { UrgentTaxComponent } from '../basket-details/urgent-tax/urgent-tax.component';
+import { UrgentRiskComponent } from '../basket-details/urgent-risk/urgent-risk.component';
+import { AssistMarketComponent } from '../basket-details/assist-market/assist-market.component';
+import { PaymentFailedComponent } from '../basket-details/payment-failed/payment-failed.component';
 
 @NgModule({
   declarations: [
@@ -40,18 +40,18 @@ import { FollowAssistMarketComponent } from '../basket-details/follow-assist-mar
     AddUserComponent,
     EditUserComponent,
     RoutingComponents,
+    UrgentNcdComponent,
+    UrgentTaxComponent,
+    AssistNcdComponent,
     DeleteUserComponent,
     SaleWidgetComponent,
     NoteWidgetComponent,
+    UrgentRiskComponent,
     IssueWidgetComponent,
     QuoteWidgetComponent,
+    AssistMarketComponent,
     BasketWidgetComponent,
-    EndorsePayFailComponent,
-    FollowUrgentTaxComponent,
-    FollowUrgentNcdComponent,
-    FollowAssistNcdComponent,
-    FollowUrgentRiskComponent,
-    FollowAssistMarketComponent,
+    PaymentFailedComponent,
   ],
   imports: [
     FormsModule,

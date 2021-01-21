@@ -11,11 +11,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-follow-assist-ncd',
-  templateUrl: './follow-assist-ncd.component.html',
-  styleUrls: ['./follow-assist-ncd.component.css'],
+  selector: 'app-assist-ncd',
+  templateUrl: './assist-ncd.component.html',
+  styleUrls: ['./assist-ncd.component.css'],
 })
-export class FollowAssistNcdComponent implements OnInit {
+export class AssistNcdComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
