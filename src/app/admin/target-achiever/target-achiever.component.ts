@@ -87,15 +87,9 @@ export class TargetAchieverComponent implements OnInit {
     // do something
   }
 
-  // Table Input Event
-  targetInput(v, action) {
-    console.log('ethe aa', v);
-    action.target = v;
-    // this.dataSource.data.map((item) => {
-    //   if (action.user === item.user) {
-    //     item.action = action;
-    //   }
-    // });
-    // console.log('ethe aaa', action);
+  // Update Button Handler
+  updateHandler(d, t, a) {
+    d = { ...d, target: t, achiever: a };
+    console.log('ethe aaa', d);
   }
 }

@@ -104,4 +104,9 @@ export class AccountSettingsComponent implements OnInit {
       );
     this._spin.hide();
   }
+
+  // Cancel Handler
+  cancelHandler() {
+    this._router.navigate(['/admin/dashboard']);
+  }
 }

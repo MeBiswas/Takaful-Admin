@@ -55,8 +55,7 @@
               <ng-container matColumnDef="target">
                 <th scope="col" mat-header-cell *matHeaderCellDef>Target</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
-                  <input type="text" class="form-control" name="target" [(ngModel)]="element.target"
-                    (keyup)="targetInput($event.target.value, element.action)">
+                  <input type="text" class="form-control" name="target" [(ngModel)]="element.target">
                 </td>
               </ng-container>
 
@@ -70,7 +69,8 @@
               <ng-container matColumnDef="action">
                 <th scope="col" mat-header-cell *matHeaderCellDef>Status</th>
                 <td mat-cell *matCellDef="let element">
-                  <button class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">Update</button>
+                  <button class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600"
+                    (click)="updateHandler(element.action, element.target, element.achiever)">Update</button>
                 </td>
               </ng-container>
 
@@ -84,4 +84,3 @@
     </div>
   </div>
 </section>
-{{dataSource.data | json}}
