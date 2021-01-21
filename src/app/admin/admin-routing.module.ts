@@ -138,7 +138,7 @@ const routes: Routes = [
         path: 'windscreen',
         component: CommonBasketComponent,
         data: {
-          page: 'Windscreen',
+          page: 'Claim Windscreen',
           category: 'Claim',
         },
       },

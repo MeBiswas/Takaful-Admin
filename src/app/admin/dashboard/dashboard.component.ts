@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// Provider
-import { DataStorage } from '../../providers/user-data.provider';
 
 // Select Option Interface
 interface Filter {
@@ -21,9 +19,7 @@ export class DashboardComponent implements OnInit {
     { value: 'Monthly', option: 'This Month' },
   ];
 
-  constructor(private _data: DataStorage) {
-    // console.log('Here at', this._data.data);
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 

@@ -15,24 +15,30 @@
                     <label class="col-sm-3 col-form-label">User Name: *</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" formControlName="userName">
-                      <div [class.d-none]="addUserForm.get('userName').valid || addUserForm.get('userName').untouched"
-                        class="error">User Name is required</div>
+                      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name.errors.required" class="error">User Name is required</div>
+                        <div *ngIf="name.errors.pattern" class="error">Invalid User Name</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">User ID: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="userId">
-                      <div [class.d-none]="addUserForm.get('userId').valid || addUserForm.get('userId').untouched"
-                        class="error">User ID is required</div>
+                      <div *ngIf="id.invalid && (id.dirty || id.touched)">
+                        <div *ngIf="id.errors.required" class="error">User ID is required</div>
+                        <div *ngIf="id.errors.pattern" class="error">Invalid User ID</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Email: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="email">
-                      <div [class.d-none]="addUserForm.get('email').valid || addUserForm.get('email').untouched"
-                        class="error">Email is required</div>
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors.required" class="error">Email is required</div>
+                        <div *ngIf="email.errors.pattern" class="error">Invalid Email</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -42,36 +48,42 @@
                         <option [disabled]="true" value="" selected>Select Role</option>
                         <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
                       </select>
-                      <div [class.d-none]="addUserForm.get('role').valid || addUserForm.get('role').untouched"
-                        class="error">Role is required</div>
+                      <div *ngIf="role.invalid && (role.dirty || role.touched)">
+                        <div *ngIf="role.errors.required" class="error">Role is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Department: *</label>
                     <div class="col-sm-9">
                       <input type="email" class="form-control" formControlName="department">
-                      <div
-                        [class.d-none]="addUserForm.get('department').valid || addUserForm.get('department').untouched"
-                        class="error">Department is required</div>
+                      <div *ngIf="department.invalid && (department.dirty || department.touched)">
+                        <div *ngIf="department.errors.required" class="error">Department is required</div>
+                        <div *ngIf="department.errors.pattern" class="error">Invalid Department</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">New Password: *</label>
                     <div class="col-sm-9">
                       <input type="password" class="form-control" formControlName="password">
-                      <div [class.d-none]="addUserForm.get('password').valid || addUserForm.get('password').untouched"
-                        class="error">Password is required</div>
+                      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <div *ngIf="password.errors.required" class="error">Password is required</div>
+                        <div *ngIf="password.errors.minlength" class="error">Password must be at least 8 characters
+                          long.</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Repeat Password: *</label>
                     <div class="col-sm-9">
                       <input type="password" class="form-control" formControlName="repeatPassword">
-                      <div
-                        [class.d-none]="addUserForm.get('repeatPassword').valid || addUserForm.get('repeatPassword').untouched"
-                        class="error">Repeat Password is required</div>
+                      <div *ngIf="rPassword.invalid && (rPassword.dirty || rPassword.touched)">
+                        <div *ngIf="rPassword.errors.required" class="error">Repeat Password is required</div>
+                      </div>
                       <div *ngIf="addUserForm.errors?.misMatch" class="error">Password and Repeat Password does
-                        not match</div>
+                        not
+                        match</div>
                     </div>
                   </div>
                 </div>

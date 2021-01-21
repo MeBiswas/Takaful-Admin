@@ -26,6 +26,7 @@ import { IssueWidgetComponent } from '../widgets/issue-widget/issue-widget.compo
 import { QuoteWidgetComponent } from '../widgets/quote-widget/quote-widget.component';
 import { BasketWidgetComponent } from '../widgets/basket-widget/basket-widget.component';
 // Basket Detail Components
+import { MarketingComponent } from '../basket-details/marketing/marketing.component';
 import { UrgentNcdComponent } from '../basket-details/urgent-ncd/urgent-ncd.component';
 import { AssistNcdComponent } from '../basket-details/assist-ncd/assist-ncd.component';
 import { UrgentTaxComponent } from '../basket-details/urgent-tax/urgent-tax.component';
@@ -43,6 +44,7 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
     UrgentNcdComponent,
     UrgentTaxComponent,
     AssistNcdComponent,
+    MarketingComponent,
     DeleteUserComponent,
     SaleWidgetComponent,
     NoteWidgetComponent,

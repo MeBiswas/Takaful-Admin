@@ -10,8 +10,11 @@
             {{routeData.subCategory}}/
           </span>
           <span>
-            {{routeData.page
-            === 'NCD' ? 'No Claim Discount (NCD)' : routeData.page}}
+            {{
+            routeData.page === 'NCD' ? 'No Claim Discount (NCD)'
+            : routeData.page === 'Claim Windscreen' ? 'Windscreen'
+            : routeData.page
+            }}
           </span>
         </h4>
       </div>
@@ -140,6 +143,12 @@
                         <app-assist-ncd [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
                         </app-assist-ncd>
+                      </div>
+
+                      <div *ngSwitchCase="'Claim Windscreen'" [item]="routeData">
+                        <app-urgent-ncd [currentData]="detailComponentData"
+                          *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
+                        </app-urgent-ncd>
                       </div>
 
                       <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>

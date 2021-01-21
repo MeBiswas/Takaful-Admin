@@ -28,8 +28,18 @@ tr.mat-header-row {
   border-left: hidden;
   border-right: hidden;
 }
+.cstm-form {
+  height: 34px;
+  border-radius: 9px;
+  text-align: center;
+  text-align: -webkit-center;
+  border: 1px solid #d5d5d5;
+}
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 768px) {
+  .second_top_bar .page_title {
+    text-align: center;
+  }
   .section {
     margin-top: 185px !important;
   }

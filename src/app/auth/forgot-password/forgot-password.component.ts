@@ -7,6 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AuthService } from '../../services/auth/auth.service';
+// Email Regex Pattern
+const pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,7 +19,7 @@ export class ForgotPasswordComponent implements OnInit {
   url = '/auth/forgotpassword';
 
   forgotPasswordForm = this._fb.group({
-    email: ['', Validators.required],
+    email: ['', [Validators.required, Validators.pattern(pattern)]],
   });
 
   constructor(
@@ -29,6 +31,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // Form Field Getter
+  get email() {
+    return this.forgotPasswordForm.get('email');
+  }
+
   // Submit Handler
   onSubmit(v) {
     !v
@@ -39,6 +46,7 @@ export class ForgotPasswordComponent implements OnInit {
   // Forgot Password Service
   forgotPassword(d) {
     this._spin.show();
+    console.log('ethe aa');
     this._auth.forgotPasswordRequest(this.url, d).subscribe(
       (res) => {
         if (res.status.code === 0) {

@@ -53,13 +53,14 @@ export class TelemarketingComponent implements OnInit {
   ];
 
   columnsToDisplay: string[] = [
-    'vehiclePlateNo',
-    'customerName',
-    'paymentDate',
-    'principal',
-    'carModel',
-    'status',
-    'customerService',
+    'carRegister',
+    'expiredDate',
+    'followUpDate',
+    'phoneNo',
+    'email',
+    'action',
+    'callStatus',
+    'customerStatus',
   ];
 
   constructor(

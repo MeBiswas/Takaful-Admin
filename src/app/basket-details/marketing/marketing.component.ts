@@ -11,37 +11,27 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
-  selector: 'app-urgent-ncd',
-  templateUrl: './urgent-ncd.component.html',
-  styleUrls: ['./urgent-ncd.component.css'],
+  selector: 'app-marketing',
+  templateUrl: './marketing.component.html',
+  styleUrls: ['./marketing.component.css'],
 })
-export class UrgentNcdComponent implements OnInit {
+export class MarketingComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
-  basketDetailURL = '/admin/dashboard/followup/details/';
+  basketDetailURL = '/admin/marketing/details/';
 
   basketDetailForm = this._fb.group({
-    nric: [''],
-    email: [''],
-    status: [''],
-    remarks: [''],
-    phoneNo: [''],
-    coverage: [''],
-    carModel: [''],
-    postcode: [''],
-    address1: [''],
-    address2: [''],
-    coverType: [''],
-    principal: [''],
-    sumInsured: [''],
-    topupRemark: [''],
-    refundRemark: [''],
-    customerName: [''],
-    effectiveDate: [''],
-    vehiclePlateNo: [''],
-    topupAmount: ['', Validators.required],
-    refundAmount: ['', Validators.required],
+    email: [null],
+    action: [null],
+    phoneNo: [null],
+    assignTo: [null],
+    callStatus: [null],
+    carRegister: [null],
+    expiredDate: [null],
+    followUpDate: [null],
+    customerStatus: [null],
+    telemarketingStatus: [null],
   });
 
   constructor(
@@ -71,7 +61,7 @@ export class UrgentNcdComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
-        this.assignData(res.list[0]);
+        this.assignData(res);
       },
       (err) => {
         this._toast.error('Oops! Something went wrong.');
@@ -84,9 +74,13 @@ export class UrgentNcdComponent implements OnInit {
   assignData(d) {
     d = {
       ...d,
-      effectiveDate: this._datePipe.transform(
-        new Date(d.effectiveDate),
-        'dd MMM YYYY'
+      expiredDate: this._datePipe.transform(
+        new Date(d.expiredDate),
+        'dd/mm/YYYY'
+      ),
+      followUpDate: this._datePipe.transform(
+        new Date(d.followUpDate),
+        'dd/mm/YYYY'
       ),
     };
     this.basketDetailForm.patchValue({ ...d });

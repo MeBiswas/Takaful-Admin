@@ -11,6 +11,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../services/admin/admin.service';
 // Custom Validators
 import { PasswordValidator } from '../../validators/password.validator';
+// Regex Patterns
+const alphaPattern = /^[a-zA-Z ]*$/;
+const unamePattern = /^[a-zA-Z0-9_]*$/;
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
   selector: 'app-account-settings',
@@ -29,12 +33,12 @@ export class AccountSettingsComponent implements OnInit {
     {
       roleId: [null],
       repeatPassword: [''],
-      email: ['', Validators.required],
-      userId: ['', Validators.required],
-      userName: ['', Validators.required],
       roleName: ['', Validators.required],
-      department: ['', Validators.required],
       password: ['', Validators.minLength(8)],
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      userId: ['', [Validators.required, Validators.pattern(unamePattern)]],
+      userName: ['', [Validators.required, Validators.pattern(unamePattern)]],
+      department: ['', [Validators.required, Validators.pattern(alphaPattern)]],
     },
     { validator: PasswordValidator }
   );
@@ -51,6 +55,29 @@ export class AccountSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.userDetail();
     this.getRoleList();
+  }
+
+  // Form Field Getter
+  get email() {
+    return this.accountSettingForm.get('email');
+  }
+  get id() {
+    return this.accountSettingForm.get('userId');
+  }
+  get name() {
+    return this.accountSettingForm.get('userName');
+  }
+  get role() {
+    return this.accountSettingForm.get('roleName');
+  }
+  get password() {
+    return this.accountSettingForm.get('password');
+  }
+  get department() {
+    return this.accountSettingForm.get('department');
+  }
+  get rPassword() {
+    return this.accountSettingForm.get('repeatPassword');
   }
 
   // User Detail Service

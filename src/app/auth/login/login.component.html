@@ -16,8 +16,7 @@
           <div class="dashboard-login">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.valid)">
               <div class="form-group">
-                <input autofocus id="email" type="email" formControlName="userId" placeholder="Email"
-                  class="form-control" />
+                <input id="email" type="email" formControlName="userId" placeholder="Email" class="form-control" />
                 <div *ngIf="loginForm.get('userId').invalid && loginForm.get('userId').touched" class="error">
                   Email/UserName is required</div>
               </div>

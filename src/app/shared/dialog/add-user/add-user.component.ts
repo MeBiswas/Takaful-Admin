@@ -7,8 +7,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from '../../../services/admin/admin.service';
 // Custom Validators
 import { PasswordValidator } from '../../../validators/password.validator';
-// Email Regex
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// Regex Patterns
+const alphaPattern = /^[a-zA-Z ]*$/;
+const unamePattern = /^[a-zA-Z0-9_ ]*$/;
+const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
   selector: 'app-add-user',
@@ -25,12 +27,12 @@ export class AddUserComponent implements OnInit {
   addUserForm = this._fb.group(
     {
       role: ['', Validators.required],
-      userId: ['', Validators.required],
-      userName: ['', Validators.required],
-      department: ['', Validators.required],
       repeatPassword: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+      email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+      userId: ['', [Validators.required, Validators.pattern(unamePattern)]],
+      userName: ['', [Validators.required, Validators.pattern(unamePattern)]],
+      department: ['', [Validators.required, Validators.pattern(alphaPattern)]],
     },
     { validator: PasswordValidator }
   );
@@ -44,6 +46,29 @@ export class AddUserComponent implements OnInit {
   // LifeCycle Method
   ngOnInit(): void {
     this.getRoleList();
+  }
+
+  // Form Field Getter
+  get name() {
+    return this.addUserForm.get('userName');
+  }
+  get id() {
+    return this.addUserForm.get('userId');
+  }
+  get email() {
+    return this.addUserForm.get('email');
+  }
+  get role() {
+    return this.addUserForm.get('role');
+  }
+  get department() {
+    return this.addUserForm.get('department');
+  }
+  get password() {
+    return this.addUserForm.get('password');
+  }
+  get rPassword() {
+    return this.addUserForm.get('repeatPassword');
   }
 
   // Role List Service

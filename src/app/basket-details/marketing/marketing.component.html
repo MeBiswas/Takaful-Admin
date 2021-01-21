@@ -1,0 +1,172 @@
+<h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4">Car Register #{{currentData}}</h2>
+<form class="d-flex" [formGroup]="basketDetailForm">
+  <div class="border-right col-md-6 pl-4 pr-5">
+    <div class="form-group row mt-3">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Car Reg. No.</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="carRegister">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Model Car</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Chasis Engine</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Car Make</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Year Manfacture</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Car Spec</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">NRIC</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Previous takaful insurance</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Cover Type</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Sum Insured</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Extra Coverage</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">NCD Effective Date</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="phoneNo">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control form-group">
+        <input type="text" class="form-control ">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Postcode</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group row  pl-4 pr-5 mt-3">
+      <label class="col-sm-4 col-form-label font-weight-bold">Call Status</label>
+      <div class="col-sm-6">
+        <select class="font-weight-600 form-control">
+          <option>Not Interested</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-4 col-form-label font-weight-bold">Follow Up Date</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" formControlName="followUpDate">
+      </div>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-4 col-form-label font-weight-bold">Takaful Type</label>
+      <div class="col-sm-6">
+        <select class="font-weight-600 form-control">
+          <option>Etiqa Takaful</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-4 col-form-label font-weight-bold">Payment Method</label>
+      <div class="col-sm-6">
+        <select class="font-weight-600 form-control">
+          <option>Online Banking</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-4 col-form-label font-weight-bold">NCD</label>
+      <div class="col-sm-6">
+        <select class="font-weight-600 form-control">
+          <option>25</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row  pl-4 pr-5">
+      <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+      <div class="col-sm-6">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-group row  pl-4">
+      <label class="col-sm-4 col-form-label font-weight-bold">To Customer</label>
+      <div class="col-sm-8 pl-0">
+        <button class="bg-light border-0 btn form-group rounded-pill text-dark text-white"><img class="pr-2"
+            src="assets/img/icons/phone_icon.png" />Call</button>
+        <button class="bg-light border-0 btn form-group rounded-pill text-dark text-white"><img class="pr-2"
+            src="assets/img/icons/sms.png" />SMS</button>
+        <button type="button" class="bg-light border-0 btn form-group rounded-pill text-dark text-white"
+          data-toggle="modal" data-target="#new_email_Modal"><img class="pr-2"
+            src="assets/img/icons/email.png" />Muz90@gmail.com</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
+        <button class="btn bg-transparent border-0 w-25">Cancel</button>
+        <button class="bg-green btn text-white w-25">Update</button>
+      </div>
+    </div>
+  </div>
+</form>

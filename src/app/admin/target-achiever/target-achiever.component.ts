@@ -45,7 +45,7 @@ export class TargetAchieverComponent implements OnInit {
 
   // LifeCycle Method
   ngOnInit(): void {
-    this.achieverList();
+    // this.achieverList();
   }
 
   // LifeCycle Method
@@ -55,14 +55,16 @@ export class TargetAchieverComponent implements OnInit {
 
   // Achiever List Service
   private achieverList() {
-    this._admin.getApiWithAuth(this.achievementListURL).subscribe(
-      (res) => {
-        this.addActionData(res.list);
-      },
-      (err) => {
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin
+      .postApiWithAuth(this.achievementListURL, { month: 'January' })
+      .subscribe(
+        (res) => {
+          this.addActionData(res.list);
+        },
+        (err) => {
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 
   // Adding Table Action Column Data
@@ -90,6 +92,6 @@ export class TargetAchieverComponent implements OnInit {
   // Update Button Handler
   updateHandler(d, t, a) {
     d = { ...d, target: t, achiever: a };
-    console.log('ethe aaa', d);
+    // console.log('ethe aaa', d);
   }
 }
