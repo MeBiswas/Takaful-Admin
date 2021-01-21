@@ -91,11 +91,11 @@ export class TargetAchieverComponent implements OnInit {
   targetInput(v, action) {
     console.log('ethe aa', v);
     action.target = v;
-    this.dataSource.data.map((item) => {
-      if (action.user === item.user) {
-        item.action = action;
-      }
-    });
-    console.log('ethe aaa', action);
+    // this.dataSource.data.map((item) => {
+    //   if (action.user === item.user) {
+    //     item.action = action;
+    //   }
+    // });
+    // console.log('ethe aaa', action);
   }
 }
