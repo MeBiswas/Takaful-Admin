@@ -1,6 +1,9 @@
 # AllTakafulAdmin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+## Installation
+
+Run `yarn install` to install the all dependencies.
 
 ## Development server
 
