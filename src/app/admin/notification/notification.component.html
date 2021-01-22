@@ -9,28 +9,28 @@
         </h4>
       </div>
       <div class="col-md-8 pr-0">
-        <form>
+        <form #filterForm="ngForm">
           <div class="row">
             <div class="col-md-4 search_bar">
               <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
-              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search">
+              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search"
+                [(ngModel)]="search" (keyup)="searchFor($event.target.value)">
             </div>
             <div class="col-md-4 month_bar">
-              <select name="Filter" class="font-weight-600 form-control">
-                <option>Weekly</option>
+              <select [(ngModel)]="filter" name="Filter" class="font-weight-600 form-control"
+                (ngModelChange)="onFilterChanged($event)">
+                <option *ngFor="let filter of filters" value="{{filter.value}}">{{filter.option}}</option>
               </select>
             </div>
             <div class="col-md-2 pr-0">
               <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
                 data-target="#email_task_schedule_Modal">
-                <img alt="image" src="assets/img/icons/forward_to_inbox.png">
-                Email</button>
+                <img alt="image" src="assets/img/icons/forward_to_inbox.png">Email</button>
             </div>
             <div class="col-md-2 pr-0">
               <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
                 data-target="#sms_chat_model">
-                <img alt="image" src="assets/img/icons/chat.png">
-                SMS</button>
+                <img alt="image" src="assets/img/icons/chat.png">SMS</button>
             </div>
           </div>
         </form>
@@ -41,54 +41,45 @@
 <section class="section">
   <div class="row">
     <div class="col-lg-12">
-      <div class="table-responsive">
-        <table class="table table-bordered bg-white">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Car Register</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Email</th>
-              <th>Messages</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="font-weight-600">
-              <td> <input type="checkbox" value=""></td>
-              <td data-toggle="collapse" data-target="#demo1" class="accordion-toggle text-info">AKF 6543</td>
-              <td>Ujang selamat</td>
-              <td>011-21414141</td>
-              <td>Muz90@gmail.com</td>
-              <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam …</td>
-            </tr>
-            <tr class="font-weight-600">
-              <td> <input type="checkbox" value=""></td>
-              <td data-toggle="collapse" data-target="#demo1" class="accordion-toggle text-info">AKF 6543</td>
-              <td>Ujang selamat</td>
-              <td>011-21414141</td>
-              <td>Muz90@gmail.com</td>
-              <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam …</td>
-            </tr>
-            <tr class="font-weight-600">
-              <td> <input type="checkbox" value=""></td>
-              <td data-toggle="collapse" data-target="#demo1" class="accordion-toggle text-info">AKF 6543</td>
-              <td>Ujang selamat</td>
-              <td>011-21414141</td>
-              <td>Muz90@gmail.com</td>
-              <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam …</td>
-            </tr>
-            <tr class="font-weight-600">
-              <td> <input type="checkbox" value=""></td>
-              <td data-toggle="collapse" data-target="#demo1" class="accordion-toggle text-info">AKF 6543</td>
-              <td>Ujang selamat</td>
-              <td>011-21414141</td>
-              <td>Muz90@gmail.com</td>
-              <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam …</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <ng-template [ngIf]="dataSource.data.length === 0" [ngIfElse]="elseBlock">
+        <h1>No Data</h1>
+      </ng-template>
+      <ng-template #elseBlock>
+        <form>
+          <div class="responsive-table-custom">
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+              <ng-container matColumnDef="carRegister">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Car Register</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.carRegister}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="customerName">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.customerName}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="phoneNumber">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Phone Number</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.phoneNumber}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="email">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.email}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="message">
+                <th scope="col" mat-header-cell *matHeaderCellDef>Messages</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.message}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </form>
+        <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
+      </ng-template>
     </div>
   </div>
 </section>

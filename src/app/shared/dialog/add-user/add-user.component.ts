@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Forms
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
@@ -40,7 +42,8 @@ export class AddUserComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _admin: AdminService,
-    private _toast: ToastrService
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
   ) {}
 
   // LifeCycle Method
@@ -73,11 +76,14 @@ export class AddUserComponent implements OnInit {
 
   // Role List Service
   private getRoleList() {
+    this._spin.show();
     this._admin.getApiWithAuth(this.roleListURL).subscribe(
       (res) => {
         this.roles = [...res.roleList];
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
@@ -92,6 +98,7 @@ export class AddUserComponent implements OnInit {
 
   // Add User Service
   private addUser(d) {
+    this._spin.show();
     this._admin.postApiWithAuth(this.addUserURL, d).subscribe(
       (res) => {
         if (res.status.code === 0) {
@@ -102,8 +109,10 @@ export class AddUserComponent implements OnInit {
         } else {
           this._toast.warning(res.status.message);
         }
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );

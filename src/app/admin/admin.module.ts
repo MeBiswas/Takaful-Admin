@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Routing Module
-import { AdminRoutingModule, RoutingComponents } from './admin-routing.module';
-// Forms Module
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// Material
+import { MaterialModule } from '../material';
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
-// Material
-import { MatTableModule } from '@angular/material/table';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+// Forms Module
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Header Component
 import { HeaderComponent } from '../shared/header/header.component';
 // Sidebar Component
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+// Routing Module
+import { AdminRoutingModule, RoutingComponents } from './admin-routing.module';
 // Dialog
 import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
 import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
@@ -58,13 +55,10 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
   imports: [
     FormsModule,
     CommonModule,
-    MatTableModule,
+    MaterialModule,
     NgxSpinnerModule,
     AdminRoutingModule,
-    MatPaginatorModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
   ],
 })
 export class AdminModule {}

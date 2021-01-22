@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Form
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
@@ -41,7 +43,8 @@ export class EditUserComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _admin: AdminService,
-    private _toast: ToastrService
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
   ) {}
 
   // LifeCycle Method
@@ -79,11 +82,14 @@ export class EditUserComponent implements OnInit {
 
   // Role List Service
   private getRoleList() {
+    this._spin.show();
     this._admin.getApiWithAuth(this.roleListURL).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         this.roles = [...res.roleList];
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
@@ -98,8 +104,10 @@ export class EditUserComponent implements OnInit {
 
   // Edit User Service
   private editUser(d) {
+    this._spin.show();
     this._admin.postApiWithAuth(this.updateUserURL, d).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         if (res.status.code === 0) {
           this._toast.success('User updated successfully');
           setTimeout(function () {
@@ -110,7 +118,7 @@ export class EditUserComponent implements OnInit {
         }
       },
       (err) => {
-        // console.log('Edit User Service Response', err);
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );

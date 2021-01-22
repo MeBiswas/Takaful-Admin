@@ -62,12 +62,13 @@ export class MarketingComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res);
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 
   // Assigning default Data to Form

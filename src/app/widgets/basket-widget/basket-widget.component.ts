@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-// Service
-import { AdminService } from '../../services/admin/admin.service';
-// Spinner
-import { NgxSpinnerService } from 'ngx-spinner';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
+// Service
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-basket-widget',
@@ -41,12 +41,13 @@ export class BasketWidgetComponent implements OnInit {
     this._spin.show();
     this._admin.postApiWithAuth(this.basketStatisticsUrl, data).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         this.basketStatisticsResponseData = { ...res };
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 }

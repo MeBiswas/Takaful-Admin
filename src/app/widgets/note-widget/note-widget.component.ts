@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-// Service
-import { AdminService } from '../../services/admin/admin.service';
-// Spinner
-import { NgxSpinnerService } from 'ngx-spinner';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
+// Service
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-note-widget',
@@ -45,11 +45,12 @@ export class NoteWidgetComponent implements OnInit {
           ...this.coverNoteStatisticResponseData,
           ...res,
         };
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 }

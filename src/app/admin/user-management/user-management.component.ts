@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Material Table Dependencies
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -31,7 +33,11 @@ export class UserManagementComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private _admin: AdminService, private _toast: ToastrService) {}
+  constructor(
+    private _admin: AdminService,
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
+  ) {}
 
   // LifeCycle Method
   ngOnInit() {
@@ -45,11 +51,14 @@ export class UserManagementComponent implements OnInit {
 
   // Service Handler
   getTableData(p) {
+    this._spin.show();
     this._admin.getApiWithAuth(this.userListURL + p).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         this.addActionData(res.userList);
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );

@@ -87,13 +87,14 @@ export class TelemarketingComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(this.telemarketingURL + filter).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         this.dataSource.data = res.telemarketingList;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 
   // Pagination Event

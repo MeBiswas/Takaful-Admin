@@ -54,12 +54,12 @@ export class LoginComponent implements OnInit {
           this._toast.warning('Oops! Something went wrong.');
           this._router.navigate(['/auth/invalid']);
         }
+        res ? this._spin.hide() : null;
       },
       (err) => {
-        console.log('Error in Login Service', err);
+        err ? this._spin.hide() : null;
         this._toast.error(err.status.message);
       }
     );
-    this._spin.hide();
   }
 }

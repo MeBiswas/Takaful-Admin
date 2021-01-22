@@ -82,15 +82,18 @@ export class AccountSettingsComponent implements OnInit {
 
   // User Detail Service
   private userDetail() {
+    this._spin.show();
     this._admin
       .postApiWithAuth(this.userDetailURL, {
         userId: this.userID,
       })
       .subscribe(
         (res) => {
+          res ? this._spin.hide() : null;
           this.accountSettingForm.patchValue({ ...res });
         },
         (err) => {
+          err ? this._spin.hide() : null;
           this._toast.error('Oops! Something went wrong.');
         }
       );

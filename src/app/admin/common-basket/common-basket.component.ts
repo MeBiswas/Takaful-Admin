@@ -45,9 +45,9 @@ export class CommonBasketComponent implements OnInit {
   search = '';
   basket: any = [];
   filter = 'Monthly';
+  basketURL: string = '';
   detailComponentData = '';
   dataSource = new MatTableDataSource();
-  basketURL = '/admin/dashboard/followup/list';
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   filters: Filter[] = [
@@ -86,6 +86,9 @@ export class CommonBasketComponent implements OnInit {
     this.activatedroute.data.subscribe((data) => {
       this.routeData = { ...data };
     });
+    this.routeData.category === 'Endorsement'
+      ? (this.basketURL = '/admin/dashboard/endorsement/list')
+      : (this.basketURL = '/admin/dashboard/followup/list');
     this.routeData.page === 'Market Value'
       ? this.columnsToDisplay.splice(5, 0, 'marketValue')
       : null;
@@ -115,13 +118,14 @@ export class CommonBasketComponent implements OnInit {
     let d = this.tableBodyData(this.routeData, filter);
     this._admin.postApiWithAuth(this.basketURL, d).subscribe(
       (res) => {
+        res ? this._spin.hide() : null;
         this.dataSource.data = res.list;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 
   // Pagination Event

@@ -46,7 +46,6 @@ export class ForgotPasswordComponent implements OnInit {
   // Forgot Password Service
   forgotPassword(d) {
     this._spin.show();
-    console.log('ethe aa');
     this._auth.forgotPasswordRequest(this.url, d).subscribe(
       (res) => {
         if (res.status.code === 0) {
@@ -54,11 +53,12 @@ export class ForgotPasswordComponent implements OnInit {
         } else {
           this._toast.warning(res.status.message);
         }
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 }

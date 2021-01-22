@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-// Service
-import { AdminService } from '../../../services/admin/admin.service';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
+// Service
+import { AdminService } from '../../../services/admin/admin.service';
 
 @Component({
   selector: 'app-delete-user',
@@ -17,7 +19,11 @@ export class DeleteUserComponent implements OnInit {
 
   updateUserURL = '/security/deleteuser';
 
-  constructor(private _admin: AdminService, private _toast: ToastrService) {}
+  constructor(
+    private _admin: AdminService,
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,25 +32,28 @@ export class DeleteUserComponent implements OnInit {
   }
 
   deleteUser() {
-    let data = {
-      userId: this.userID,
-    };
-    this._admin.deleteApiWithAuth(this.updateUserURL, data).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this._toast.success('User deleted successfully');
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        } else {
-          this._toast.warning(res.status.message);
+    this._spin.show();
+    this._admin
+      .deleteApiWithAuth(this.updateUserURL, {
+        userId: this.userID,
+      })
+      .subscribe(
+        (res) => {
+          res ? this._spin.hide() : null;
+          if (res.status.code === 0) {
+            this._toast.success('User deleted successfully');
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else {
+            this._toast.warning(res.status.message);
+          }
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
         }
-      },
-      (err) => {
-        this._toast.error('Oops! Something went wrong.');
-        // console.log('Delete User Service Response Error', err);
-      }
-    );
+      );
     this.closeModal();
   }
 

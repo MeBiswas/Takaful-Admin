@@ -3,10 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
-// Spinner
-import { NgxSpinnerService } from 'ngx-spinner';
 // Form
 import { FormBuilder } from '@angular/forms';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
@@ -67,12 +67,13 @@ export class AssistMarketComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
+        res ? this._spin.hide() : null;
       },
       (err) => {
+        err ? this._spin.hide() : null;
         this._toast.error('Oops! Something went wrong.');
       }
     );
-    this._spin.hide();
   }
 
   // Assigning default Data to Form
