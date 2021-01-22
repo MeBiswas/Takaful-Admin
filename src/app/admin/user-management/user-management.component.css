@@ -6,6 +6,31 @@ table {
   table {
     width: 100%;
     overflow-x: scroll;
+  }
+}
+
+@media only screen and (min-device-width: 220px) and (max-device-width: 848px) {
+  table {
     display: block;
+    width: 100%;
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (min-device-width: 220px) and (max-device-width: 562px) {
+  .user-search-form {
+    display: flex;
+    justify-content: center;
+  }
+  .section .section-header .section-header-breadcrumb-content h1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 220px) and (max-device-width: 480px) {
+  .user-search-form .has-search {
+    margin-right: 0px !important;
   }
 }

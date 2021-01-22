@@ -53,6 +53,10 @@ tr.mat-header-row {
 }
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 768px) {
+  h4 {
+    margin-bottom: 0;
+    text-align: center;
+  }
   .section {
     margin-top: 185px !important;
   }

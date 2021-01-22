@@ -1,8 +1,11 @@
 <ng-template [ngIf]="basketStatisticsResponseData.list?.length > 0" [ngIfElse]="elseBlock">
-  <div class="row">
-    <div class="bg-light box col-sm-3 m-3 p-2 rounded" *ngFor="let item of basketStatisticsResponseData.list">
-      <h4 class="text-center text-muted font-13">{{item.type}}</h4>
-      <h4 class="count_no_color font-40 text-center mt-2">{{item.total}}</h4>
+  <div class="container">
+    <div class="row">
+      <div class="bg-light box col-sm-3 m-3 p-2 rounded activity-list"
+        *ngFor="let item of basketStatisticsResponseData.list">
+        <h4 class="text-center text-muted font-12">{{item.type}}</h4>
+        <h4 class="count_no_color font-40 text-center mt-2">{{item.total}}</h4>
+      </div>
     </div>
   </div>
 </ng-template>

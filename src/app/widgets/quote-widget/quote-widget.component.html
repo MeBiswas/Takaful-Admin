@@ -1,4 +1,4 @@
-<div class="d-flex bg-white rounded">
+<div class="d-flex bg-white rounded mt-4">
   <div class="col-md-6">
     <h4 class="font-15 mt-3 text-muted">Total Quotation Request</h4>
     <ng-template [ngIf]="totalQuotationResponseData.totalQuotation" [ngIfElse]="NoQuote">
@@ -7,7 +7,7 @@
       </h4>
     </ng-template>
     <ng-template #NoQuote>
-      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-12">Quote</span></h4>
+      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-11">Quote</span></h4>
     </ng-template>
   </div>
   <div class="col-md-6 text-center pb-1">
@@ -23,7 +23,7 @@
       </h4>
     </ng-template>
     <ng-template #NoCover>
-      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-12">Cover Note</span></h4>
+      <h4 class="count_no_color font-50 text-right mt-5">0 <span class="text-muted font-11">Cover Note</span></h4>
     </ng-template>
   </div>
   <div class="col-md-6 text-center pb-1">
