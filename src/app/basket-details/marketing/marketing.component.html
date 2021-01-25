@@ -10,43 +10,43 @@
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Model Car</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="model">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Chasis Engine</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="chasis">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Car Make</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="carMake">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Year Manfacture</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="yearManufacture">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Car Spec</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="carSpec">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="customerName">
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">NRIC</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" formControlName="nric">
       </div>
     </div>
     <div class="form-group row">
@@ -109,8 +109,8 @@
     <div class="form-group row  pl-4 pr-5 mt-3">
       <label class="col-sm-4 col-form-label font-weight-bold">Call Status</label>
       <div class="col-sm-6">
-        <select class="font-weight-600 form-control">
-          <option>Not Interested</option>
+        <select class="font-weight-600 form-control" formControlName="callStatus">
+          <option *ngFor="let status of callStatusList" value="{{status.value}}">{{status.option}}</option>
         </select>
       </div>
     </div>
@@ -124,7 +124,7 @@
       <label class="col-sm-4 col-form-label font-weight-bold">Takaful Type</label>
       <div class="col-sm-6">
         <select class="font-weight-600 form-control">
-          <option>Etiqa Takaful</option>
+          <option *ngFor="let type of takafulTypeList" value="{{type.value}}">{{type.option}}</option>
         </select>
       </div>
     </div>
@@ -132,7 +132,7 @@
       <label class="col-sm-4 col-form-label font-weight-bold">Payment Method</label>
       <div class="col-sm-6">
         <select class="font-weight-600 form-control">
-          <option>Online Banking</option>
+          <option *ngFor="let method of paymentMethodList" value="{{method.value}}">{{method.option}}</option>
         </select>
       </div>
     </div>
@@ -140,7 +140,7 @@
       <label class="col-sm-4 col-form-label font-weight-bold">NCD</label>
       <div class="col-sm-6">
         <select class="font-weight-600 form-control">
-          <option>25</option>
+          <option *ngFor="let ncd of ncdList" value="{{ncd.value}}">{{ncd.option}}</option>
         </select>
       </div>
     </div>

@@ -13,6 +13,8 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 // Routing Module
 import { AdminRoutingModule, RoutingComponents } from './admin-routing.module';
 // Dialog
+import { SmsComponent } from '../shared/dialog/sms/sms.component';
+import { EmailComponent } from '../shared/dialog/email/email.component';
 import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
 import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
 import { DeleteUserComponent } from '../shared/dialog/delete-user/delete-user.component';
@@ -33,6 +35,8 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
 
 @NgModule({
   declarations: [
+    SmsComponent,
+    EmailComponent,
     HeaderComponent,
     SidebarComponent,
     AddUserComponent,

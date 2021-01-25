@@ -72,11 +72,13 @@ export class CommonBasketComponent implements OnInit {
     private activatedroute: ActivatedRoute
   ) {}
 
+  // LifeCyle Method
   ngOnInit(): void {
     this.getRouteData();
     this.getTableData(this.filter);
   }
 
+  // LifeCyle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }

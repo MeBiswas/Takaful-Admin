@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
+// Pattern
+const numeric = /^[0-9]*$/;
 
 @Component({
   selector: 'app-urgent-tax',
@@ -17,7 +19,14 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class UrgentTaxComponent implements OnInit {
   @Input() currentData: string;
+  email = null;
+  phoneNo = null;
   datePipeString: string;
+
+  actionList = [
+    { value: 'topup', option: 'Topup' },
+    { value: 'refund', option: 'Refund' },
+  ];
 
   basketDetailURL = '/admin/dashboard/followup/details/';
 
@@ -35,9 +44,12 @@ export class UrgentTaxComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
+    actionRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
+    action: ['', Validators.required],
+    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -54,6 +66,11 @@ export class UrgentTaxComponent implements OnInit {
     this.onDataChange(this.currentData);
   }
 
+  // Form Field Getter
+  get amount() {
+    return this.basketDetailForm.get('actionAmount');
+  }
+
   // Modifying API URL As Per Parent Input
   private onDataChange(v) {
     let url = this.basketDetailURL;
@@ -67,6 +84,8 @@ export class UrgentTaxComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
+        this.email = res.list[0].email;
+        this.phoneNo = res.list[0].phoneNo;
         res ? this._spin.hide() : null;
       },
       (err) => {
@@ -86,5 +105,22 @@ export class UrgentTaxComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler();
+  }
+
+  // Update Form Handler
+  updateHandler() {
+    console.log('Update Handler Method');
+  }
+
+  // Reload Handler
+  reloadHandler() {
+    window.location.reload();
   }
 }

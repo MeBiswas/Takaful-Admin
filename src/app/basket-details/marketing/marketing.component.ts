@@ -19,18 +19,50 @@ export class MarketingComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
+  callStatusList = [
+    { option: 'No Answer', value: 'No Answer' },
+    { option: 'Not Interested', value: 'Not Interested' },
+    { option: 'Not In Service', value: 'Not In Service' },
+    { option: 'Already Renew', value: 'Already Renew' },
+    { option: 'Interested', value: 'Interested' },
+  ];
+
+  takafulTypeList = [
+    { option: 'Etiqa Takaful', value: 'Etiqa Takaful' },
+    { option: 'Malaysia Takaful', value: 'Malaysia Takaful' },
+    { option: 'Takaful Ikhlas', value: 'Takaful Ikhlas' },
+    { option: 'Zurich Takaful', value: 'Zurich Takaful' },
+  ];
+
+  paymentMethodList = [{ option: 'Online Banking', value: 'Online Banking' }];
+
+  ncdList = [
+    { option: '25%', value: '25%' },
+    { option: '30%', value: '30%' },
+    { option: '38.33%', value: '38.33%' },
+    { option: '45%', value: '45%' },
+    { option: '55%', value: '55%' },
+  ];
+
   basketDetailURL = '/admin/marketing/details/';
 
   basketDetailForm = this._fb.group({
+    nric: [null],
+    model: [null],
     email: [null],
+    chasis: [null],
     action: [null],
     phoneNo: [null],
+    carMake: [null],
+    carSpec: [null],
     assignTo: [null],
     callStatus: [null],
     carRegister: [null],
     expiredDate: [null],
     followUpDate: [null],
+    customerName: [null],
     customerStatus: [null],
+    yearManufacture: [null],
     telemarketingStatus: [null],
   });
 

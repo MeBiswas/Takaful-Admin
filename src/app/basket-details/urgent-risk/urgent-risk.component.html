@@ -1,5 +1,5 @@
 <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4">Car Register {{currentData}}</h2>
-<form class="d-flex" [formGroup]="basketDetailForm">
+<form class="d-flex" [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
   <div class="border-right col-md-6 pl-4 pr-5">
     <div class="form-group row mt-3">
       <label class="col-sm-3 col-form-label">Car Reg. No.</label>
@@ -101,22 +101,25 @@
       <label class="col-sm-5 col-form-label font-weight-bold">1. Get Approval</label>
     </div>
     <div class="form-group row pl-4 pr-5">
-      <label class="col-sm-3 col-form-label font-weight-bold">3. Refund</label>
+      <label class="col-sm-3 col-form-label font-weight-bold">3. Action</label>
       <div class="col-sm-9">
-        <select class="form-control w-75 form-group">
-          <option>Select</option>
+        <select class="form-control w-75 form-group" formControlName="action">
+          <option disabled selected value=''>Select</option>
+          <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
         </select>
-        <input type="text" class="form-control w-75 form-group text-muted" formControlName="refundAmount">
-        <div *ngIf="basketDetailForm.get('refundAmount').invalid && basketDetailForm.get('refundAmount').touched"
-          class="error">
-          Refund amount is required</div>
-        <textarea class="form-control" rows="3"></textarea>
+        <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
+          formControlName="actionAmount">
+        <div *ngIf="amount.invalid && (amount.dirty || amount.touched)">
+          <div *ngIf="amount.errors.required" class="error">Refund amount is required</div>
+          <div *ngIf="amount.errors.pattern" class="error">Invalid Amount</div>
+        </div>
+        <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="actionRemark"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-        <button class="btn bg-transparent border-0 w-25">Cancel</button>
-        <button class="bg-green btn text-white w-25">Update</button>
+        <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
+        <button type="submit" class="bg-green btn text-white w-25">Update</button>
       </div>
     </div>
   </div>

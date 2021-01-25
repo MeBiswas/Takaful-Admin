@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
+// Pattern
+const numeric = /^[0-9]*$/;
 
 @Component({
   selector: 'app-urgent-risk',
@@ -18,6 +20,11 @@ import { AdminService } from '../../services/admin/admin.service';
 export class UrgentRiskComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
+
+  actionList = [
+    { value: 'topup', option: 'Topup' },
+    { value: 'refund', option: 'Refund' },
+  ];
 
   basketDetailURL = '/admin/dashboard/followup/details/';
 
@@ -35,11 +42,12 @@ export class UrgentRiskComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    refundRemark: [''],
+    actionRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
-    refundAmount: ['', Validators.required],
+    action: ['', Validators.required],
+    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -54,6 +62,11 @@ export class UrgentRiskComponent implements OnInit {
 
   ngOnChanges() {
     this.onDataChange(this.currentData);
+  }
+
+  // Form Field Getter
+  get amount() {
+    return this.basketDetailForm.get('actionAmount');
   }
 
   // Modifying API URL As Per Parent Input
@@ -88,5 +101,22 @@ export class UrgentRiskComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler();
+  }
+
+  // Update Form Handler
+  updateHandler() {
+    console.log('Update Handler Method');
+  }
+
+  // Reload Handler
+  reloadHandler() {
+    window.location.reload();
   }
 }

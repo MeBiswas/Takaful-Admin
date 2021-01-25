@@ -1,3 +1,10 @@
+<!-- Email Modal Start -->
+<app-email></app-email>
+<!-- Email Modal End -->
+<!-- SMS Modal Start -->
+<app-sms></app-sms>
+<!-- SMS Modal End -->
+
 <div class="second_top_bar bg-white p-10">
   <div class="container">
     <div class="row">
@@ -48,6 +55,13 @@
         <form>
           <div class="responsive-table-custom">
             <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+              <ng-container matColumnDef="check">
+                <th scope="col" mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
+                  <input type="checkbox" value="element.check" (click)="clickHandler(element)">
+                </td>
+              </ng-container>
+
               <ng-container matColumnDef="carRegister">
                 <th scope="col" mat-header-cell *matHeaderCellDef>Car Register</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.carRegister}}</td>

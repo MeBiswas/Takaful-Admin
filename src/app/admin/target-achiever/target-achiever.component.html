@@ -37,9 +37,9 @@
         <form>
           <div class="responsive-table-custom">
             <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
-              <ng-container matColumnDef="user">
+              <ng-container matColumnDef="userId">
                 <th scope="col" mat-header-cell *matHeaderCellDef>User ID</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.user}}</td>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.userId}}</td>
               </ng-container>
 
               <ng-container matColumnDef="role">

@@ -34,6 +34,7 @@ export class NotificationComponent implements OnInit {
   ];
 
   displayedColumns: string[] = [
+    'check',
     'carRegister',
     'customerName',
     'phoneNumber',
@@ -70,13 +71,20 @@ export class NotificationComponent implements OnInit {
       .subscribe(
         (res) => {
           res ? this._spin.hide() : null;
-          this.dataSource.data = [...res.list];
+          this.addCheckboxData(res.list);
         },
         (err) => {
           err ? this._spin.hide() : null;
           this._toast.error('Oops! Something went wrong.');
         }
       );
+  }
+
+  // Adding Checkbox Column Data
+  private addCheckboxData(d) {
+    let newArr = [...d];
+    this.listData = newArr.map((item) => (item = { ...item, check: false }));
+    this.dataSource.data = this.listData;
   }
 
   // Pagination Event
@@ -92,5 +100,11 @@ export class NotificationComponent implements OnInit {
   // Filter Event
   onFilterChanged(e) {
     this.notificationRequest(this.userID, e);
+  }
+
+  clickHandler(e) {
+    e.check = !e.check;
+    let i = this.dataSource.data.indexOf(e);
+    this.dataSource.data[i] = e;
   }
 }

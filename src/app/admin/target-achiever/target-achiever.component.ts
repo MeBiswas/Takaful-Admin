@@ -22,17 +22,28 @@ interface Filter {
 export class TargetAchieverComponent implements OnInit {
   search = '';
   listData: any = [];
-  filter = 'monthly';
+  filter = 'January';
   dataSource = new MatTableDataSource();
   achievementListURL = '/admin/achievementlist';
+  updateAchievementURL = '/admin/updateachievement';
 
   filters: Filter[] = [
-    { value: 'weekly', option: 'Weekly' },
-    { value: 'monthly', option: 'Monthly' },
+    { value: 'January', option: 'January' },
+    { value: 'February', option: 'February' },
+    { value: 'March', option: 'March' },
+    { value: 'April', option: 'April' },
+    { value: 'May', option: 'May' },
+    { value: 'June', option: 'June' },
+    { value: 'July', option: 'July' },
+    { value: 'August', option: 'August' },
+    { value: 'September', option: 'September' },
+    { value: 'October', option: 'October' },
+    { value: 'November', option: 'November' },
+    { value: 'December', option: 'December' },
   ];
 
   displayedColumns: string[] = [
-    'user',
+    'userId',
     'role',
     'department',
     'target',
@@ -46,7 +57,7 @@ export class TargetAchieverComponent implements OnInit {
 
   // LifeCycle Method
   ngOnInit(): void {
-    // this.achieverList();
+    this.achieverList(this.filter);
   }
 
   // LifeCycle Method
@@ -55,9 +66,9 @@ export class TargetAchieverComponent implements OnInit {
   }
 
   // Achiever List Service
-  private achieverList() {
+  private achieverList(f) {
     this._admin
-      .postApiWithAuth(this.achievementListURL, { month: 'January' })
+      .postApiWithAuth(this.achievementListURL, { month: f })
       .subscribe(
         (res) => {
           this.addActionData(res.list);
@@ -72,7 +83,7 @@ export class TargetAchieverComponent implements OnInit {
   addActionData(d) {
     let newArr = [...d];
     this.listData = newArr.map((item) => (item = { ...item, action: item }));
-    this.dataSource.data = [...this.dataSource.data, ...this.listData];
+    this.dataSource.data = [...this.listData];
   }
 
   // Pagination Event
@@ -87,12 +98,27 @@ export class TargetAchieverComponent implements OnInit {
 
   // Filter Event
   onFilterChanged(e) {
-    // do something
+    this.achieverList(e);
   }
 
   // Update Button Handler
   updateHandler(d, t, a) {
     d = { ...d, target: t, achiever: a };
-    // console.log('ethe aaa', d);
+    this._admin
+      .postApiWithAuth(this.updateAchievementURL, {
+        userId: d.userId,
+        target: parseFloat(d.target),
+        achiever: parseFloat(d.achiever),
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success('Successfully Updated');
+          }
+        },
+        (err) => {
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 }
