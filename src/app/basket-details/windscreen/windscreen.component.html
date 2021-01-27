@@ -1,5 +1,5 @@
-<h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4">Car Register #{{currentData}}</h2>
-<form [formGroup]="basketDetailForm">
+<h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4 pt-2 pb-2">Car Register #{{currentData}}</h2>
+<form [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
   <div class="pl-4 row">
     <div class="col-md-6 border-right pl-4 pr-5">
       <div class="form-group row mt-3">
@@ -99,30 +99,24 @@
         <label class="col-form-label col-sm-4 font-weight-bold align-self-center">Step Procedure</label>
       </div>
       <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-5 col-form-label "><span class="font-weight-bold">1. Check & Update</span> (NCD)</label>
-        <div class="col-sm-5">
-          <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
-        </div>
-      </div>
-      <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-5 col-form-label font-weight-bold">2. Change NCD</label>
-        <div class="col-sm-5">
-          <select class="font-weight-600 form-control">
-            <option *ngFor="let item of ncdList" value="{{item.value}}">{{item.option}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row  pl-4 pr-5">
-        <label class="col-sm-5 col-form-label font-weight-bold">3. Send Link to Customer</label>
-        <div class="col-sm-6">
-          <button class="bg-light border-0 btn btn-lg form-group rounded-pill text-dark text-white"><img class="pr-2"
-              src="assets/img/icons/whatsapp.png" />SEND WHATSAPP</button>
+        <label class="col-sm-4 col-form-label font-weight-bold">1. To Customer</label>
+        <div class="col-sm-8 pl-0">
+          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <img class="pr-2" src="assets/img/icons/phone_icon.png" />Call
+          </button>
+          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <img class="pr-2" src="assets/img/icons/sms.png" />SMS
+          </button>
+          <button type="button" class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+            data-toggle="modal" data-target="#new_email_Modal" *ngIf="email !== null">
+            <img class="pr-2" src="assets/img/icons/email.png" />{{email}}
+          </button>
         </div>
       </div>
       <div class="row">
         <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-          <button class="btn bg-transparent border-0 w-25">Cancel</button>
-          <button class="bg-green btn text-white w-25">Update</button>
+          <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
+          <button type="submit" class="bg-green btn text-white w-25">Update</button>
         </div>
       </div>
     </div>

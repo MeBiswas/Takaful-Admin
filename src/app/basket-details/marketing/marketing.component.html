@@ -1,107 +1,107 @@
 <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4">Car Register #{{currentData}}</h2>
-<form class="d-flex" [formGroup]="basketDetailForm">
+<form class="d-flex" [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
   <div class="border-right col-md-6 pl-4 pr-5">
     <div class="form-group row mt-3">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Car Reg. No.</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="carRegister">
+        <input type="text" class="form-control" formControlName="carRegister" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Model Car</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="model">
+        <input type="text" class="form-control" formControlName="model" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Chasis Engine</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="chasis">
+        <input type="text" class="form-control" formControlName="chasis" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Car Make</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="carMake">
+        <input type="text" class="form-control" formControlName="carMake" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Year Manfacture</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="yearManufacture">
+        <input type="text" class="form-control" formControlName="yearManufacture" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Car Spec</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="carSpec">
+        <input type="text" class="form-control" formControlName="carSpec" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="customerName">
+        <input type="text" class="form-control" formControlName="customerName" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">NRIC</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="nric">
+        <input type="text" class="form-control" formControlName="nric" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Previous takaful insurance</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Cover Type</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Sum Insured</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Extra Coverage</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">NCD Effective Date</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="phoneNo">
+        <input type="text" class="form-control" formControlName="phoneNo" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="email">
+        <input type="text" class="form-control" formControlName="email" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control form-group">
-        <input type="text" class="form-control ">
+        <input type="text" class="form-control form-group" readonly>
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-3 col-form-label">Postcode</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" readonly>
       </div>
     </div>
   </div>
@@ -110,62 +110,110 @@
       <label class="col-sm-4 col-form-label font-weight-bold">Call Status</label>
       <div class="col-sm-6">
         <select class="font-weight-600 form-control" formControlName="callStatus">
+          <option disabled selected value='null'>Select Call Status</option>
           <option *ngFor="let status of callStatusList" value="{{status.value}}">{{status.option}}</option>
         </select>
+        <div *ngIf="callStat.invalid && (callStat.dirty || callStat.touched)">
+          <div *ngIf="callStat.errors.required" class="error">Call Status is required</div>
+        </div>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">Follow Up Date</label>
       <div class="col-sm-6">
-        <input type="text" class="form-control" formControlName="followUpDate">
+        <input type="date" class="form-control" formControlName="followUpDate">
+        <div *ngIf="followUpDate.invalid && (followUpDate.dirty || followUpDate.touched)">
+          <div *ngIf="followUpDate.errors.required" class="error">Follow Up Date is required</div>
+        </div>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">Takaful Type</label>
       <div class="col-sm-6">
-        <select class="font-weight-600 form-control">
+        <select class="font-weight-600 form-control" formControlName="takafulType">
+          <option disabled selected value='null'>Select Takaful Type</option>
           <option *ngFor="let type of takafulTypeList" value="{{type.value}}">{{type.option}}</option>
         </select>
+        <div *ngIf="takafulType.invalid && (takafulType.dirty || takafulType.touched)">
+          <div *ngIf="takafulType.errors.required" class="error">Takaful Type is required</div>
+        </div>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">Payment Method</label>
       <div class="col-sm-6">
-        <select class="font-weight-600 form-control">
+        <select class="font-weight-600 form-control" formControlName="paymentMethod">
+          <option disabled selected value='null'>Select Payment Method</option>
           <option *ngFor="let method of paymentMethodList" value="{{method.value}}">{{method.option}}</option>
         </select>
+        <div *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)">
+          <div *ngIf="paymentMethod.errors.required" class="error">Payment Method is required</div>
+        </div>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">NCD</label>
       <div class="col-sm-6">
-        <select class="font-weight-600 form-control">
-          <option *ngFor="let ncd of ncdList" value="{{ncd.value}}">{{ncd.option}}</option>
+        <select class="font-weight-600 form-control" formControlName="ncd">
+          <option disabled selected value='null'>Select NCD</option>
+          <option *ngFor="let item of ncdList" value="{{item.value}}">{{item.option}}</option>
         </select>
+        <div *ngIf="ncd.invalid && (ncd.dirty || ncd.touched)">
+          <div *ngIf="ncd.errors.required" class="error">NCD is required</div>
+        </div>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
       <div class="col-sm-6">
-        <textarea class="form-control" rows="3"></textarea>
+        <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
       </div>
     </div>
     <div class="form-group row  pl-4">
       <label class="col-sm-4 col-form-label font-weight-bold">To Customer</label>
       <div class="col-sm-8 pl-0">
-        <button class="bg-light border-0 btn form-group rounded-pill text-dark text-white"><img class="pr-2"
-            src="assets/img/icons/phone_icon.png" />Call</button>
-        <button class="bg-light border-0 btn form-group rounded-pill text-dark text-white"><img class="pr-2"
-            src="assets/img/icons/sms.png" />SMS</button>
-        <button type="button" class="bg-light border-0 btn form-group rounded-pill text-dark text-white"
-          data-toggle="modal" data-target="#new_email_Modal"><img class="pr-2"
-            src="assets/img/icons/email.png" />Muz90@gmail.com</button>
+        <!-- <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <img class="pr-2" src="assets/img/icons/phone_icon.png" />Call
+        </button>
+        <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <img class="pr-2" src="assets/img/icons/sms.png" />SMS
+        </button>
+        <button type="button" class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+          data-toggle="modal" data-target="#new_email_Modal">
+          <img class="pr-2" src="assets/img/icons/email.png" />Muz90@gmail.com
+        </button> -->
+        <div class="row">
+          <div class="col-4">
+            <input class="form-check-input" type="radio" name="action" id="action1" value="Call"
+              formControlName="action">
+            <label class="form-check-label" for="action1">
+              Call
+            </label>
+          </div>
+          <div class="col-4">
+            <input class="form-check-input" type="radio" name="action" id="action2" value="SMS"
+              formControlName="action">
+            <label class="form-check-label" for="action2">
+              SMS
+            </label>
+          </div>
+          <div class="col-4">
+            <input class="form-check-input" type="radio" name="action" id="action3" value="Email"
+              formControlName="action">
+            <label class="form-check-label" for="action3">
+              Email
+            </label>
+          </div>
+          <div *ngIf="action.invalid && (action.dirty || action.touched)">
+            <div *ngIf="action.errors.required" class="error">Action is required</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-        <button class="btn bg-transparent border-0 w-25">Cancel</button>
-        <button class="bg-green btn text-white w-25">Update</button>
+        <button (click)="resetHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
+        <button type="submit" class="bg-green btn text-white w-25">Update</button>
       </div>
     </div>
   </div>

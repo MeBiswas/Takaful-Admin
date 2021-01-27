@@ -18,13 +18,17 @@ import { AdminService } from '../../services/admin/admin.service';
 export class MarketingComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
+  basketDetailURL = '/admin/marketing/details/';
+  updateDetailURL = '/admin/marketing/update';
 
-  callStatusList = [
-    { option: 'No Answer', value: 'No Answer' },
-    { option: 'Not Interested', value: 'Not Interested' },
-    { option: 'Not In Service', value: 'Not In Service' },
-    { option: 'Already Renew', value: 'Already Renew' },
-    { option: 'Interested', value: 'Interested' },
+  paymentMethodList = [{ option: 'Online Banking', value: 'Online Banking' }];
+
+  ncdList = [
+    { option: '25%', value: '25' },
+    { option: '30%', value: '30' },
+    { option: '38.33%', value: '38.33' },
+    { option: '45%', value: '45' },
+    { option: '55%', value: '55' },
   ];
 
   takafulTypeList = [
@@ -34,36 +38,36 @@ export class MarketingComponent implements OnInit {
     { option: 'Zurich Takaful', value: 'Zurich Takaful' },
   ];
 
-  paymentMethodList = [{ option: 'Online Banking', value: 'Online Banking' }];
-
-  ncdList = [
-    { option: '25%', value: '25%' },
-    { option: '30%', value: '30%' },
-    { option: '38.33%', value: '38.33%' },
-    { option: '45%', value: '45%' },
-    { option: '55%', value: '55%' },
+  callStatusList = [
+    { option: 'No Answer', value: 'No Answer' },
+    { option: 'Not Interested', value: 'Not Interested' },
+    { option: 'Not In Service', value: 'Not In Service' },
+    { option: 'Already Renew', value: 'Already Renew' },
+    { option: 'Interested', value: 'Interested' },
   ];
-
-  basketDetailURL = '/admin/marketing/details/';
 
   basketDetailForm = this._fb.group({
     nric: [null],
     model: [null],
     email: [null],
     chasis: [null],
-    action: [null],
+    remarks: [null],
     phoneNo: [null],
     carMake: [null],
     carSpec: [null],
     assignTo: [null],
-    callStatus: [null],
     carRegister: [null],
     expiredDate: [null],
-    followUpDate: [null],
     customerName: [null],
     customerStatus: [null],
     yearManufacture: [null],
     telemarketingStatus: [null],
+    ncd: [null, Validators.required],
+    action: [null, Validators.required],
+    callStatus: [null, Validators.required],
+    takafulType: [null, Validators.required],
+    followUpDate: [null, Validators.required],
+    paymentMethod: [null, Validators.required],
   });
 
   constructor(
@@ -79,6 +83,26 @@ export class MarketingComponent implements OnInit {
   // LifeCycle Method
   ngOnChanges() {
     this.onDataChange(this.currentData);
+  }
+
+  // Form Field Getter
+  get ncd() {
+    return this.basketDetailForm.get('ncd');
+  }
+  get action() {
+    return this.basketDetailForm.get('action');
+  }
+  get callStat() {
+    return this.basketDetailForm.get('callStatus');
+  }
+  get takafulType() {
+    return this.basketDetailForm.get('takafulType');
+  }
+  get followUpDate() {
+    return this.basketDetailForm.get('followUpDate');
+  }
+  get paymentMethod() {
+    return this.basketDetailForm.get('paymentMethod');
   }
 
   // Modifying API URL As Per Parent Input
@@ -104,7 +128,7 @@ export class MarketingComponent implements OnInit {
   }
 
   // Assigning default Data to Form
-  assignData(d) {
+  private assignData(d) {
     d = {
       ...d,
       expiredDate: this._datePipe.transform(
@@ -113,9 +137,52 @@ export class MarketingComponent implements OnInit {
       ),
       followUpDate: this._datePipe.transform(
         new Date(d.followUpDate),
-        'dd/mm/YYYY'
+        'yyyy-MM-dd'
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Form Reset Handler
+  resetHandler() {
+    this.basketDetailForm.reset();
+    window.location.reload();
+  }
+
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler();
+  }
+
+  private updateHandler() {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.updateDetailURL, {
+        ncd: this.basketDetailForm.value.ncd,
+        action: this.basketDetailForm.value.action,
+        remarks: this.basketDetailForm.value.remarks,
+        plateNo: this.basketDetailForm.value.carRegister,
+        callStatus: this.basketDetailForm.value.callStatus,
+        takafulType: this.basketDetailForm.value.takafulType,
+        followUpDate: this.basketDetailForm.value.followUpDate,
+        paymentMethod: this.basketDetailForm.value.paymentMethod,
+      })
+      .subscribe(
+        (res) => {
+          res ? this._spin.hide() : null;
+          res.status.code === 0
+            ? this._toast.success(res.status.message)
+            : this._toast.warning(res.status.message);
+          setTimeout(() => {
+            this.resetHandler();
+          }, 1000);
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 }

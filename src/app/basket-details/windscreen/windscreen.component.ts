@@ -9,21 +9,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
+// Pattern
+const numeric = /^[0-9]*$/;
 
 @Component({
-  selector: 'app-assist-ncd',
-  templateUrl: './assist-ncd.component.html',
-  styleUrls: ['./assist-ncd.component.css'],
+  selector: 'app-windscreen',
+  templateUrl: './windscreen.component.html',
+  styleUrls: ['./windscreen.component.css'],
 })
-export class AssistNcdComponent implements OnInit {
+export class WindscreenComponent implements OnInit {
   @Input() currentData: string;
+  email: string;
   datePipeString: string;
-  ncdList = [
-    { option: '0', value: '0' },
-    { option: '25', value: '25' },
-    { option: '38.33', value: '38.33' },
-    { option: '45', value: '45' },
-    { option: '55', value: '55' },
+  actionList = [
+    { value: 'topup', option: 'Topup' },
+    { value: 'refund', option: 'Refund' },
   ];
 
   basketDetailURL = '/admin/dashboard/followup/details/';
@@ -42,9 +42,12 @@ export class AssistNcdComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
+    actionRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
+    action: ['', Validators.required],
+    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -57,8 +60,14 @@ export class AssistNcdComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onDataChange(this.currentData);
+  }
+
+  // Form Field Getter
+  get amount() {
+    return this.basketDetailForm.get('actionAmount');
   }
 
   // Modifying API URL As Per Parent Input
@@ -74,7 +83,9 @@ export class AssistNcdComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
+        this.email = res.list[0].email;
         res ? this._spin.hide() : null;
+        console.log('ehte aa', this.email);
       },
       (err) => {
         err ? this._spin.hide() : null;
@@ -93,5 +104,22 @@ export class AssistNcdComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler();
+  }
+
+  // Update Form Handler
+  updateHandler() {
+    console.log('Update Handler Method');
+  }
+
+  // Reload Handler
+  reloadHandler() {
+    window.location.reload();
   }
 }

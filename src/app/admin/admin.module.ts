@@ -29,6 +29,7 @@ import { MarketingComponent } from '../basket-details/marketing/marketing.compon
 import { UrgentNcdComponent } from '../basket-details/urgent-ncd/urgent-ncd.component';
 import { AssistNcdComponent } from '../basket-details/assist-ncd/assist-ncd.component';
 import { UrgentTaxComponent } from '../basket-details/urgent-tax/urgent-tax.component';
+import { WindscreenComponent } from '../basket-details/windscreen/windscreen.component';
 import { UrgentRiskComponent } from '../basket-details/urgent-risk/urgent-risk.component';
 import { AssistMarketComponent } from '../basket-details/assist-market/assist-market.component';
 import { PaymentFailedComponent } from '../basket-details/payment-failed/payment-failed.component';
@@ -49,6 +50,7 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
     DeleteUserComponent,
     SaleWidgetComponent,
     NoteWidgetComponent,
+    WindscreenComponent,
     UrgentRiskComponent,
     IssueWidgetComponent,
     QuoteWidgetComponent,
