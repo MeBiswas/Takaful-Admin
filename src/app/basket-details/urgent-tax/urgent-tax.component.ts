@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
@@ -23,7 +25,7 @@ export class UrgentTaxComponent implements OnInit {
   phoneNo = null;
   datePipeString: string;
 
-  actionList = [
+  actionList: Filter[] = [
     { value: 'topup', option: 'Topup' },
     { value: 'refund', option: 'Refund' },
   ];

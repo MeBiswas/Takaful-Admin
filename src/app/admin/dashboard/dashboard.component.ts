@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-// Select Option Interface
-interface Filter {
-  value: string;
-  option: string;
-}
+// Interface
+import { Filter } from '../../model/filter';
 
 @Component({
   selector: 'app-dashboard',

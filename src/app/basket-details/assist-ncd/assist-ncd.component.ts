@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
@@ -18,7 +20,7 @@ import { AdminService } from '../../services/admin/admin.service';
 export class AssistNcdComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
-  ncdList = [
+  ncdList: Filter[] = [
     { option: '0', value: '0' },
     { option: '25', value: '25' },
     { option: '38.33', value: '38.33' },

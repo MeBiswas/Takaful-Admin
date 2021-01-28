@@ -1,18 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Interface
+import { Filter } from '../../model/filter';
 // Material Table Dependencies
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
-
-// Select Option Interface
-interface Filter {
-  value: string;
-  option: string;
-}
 
 @Component({
   selector: 'app-target-achiever',

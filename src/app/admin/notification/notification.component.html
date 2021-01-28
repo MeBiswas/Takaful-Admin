@@ -11,7 +11,10 @@
       <div class="col-md-4 pl-0 align-self-lg-center">
         <h4 class="font-17 text-dark">
           <span class="font-weight-600">
-            Notifications
+            {{routeData.category === 'Notification' ? 'Notification Configuration' : null}}/
+          </span>
+          <span class="font-weight-600">
+            {{routeData.page === 'Template' ? 'Template Message' : 'Schedule'}}
           </span>
         </h4>
       </div>

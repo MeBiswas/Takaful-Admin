@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
@@ -21,9 +23,11 @@ export class MarketingComponent implements OnInit {
   basketDetailURL = '/admin/marketing/details/';
   updateDetailURL = '/admin/marketing/update';
 
-  paymentMethodList = [{ option: 'Online Banking', value: 'Online Banking' }];
+  paymentMethodList: Filter[] = [
+    { option: 'Online Banking', value: 'Online Banking' },
+  ];
 
-  ncdList = [
+  ncdList: Filter[] = [
     { option: '25%', value: '25' },
     { option: '30%', value: '30' },
     { option: '38.33%', value: '38.33' },
@@ -31,14 +35,14 @@ export class MarketingComponent implements OnInit {
     { option: '55%', value: '55' },
   ];
 
-  takafulTypeList = [
+  takafulTypeList: Filter[] = [
     { option: 'Etiqa Takaful', value: 'Etiqa Takaful' },
     { option: 'Malaysia Takaful', value: 'Malaysia Takaful' },
     { option: 'Takaful Ikhlas', value: 'Takaful Ikhlas' },
     { option: 'Zurich Takaful', value: 'Zurich Takaful' },
   ];
 
-  callStatusList = [
+  callStatusList: Filter[] = [
     { option: 'No Answer', value: 'No Answer' },
     { option: 'Not Interested', value: 'Not Interested' },
     { option: 'Not In Service', value: 'Not In Service' },

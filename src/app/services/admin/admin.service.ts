@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// Configuration
-import { config } from '../../../config';
+// Environment
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AdminService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
     };
-    return this.http.get(config.apiURL + url, this.httpOptions);
+    return this.http.get(environment.apiURL + url, this.httpOptions);
   }
 
   public getApiWithAuth(url): Observable<any> {
@@ -31,7 +31,7 @@ export class AdminService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
     };
-    return this.http.get(config.apiURL + url, this.httpOptions);
+    return this.http.get(environment.apiURL + url, this.httpOptions);
   }
 
   public postApiWithAuth(url, data): Observable<any> {
@@ -41,7 +41,7 @@ export class AdminService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       }),
     };
-    return this.http.post(config.apiURL + url, data, this.httpOptions);
+    return this.http.post(environment.apiURL + url, data, this.httpOptions);
   }
 
   public deleteApiWithAuth(url, data): Observable<any> {
@@ -52,6 +52,6 @@ export class AdminService {
       }),
       body: data,
     };
-    return this.http.delete(config.apiURL + url, this.httpNewOptions);
+    return this.http.delete(environment.apiURL + url, this.httpNewOptions);
   }
 }

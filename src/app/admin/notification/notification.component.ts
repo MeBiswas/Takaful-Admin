@@ -1,19 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
+// Activated Route
+import { ActivatedRoute } from '@angular/router';
 // Material Table Dependencies
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
-
-// Select Option Interface
-interface Filter {
-  value: string;
-  option: string;
-}
 
 @Component({
   selector: 'app-notification',
@@ -21,6 +19,7 @@ interface Filter {
   styleUrls: ['./notification.component.css'],
 })
 export class NotificationComponent implements OnInit {
+  routeData;
   search = '';
   listData: any = [];
   filter = 'Monthly';
@@ -47,17 +46,26 @@ export class NotificationComponent implements OnInit {
   constructor(
     private _admin: AdminService,
     private _toast: ToastrService,
-    private _spin: NgxSpinnerService
+    private _spin: NgxSpinnerService,
+    private activatedroute: ActivatedRoute
   ) {}
 
   // LifeCycle Method
   ngOnInit(): void {
+    this.getRouteData();
     this.notificationRequest(this.userID, this.filter);
   }
 
   // LifeCycle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  // Getting Page Data from Route
+  private getRouteData() {
+    this.activatedroute.data.subscribe((data) => {
+      this.routeData = { ...data };
+    });
   }
 
   // Achiever List Service

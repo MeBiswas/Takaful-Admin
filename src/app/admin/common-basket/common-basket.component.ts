@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Activated Route
@@ -18,12 +20,6 @@ import {
   trigger,
   transition,
 } from '@angular/animations';
-
-// Select Option Interface
-interface Filter {
-  value: string;
-  option: string;
-}
 
 @Component({
   selector: 'app-common-basket',

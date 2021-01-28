@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
@@ -21,7 +23,7 @@ export class ReportRoadtaxComponent implements OnInit {
   reportDetail = null;
   reportRoadTaxURL = '/admin/reportroadtax/';
 
-  statusList = [
+  statusList: Filter[] = [
     { value: 'Topup', option: 'Topup' },
     { value: 'Refund', option: 'Refund' },
     { value: 'Blacklisted', option: 'Blacklisted' },

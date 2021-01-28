@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Material Table Dependencies
@@ -16,12 +18,6 @@ import {
   trigger,
   transition,
 } from '@angular/animations';
-
-// Select Option Interface
-interface Filter {
-  value: string;
-  option: string;
-}
 
 @Component({
   selector: 'app-telemarketing',
@@ -69,10 +65,12 @@ export class TelemarketingComponent implements OnInit {
     private _spin: NgxSpinnerService
   ) {}
 
+  // LifeCycle Method
   ngOnInit(): void {
     this.getTableData(this.filter);
   }
 
+  // LifeCycle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }

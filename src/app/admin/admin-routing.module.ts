@@ -162,10 +162,19 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: '',
+        path: 'template',
         component: NotificationComponent,
         data: {
-          page: 'Notification',
+          page: 'Template',
+          category: 'Notification',
+        },
+      },
+      {
+        path: 'schedule',
+        component: NotificationComponent,
+        data: {
+          page: 'Schedule',
+          category: 'Notification',
         },
       },
     ],

@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 // Pipe
 import { DatePipe } from '@angular/common';
+// Interface
+import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
@@ -21,7 +23,7 @@ export class UrgentNcdComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
-  actionList = [
+  actionList: Filter[] = [
     { value: 'topup', option: 'Topup' },
     { value: 'refund', option: 'Refund' },
   ];
@@ -113,7 +115,7 @@ export class UrgentNcdComponent implements OnInit {
 
   // Update Form Handler
   updateHandler() {
-    console.log('Update Handler Method');
+    // console.log('Update Handler Method');
   }
 
   // Reload Handler

@@ -10,14 +10,17 @@ export class HeaderComponent implements OnInit {
 
   constructor() {}
 
+  // LifeCycle Method
   ngOnInit(): void {
     this.getAuthData();
   }
 
+  // Getting Data
   private getAuthData() {
     this.userData = JSON.parse(sessionStorage.getItem('auth'));
   }
 
+  // Logging Out
   logout() {
     localStorage.removeItem('token');
     sessionStorage.removeItem('auth');
