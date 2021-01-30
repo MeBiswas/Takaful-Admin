@@ -189,6 +189,8 @@ export class SidebarComponent implements OnInit {
   // Activating Link
   private activateLink(p) {
     let i = this.sidebarLinks.findIndex((item) => item.meta === p);
-    this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive;
+    i < 0
+      ? null
+      : (this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive);
   }
 }

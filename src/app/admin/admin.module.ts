@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material';
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
+// Summernote Editor Module
+import { NgxSummernoteModule } from 'ngx-summernote';
 // Forms Module
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Header Component
@@ -65,6 +67,7 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
     NgxSpinnerModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    NgxSummernoteModule,
   ],
 })
 export class AdminModule {}

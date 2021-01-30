@@ -104,7 +104,7 @@
       <label class="col-sm-3 col-form-label font-weight-bold">3. Action</label>
       <div class="col-sm-9">
         <select class="form-control w-75 form-group" formControlName="action">
-          <option disabled selected value=''>Select</option>
+          <option disabled selected value='null'>Select</option>
           <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
         </select>
         <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"

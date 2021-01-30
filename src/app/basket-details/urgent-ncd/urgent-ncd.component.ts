@@ -22,10 +22,10 @@ const numeric = /^[0-9]*$/;
 export class UrgentNcdComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
-
+  action = 'Refund';
   actionList: Filter[] = [
-    { value: 'topup', option: 'Topup' },
-    { value: 'refund', option: 'Refund' },
+    { value: 'Topup', option: 'Topup' },
+    { value: 'Refund', option: 'Refund' },
   ];
 
   basketDetailURL = '/admin/dashboard/followup/details/';
@@ -44,12 +44,20 @@ export class UrgentNcdComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    actionRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
+
+    paymentDate: [''],
+    marketValue: [''],
+    topupRemark: [''],
+    refundRemark: [''],
+    customerService: [''],
+    previousInsurer: [''],
+    topupAmount: ['', [Validators.required, Validators.pattern(numeric)]],
+    refundAmount: ['', [Validators.required, Validators.pattern(numeric)]],
+
     action: ['', Validators.required],
-    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -68,8 +76,11 @@ export class UrgentNcdComponent implements OnInit {
   }
 
   // Form Field Getter
-  get amount() {
-    return this.basketDetailForm.get('actionAmount');
+  get refundAmount() {
+    return this.basketDetailForm.get('refundAmount');
+  }
+  get topupAmount() {
+    return this.basketDetailForm.get('topupAmount');
   }
 
   // Modifying API URL As Per Parent Input
