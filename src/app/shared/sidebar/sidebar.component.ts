@@ -75,6 +75,15 @@ export class SidebarComponent implements OnInit {
             },
           ],
         },
+        {
+          title: 'Payment',
+          sublinks: [
+            {
+              title: 'Payment Failed',
+              link: '/admin/endorsement/payment-fail',
+            },
+          ],
+        },
       ],
     },
     {

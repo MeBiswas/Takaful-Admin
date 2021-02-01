@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
+// Provider
+import { DataStorage } from '../../providers/user-data.provider';
 
 @Component({
   selector: 'app-invalid',
@@ -8,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./invalid.component.css'],
 })
 export class InvalidComponent implements OnInit {
-  constructor(private _router: Router) {}
+  error = this._data.data.message;
+
+  constructor(private _router: Router, private _data: DataStorage) {}
 
   ngOnInit(): void {}
 

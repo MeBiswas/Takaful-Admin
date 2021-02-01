@@ -23,8 +23,8 @@ export class NotificationComponent implements OnInit {
   search = '';
   listData: any = [];
   filter = 'Monthly';
+  notificationURL: string;
   dataSource = new MatTableDataSource();
-  notificationURL = '/admin/notification';
   userID = JSON.parse(sessionStorage.getItem('auth')).userId;
 
   filters: Filter[] = [
@@ -34,11 +34,10 @@ export class NotificationComponent implements OnInit {
 
   displayedColumns: string[] = [
     'check',
-    'carRegister',
-    'customerName',
-    'phoneNumber',
-    'email',
+    'template',
     'message',
+    'type',
+    'templateId',
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,7 +52,7 @@ export class NotificationComponent implements OnInit {
   // LifeCycle Method
   ngOnInit(): void {
     this.getRouteData();
-    this.notificationRequest(this.userID, this.filter);
+    this.notificationRequest();
   }
 
   // LifeCycle Method
@@ -66,30 +65,28 @@ export class NotificationComponent implements OnInit {
     this.activatedroute.data.subscribe((data) => {
       this.routeData = { ...data };
     });
+    this.routeData.page === 'Template'
+      ? (this.notificationURL = '/admin/templatelist')
+      : (this.notificationURL = '/admin/schedulelist');
   }
 
   // Achiever List Service
-  private notificationRequest(u, f) {
+  private notificationRequest() {
     this._spin.show();
-    this._admin
-      .postApiWithAuth(this.notificationURL, {
-        userId: u,
-        filter: f,
-      })
-      .subscribe(
-        (res) => {
-          res ? this._spin.hide() : null;
-          this.addCheckboxData(res.list);
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
-          this._toast.error('Oops! Something went wrong.');
-        }
-      );
+    this._admin.getApiWithAuth(this.notificationURL).subscribe(
+      (res) => {
+        res ? this._spin.hide() : null;
+        this.addTableColumnData(res.list);
+      },
+      (err) => {
+        err ? this._spin.hide() : null;
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
   }
 
   // Adding Checkbox Column Data
-  private addCheckboxData(d) {
+  private addTableColumnData(d) {
     let newArr = [...d];
     this.listData = newArr.map((item) => (item = { ...item, check: false }));
     this.dataSource.data = this.listData;
@@ -107,7 +104,7 @@ export class NotificationComponent implements OnInit {
 
   // Filter Event
   onFilterChanged(e) {
-    this.notificationRequest(this.userID, e);
+    this.notificationRequest();
   }
 
   clickHandler(e) {

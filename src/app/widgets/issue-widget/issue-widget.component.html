@@ -7,16 +7,18 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 pt-3">
       <span class="font-15 font-weight-600 text-muted">Recents Follow up</span>
     </div>
-    <div class="col-lg-12 col-md-6 col-sm-6 col-xl-12 mt-3">
-      <div class="border mt-2 pb-1 pl-2 pr-2 pt-2 rounded" *ngFor="let item of recentIssuesResponseData.recentList">
-        <h4 class="font-16">{{item.vehiclePlateNo}} - {{item.basketType}}</h4>
-        <h5 class="font-13 text-muted">{{item.date}}</h5>
-        <button class="bg-light btn text-muted mb-2">
-          <img alt="image" src="assets/img/icons/markunread_mail_small.png"> Open
-        </button>
-        <button class="bg-light btn mb-2 text-muted">
-          Urgent - {{item.basketType}}
-        </button>
+    <div class="dashboard_right_sidebar-scroll">
+      <div class="col-lg-12 col-md-6 col-sm-6 col-xl-12 mt-3">
+        <div class="border mt-2 pb-1 pl-2 pr-2 pt-2 rounded" *ngFor="let item of recentIssuesResponseData.recentList">
+          <h4 class="font-16">{{item.vehiclePlateNo}} - {{item.basketType}}</h4>
+          <h5 class="font-13 text-muted">{{item.date}}</h5>
+          <button class="bg-light btn text-muted mb-2 mr-2">
+            <img alt="image" src="assets/img/icons/markunread_mail_small.png"> Open
+          </button>
+          <button class="bg-light btn mb-2 text-muted">
+            Urgent - {{item.basketType}}
+          </button>
+        </div>
       </div>
     </div>
   </ng-template>

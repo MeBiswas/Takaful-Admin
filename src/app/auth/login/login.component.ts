@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AuthService } from '../../services/auth/auth.service';
+// Provider
+import { DataStorage } from '../../providers/user-data.provider';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _fb: FormBuilder,
     private _auth: AuthService,
+    private _data: DataStorage,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
   ) {}
@@ -51,7 +54,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('auth', JSON.stringify(res.user));
           this._router.navigate(['/admin/dashboard']);
         } else {
-          this._toast.warning('Oops! Something went wrong.');
+          this._data.data = res.status;
+          this._toast.warning(res.status.message);
           this._router.navigate(['/auth/invalid']);
         }
         res ? this._spin.hide() : null;

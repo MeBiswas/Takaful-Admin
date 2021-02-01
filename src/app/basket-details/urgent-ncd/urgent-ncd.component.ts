@@ -22,7 +22,8 @@ const numeric = /^[0-9]*$/;
 export class UrgentNcdComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
-  action = 'Refund';
+  actionSelector: string;
+
   actionList: Filter[] = [
     { value: 'Topup', option: 'Topup' },
     { value: 'Refund', option: 'Refund' },
@@ -50,14 +51,14 @@ export class UrgentNcdComponent implements OnInit {
 
     paymentDate: [''],
     marketValue: [''],
-    topupRemark: [''],
-    refundRemark: [''],
     customerService: [''],
     previousInsurer: [''],
+
+    topupRemark: [''],
+    refundRemark: [''],
+    action: ['', Validators.required],
     topupAmount: ['', [Validators.required, Validators.pattern(numeric)]],
     refundAmount: ['', [Validators.required, Validators.pattern(numeric)]],
-
-    action: ['', Validators.required],
   });
 
   constructor(
@@ -96,6 +97,7 @@ export class UrgentNcdComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
+        this.actionSelector = res.list[0].action;
         res ? this._spin.hide() : null;
       },
       (err) => {
@@ -115,6 +117,20 @@ export class UrgentNcdComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // On Action Selector Change
+  onActionSelectorChanged(e) {
+    this.actionSelector = e;
+    e === 'Refund'
+      ? this.basketDetailForm.patchValue({
+          topupRemark: null,
+          topupAmount: null,
+        })
+      : this.basketDetailForm.patchValue({
+          refundRemark: null,
+          refundAmount: null,
+        });
   }
 
   // Form Submit Handler

@@ -1,0 +1,23 @@
+.dashboard_right_sidebar .dashboard_right_sidebar-scroll {
+  height: 637px;
+  overflow: auto;
+}
+/* width */
+.dashboard_right_sidebar .dashboard_right_sidebar-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+.dashboard_right_sidebar
+  .dashboard_right_sidebar-scroll::-webkit-scrollbar-track {
+  background: #fff;
+}
+/* Handle */
+.dashboard_right_sidebar
+  .dashboard_right_sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* Handle on hover */
+.dashboard_right_sidebar
+  .dashboard_right_sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

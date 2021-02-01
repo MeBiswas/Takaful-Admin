@@ -22,10 +22,11 @@ const numeric = /^[0-9]*$/;
 export class UrgentRiskComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
+  actionSelector: string;
 
   actionList: Filter[] = [
-    { value: 'topup', option: 'Topup' },
-    { value: 'refund', option: 'Refund' },
+    { value: 'Topup', option: 'Topup' },
+    { value: 'Refund', option: 'Refund' },
   ];
 
   basketDetailURL = '/admin/dashboard/followup/details/';
@@ -44,12 +45,14 @@ export class UrgentRiskComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
-    actionRemark: [''],
+    topupRemark: [''],
+    refundRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
     action: ['', Validators.required],
-    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
+    topupAmount: ['', [Validators.required, Validators.pattern(numeric)]],
+    refundAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -62,13 +65,17 @@ export class UrgentRiskComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onDataChange(this.currentData);
   }
 
   // Form Field Getter
-  get amount() {
-    return this.basketDetailForm.get('actionAmount');
+  get refundAmount() {
+    return this.basketDetailForm.get('refundAmount');
+  }
+  get topupAmount() {
+    return this.basketDetailForm.get('topupAmount');
   }
 
   // Modifying API URL As Per Parent Input
@@ -84,6 +91,7 @@ export class UrgentRiskComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
+        this.actionSelector = res.list[0].action;
         res ? this._spin.hide() : null;
       },
       (err) => {
@@ -103,6 +111,20 @@ export class UrgentRiskComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // On Action Selector Change
+  onActionSelectorChanged(e) {
+    this.actionSelector = e;
+    e === 'Refund'
+      ? this.basketDetailForm.patchValue({
+          topupRemark: null,
+          topupAmount: null,
+        })
+      : this.basketDetailForm.patchValue({
+          refundRemark: null,
+          refundAmount: null,
+        });
   }
 
   // Form Submit Handler
