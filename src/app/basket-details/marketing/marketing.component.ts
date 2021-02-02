@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Input,
+  OnInit,
+  Output,
+  Component,
+  OnChanges,
+  EventEmitter,
+} from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -17,8 +24,9 @@ import { AdminService } from '../../services/admin/admin.service';
   templateUrl: './marketing.component.html',
   styleUrls: ['./marketing.component.css'],
 })
-export class MarketingComponent implements OnInit {
+export class MarketingComponent implements OnInit, OnChanges {
   @Input() currentData: string;
+  @Output() userEmail = new EventEmitter<string>();
   datePipeString: string;
   basketDetailURL = '/admin/marketing/details/';
   updateDetailURL = '/admin/marketing/update';
@@ -145,6 +153,11 @@ export class MarketingComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Output Method
+  addNewItem(value: string) {
+    this.userEmail.emit(value);
   }
 
   // Form Reset Handler

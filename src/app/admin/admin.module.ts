@@ -20,6 +20,7 @@ import { EmailComponent } from '../shared/dialog/email/email.component';
 import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
 import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
 import { DeleteUserComponent } from '../shared/dialog/delete-user/delete-user.component';
+import { AddTemplateComponent } from '../shared/dialog/add-template/add-template.component';
 // Widgets
 import { SaleWidgetComponent } from '../widgets/sale-widget/sale-widget.component';
 import { NoteWidgetComponent } from '../widgets/note-widget/note-widget.component';
@@ -56,6 +57,7 @@ import { PaymentFailedComponent } from '../basket-details/payment-failed/payment
     UrgentRiskComponent,
     IssueWidgetComponent,
     QuoteWidgetComponent,
+    AddTemplateComponent,
     AssistMarketComponent,
     BasketWidgetComponent,
     PaymentFailedComponent,

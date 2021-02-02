@@ -1,0 +1,63 @@
+.add_templatet_model .modal.left .modal-dialog {
+  position: fixed;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+.add_template_model .modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+.add_template_model .modal.right.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+.add_template_model .modal.right.fade.show .modal-dialog {
+  right: 0;
+}
+.add_template_model .modal-content {
+  border-radius: 0;
+  border: none;
+}
+.add_template_model .modal-header {
+  border-bottom-color: #748296;
+  background-color: #748296;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.add_template_model .modal-footer {
+  border-bottom-color: #fff;
+  background-color: #fff;
+}
+.add_template_model .modal-content textarea.form-control {
+  min-height: 120px !important;
+}
+.add_template_model
+  .modal-footer
+  .bg-transparent.border-0.btn.btn-secondary.shadow-none.text-dark:hover {
+  background-color: transparent !important;
+  color: #000 !important;
+}
+.add_template_model .modal-content .fa-paperclip {
+  transform: rotate(-45deg);
+}
+.add_template_model .modal.show .modal-dialog {
+  -webkit-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  top: 50%;
+  margin: 0 auto;
+}
+@media (min-width: 576px) {
+  .add_template_model .modal-dialog {
+    max-width: 645px;
+    margin: 1.75rem auto;
+  }
+}

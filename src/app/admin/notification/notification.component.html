@@ -1,7 +1,11 @@
+<!-- Add Template Model Code Start -->
+<app-add-template></app-add-template>
+<!-- Add Template Model Code End -->
+
 <div class="second_top_bar bg-white p-10">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 pl-0 align-self-lg-center">
+      <div class="col-md-8 pl-0 align-self-lg-center">
         <h4 class="font-17 text-dark">
           <span class="font-weight-600">
             {{routeData.category === 'Notification' ? 'Notification Configuration' : null}}/
@@ -11,29 +15,12 @@
           </span>
         </h4>
       </div>
-      <div class="col-md-8 pr-0">
+      <div class="col-md-4 pr-0">
         <form #filterForm="ngForm">
           <div class="row">
-            <div class="col-md-4 search_bar">
-              <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
-              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search"
-                [(ngModel)]="search" (keyup)="searchFor($event.target.value)">
-            </div>
-            <div class="col-md-4 month_bar">
-              <select [(ngModel)]="filter" name="Filter" class="font-weight-600 form-control"
-                (ngModelChange)="onFilterChanged($event)">
-                <option *ngFor="let filter of filters" value="{{filter.value}}">{{filter.option}}</option>
-              </select>
-            </div>
-            <div class="col-md-2 pr-0">
-              <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
-                data-target="#email_task_schedule_Modal">
-                <img alt="image" src="assets/img/icons/forward_to_inbox.png">Email</button>
-            </div>
-            <div class="col-md-2 pr-0">
-              <button class="btn btn-block btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
-                data-target="#sms_chat_model">
-                <img alt="image" src="assets/img/icons/chat.png">SMS</button>
+            <div class="col-md-12 text-right pr-0">
+              <button class="btn btn-info pb-1 pt-2 shadow-none" data-toggle="modal" data-target="#add_template_model">
+                <img alt="image" src="assets/img/icons/chat.png">Add Template</button>
             </div>
           </div>
         </form>
@@ -60,7 +47,8 @@
 
               <ng-container matColumnDef="template">
                 <th scope="col" mat-header-cell *matHeaderCellDef>Template</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.template}}</td>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.template}}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="message">
@@ -74,8 +62,14 @@
               </ng-container>
 
               <ng-container matColumnDef="templateId">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Action</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.templateId}}</td>
+                <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-center">
+                  <!-- {{element.templateId}} -->
+                  <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded"><i
+                      class="fa fa-pen mr-2 text-dark"></i>Edit</button>
+                  <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded ml-3"><i
+                      class="fa fa-trash mr-2 text-dark"></i>Delete</button>
+                </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

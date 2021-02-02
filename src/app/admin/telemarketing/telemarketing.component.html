@@ -1,5 +1,5 @@
 <!-- Email Modal Start -->
-<app-email></app-email>
+<app-email [data]="emailData"></app-email>
 <!-- Email Modal End -->
 
 <div class="second_top_bar bg-white p-10">
@@ -93,7 +93,7 @@
                 <div class="example-element-detail"
                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                   <div class="example-element-description">
-                    <app-marketing [currentData]="detailComponentData"
+                    <app-marketing (userEmail)="addItem($event)" [currentData]="detailComponentData"
                       *ngIf="detailComponentData !== '' && detailComponentData === element.carRegister ">
                     </app-marketing>
                   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -19,7 +19,7 @@ const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css'],
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnChanges {
   @Input() data;
   @ViewChild('closeBtn') closeBtn;
 

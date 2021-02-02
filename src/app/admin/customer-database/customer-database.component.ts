@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Interface
@@ -16,7 +18,7 @@ import { AdminService } from '../../services/admin/admin.service';
   templateUrl: './customer-database.component.html',
   styleUrls: ['./customer-database.component.css'],
 })
-export class CustomerDatabaseComponent implements OnInit {
+export class CustomerDatabaseComponent implements OnInit, AfterViewInit {
   search: string = '';
   filter: string = 'Monthly';
   dataSource = new MatTableDataSource();
@@ -39,6 +41,7 @@ export class CustomerDatabaseComponent implements OnInit {
   ];
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -68,7 +71,14 @@ export class CustomerDatabaseComponent implements OnInit {
       })
       .subscribe(
         (res) => {
-          this.dataSource.data = [...res.list];
+          if (res.status.code === 0) {
+            this.dataSource.data = [...res.list];
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
           res ? this._spin.hide() : null;
         },
         (err) => {

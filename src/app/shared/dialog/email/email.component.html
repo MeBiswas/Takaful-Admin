@@ -2,51 +2,47 @@
   <div class="modal left fade" id="new_email_Modal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form class="h-100">
+      <form class="h-100" [formGroup]="emailForm" (ngSubmit)="onSubmit(emailForm.valid)">
         <div class="modal-content">
           <div class="modal-header pb-3 pt-2">
             <h4 class="font-21 modal-title">New Email</h4>
           </div>
           <div class="modal-body">
             <div class="form-group row mt-3">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Add Email :</label>
+              <label class="col-sm-3 col-form-label">Add Email :</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Sameon@gmail.com">
+                <input type="text" class="form-control" formControlName="email">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div *ngIf="email.errors.required" class="error">Email is required</div>
+                  <div *ngIf="email.errors.email" class="error">Invalid Email</div>
+                </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Subject :</label>
+              <label class="col-sm-3 col-form-label">Subject :</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Report">
+                <input type="text" class="form-control" formControlName="subject">
+                <div *ngIf="subject.invalid && (subject.dirty || subject.touched)">
+                  <div *ngIf="subject.errors.required" class="error">Subject is required</div>
+                </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Messages :</label>
+              <label class="col-sm-3 col-form-label">Messages :</label>
               <div class="col-sm-9">
-                <!-- <div [ngxSummernote]></div> -->
-                <div [ngxSummernote]="config"></div>
+                <div [ngxSummernote]="config" formControlName="message"></div>
+                <div *ngIf="message.invalid && (message.touched)">
+                  <div *ngIf="message.errors.required" class="error">Messages is required</div>
+                </div>
               </div>
             </div>
-
-
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"></label>
-              <div class="col-sm-9 text-right">
-
-                <button class="bg-transparent btn p-0">
-                  <i class="fa-paperclip fas font-17 text-muted"></i>
-                </button>
-                <button class="bg-transparent btn p-0 pl-3">
-                  <i class="far fa-grin-alt text-muted font-17"></i>
-                </button>
-              </div>
-            </div>
+            {{data | json}}
           </div>
           <div class="justify-content-center modal-footer">
             <button type="button" class="bg-transparent border-0 btn btn-secondary shadow-none text-dark"
-              data-dismiss="modal">Cancel</button>
+              data-dismiss="modal" (click)="closeModal()" #closeBtn>Cancel</button>
             <button type="submit" class="btn btn-info shadow-none w-25">Send</button>
           </div>
         </div>

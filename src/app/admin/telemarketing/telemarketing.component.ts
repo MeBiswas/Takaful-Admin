@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Interface
@@ -34,11 +34,12 @@ import {
     ]),
   ],
 })
-export class TelemarketingComponent implements OnInit {
+export class TelemarketingComponent implements OnInit, AfterViewInit {
   search = '';
   basket: any = [];
   filter = 'monthly';
   detailComponentData = '';
+  emailData: any = { email: '' };
   dataSource = new MatTableDataSource();
   telemarketingURL = '/admin/marketing/list/';
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -73,6 +74,11 @@ export class TelemarketingComponent implements OnInit {
   // LifeCycle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  // Getting Data from Child
+  addItem(d: string) {
+    this.emailData.email = d;
   }
 
   // Filter Event
