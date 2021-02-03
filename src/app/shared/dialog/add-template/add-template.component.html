@@ -2,34 +2,35 @@
   <div class="modal left fade" id="add_template_model" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form class="h-100">
+      <form class="h-100" [formGroup]="AddTemplateForm">
         <div class="modal-content">
           <div class="modal-header pb-3 pt-2">
-            <h4 class="font-15 text-white modal-title">Edit Messages</h4>
+            <h4 class="font-15 text-white modal-title">Add Template</h4>
           </div>
           <div class="modal-body">
             <div class="form-group row mt-3">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Template</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Refund">
+                <input type="text" class="form-control" formControlName="type">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Type</label>
               <div class="col-sm-9">
-                <select class="form-control">
-                  <option value="">Email</option>
+                <select class="form-control" formControlName="template">
+                  <option [disabled]="true" value="" selected>Select Type</option>
+                  <option *ngFor="let type of templateTypeList" value="{{type.value}}">{{type.option}}</option>
                 </select>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Messages :</label>
               <div class="col-sm-9">
-                <textarea rows="4" cols="50" class="form-control"
-                  placeholder="Hai.selamat datang ke All Takaful..jika anda berminat layari www.alltakaful.com. Terima Kasih."></textarea>
+                <textarea rows="4" cols="50" class="form-control" formControlName="message"></textarea>
               </div>
             </div>
           </div>
+          {{AddTemplateForm.value | json}}
           <div class="justify-content-center modal-footer">
             <button type="button" class="bg-transparent border-0 btn btn-secondary shadow-none text-dark"
               data-dismiss="modal">Cancel</button>

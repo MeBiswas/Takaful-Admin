@@ -4,3 +4,8 @@
     margin-top: 10px;
   }
 }
+@media only screen and (min-device-width: 200px) and (max-device-width: 768px) {
+  .row.third_row.dashboard-box {
+    margin-right: -15px !important;
+  }
+}
