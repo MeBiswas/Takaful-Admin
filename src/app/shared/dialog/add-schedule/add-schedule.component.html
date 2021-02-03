@@ -1,0 +1,73 @@
+<div class="add_template_model">
+  <div class="modal left fade" id="add_schedule_model" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <form class="h-100" [formGroup]="addScheduleForm" (ngSubmit)="submitHandler(addScheduleForm.valid)">
+        <div class="modal-content">
+          <div class="modal-header pb-3 pt-2">
+            <h4 class="font-15 text-white modal-title">Add Template</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group row mt-3">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Schedule Name</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="scheduleName">
+                <div *ngIf="schedule.invalid && (schedule.dirty || schedule.touched)">
+                  <div *ngIf="schedule.errors.required" class="error">Schedule Name is required</div>
+                  <div *ngIf="schedule.errors.pattern" class="error">Invalid Schedule Name</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Type</label>
+              <div class="col-sm-9">
+                <select class="form-control" formControlName="type">
+                  <option [disabled]="true" value="" selected>Select Type</option>
+                  <option *ngFor="let type of templateTypeList" value="{{type.value}}">{{type.option}}</option>
+                </select>
+                <div *ngIf="type.invalid && (type.dirty || type.touched)">
+                  <div *ngIf="type.errors.required" class="error">Type is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Start Date</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" formControlName="startDate">
+                <div *ngIf="start.invalid && (start.dirty || start.touched)">
+                  <div *ngIf="start.errors.required" class="error">Start Date is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">End Date</label>
+              <div class="col-sm-9">
+                <input type="date" class="form-control" formControlName="endDate">
+                <div *ngIf="end.invalid && (end.dirty || end.touched)">
+                  <div *ngIf="end.errors.required" class="error">End Date is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 col-form-label">Template</label>
+              <div class="col-sm-9">
+                <select class="form-control" formControlName="templateId">
+                  <option [disabled]="true" value="null" selected>Select Template</option>
+                  <option *ngFor="let type of templateList" value="{{type.value}}">{{type.option}}</option>
+                </select>
+                <div *ngIf="template.invalid && (template.dirty || template.touched)">
+                  <div *ngIf="template.errors.required" class="error">Template is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="justify-content-center modal-footer">
+            <button type="button" class="bg-transparent border-0 btn btn-secondary shadow-none text-dark"
+              data-dismiss="modal" (click)="closeModal()" #closeBtn>Cancel</button>
+            <button type="submit" class="pl-5 pr-5 btn btn-info shadow-none">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../../services/admin/admin.service';
 // Regex Patterns
-const pattern = /^[a-zA-Z]*$/;
+const pattern = /^[a-zA-Z0-9 ]*$/;
 
 @Component({
   selector: 'app-add-template',

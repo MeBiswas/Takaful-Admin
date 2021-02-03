@@ -42,6 +42,7 @@ export class NotificationComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   routeData;
   search = '';
+  modalID: string;
   listData: any = [];
   filter = 'Monthly';
   notificationURL: string;
@@ -55,7 +56,7 @@ export class NotificationComponent implements OnInit {
     { value: 'Monthly', option: 'Monthly' },
   ];
 
-  displayedColumns: string[] = ['template', 'message', 'type', 'templateId'];
+  displayedColumns: string[];
 
   constructor(
     private _router: Router,
@@ -82,10 +83,19 @@ export class NotificationComponent implements OnInit {
       this.routeData = { ...data };
     });
     this.routeData.page === 'Template'
-      ? ((this.notificationURL = '/admin/templatelist'),
-        (this.deleteTableDataURL = '/admin/deletetemplate'))
-      : ((this.notificationURL = '/admin/schedulelist'),
-        (this.deleteTableDataURL = '/admin/deleteschedule'));
+      ? ((this.modalID = '#add_template_model'),
+        (this.notificationURL = '/admin/templatelist'),
+        (this.deleteTableDataURL = '/admin/deletetemplate'),
+        (this.displayedColumns = ['template', 'message', 'type', 'templateId']))
+      : ((this.modalID = '#add_schedule_model'),
+        (this.notificationURL = '/admin/schedulelist'),
+        (this.deleteTableDataURL = '/admin/deleteschedule'),
+        (this.displayedColumns = [
+          'schedule',
+          'templateUsed',
+          'type',
+          'scheduleId',
+        ]));
   }
 
   // Achiever List Service

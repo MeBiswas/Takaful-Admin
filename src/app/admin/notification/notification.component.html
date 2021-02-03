@@ -1,6 +1,9 @@
 <!-- Add Template Model Code Start -->
 <app-add-template></app-add-template>
 <!-- Add Template Model Code End -->
+<!-- Add Schedule Model Code Start -->
+<app-add-schedule></app-add-schedule>
+<!-- Add Schedule Model Code End -->
 
 <div class="second_top_bar bg-white p-10">
   <div class="container">
@@ -19,7 +22,7 @@
         <form #filterForm="ngForm">
           <div class="row">
             <div class="col-md-12 text-right pr-0">
-              <button class="btn btn-info pb-1 pt-2 shadow-none" data-toggle="modal" data-target="#add_template_model">
+              <button class="btn btn-info pb-1 pt-2 shadow-none" data-toggle="modal" [attr.data-target]="modalID">
                 <img alt="image" src="assets/img/icons/chat.png">Add Template</button>
             </div>
           </div>
@@ -44,68 +47,134 @@
       <ng-template #elseBlock>
         <form>
           <div class="responsive-table-custom">
-            <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
-              <ng-container matColumnDef="template">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Template</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.template}}
-                </td>
-              </ng-container>
+            <ng-template [ngIf]="routeData.page === 'Template'" [ngIfElse]="elsePart">
+              <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+                <ng-container matColumnDef="template">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Template</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.template}}
+                  </td>
+                </ng-container>
 
-              <ng-container matColumnDef="message">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Message</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.message}}</td>
-              </ng-container>
+                <ng-container matColumnDef="message">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Message</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.message}}</td>
+                </ng-container>
 
-              <ng-container matColumnDef="type">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Type</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.type}}</td>
-              </ng-container>
+                <ng-container matColumnDef="type">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Type</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.type}}</td>
+                </ng-container>
 
-              <ng-container matColumnDef="templateId">
-                <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Action</th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-center">
-                  <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded" (click)="onTableExpand(element.action)"
-                    (click)="expandedElement = expandedElement === element ? null : element">
-                    <i class="fa fa-pen mr-2 text-dark"></i>Edit
-                  </button>
-                  <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded ml-3" (click)="deleteHandler(element.action)">
-                    <i class="fa fa-trash mr-2 text-dark"></i>Delete
-                  </button>
-                </td>
-              </ng-container>
+                <ng-container matColumnDef="templateId">
+                  <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Action</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-center">
+                    <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded" (click)="onTableExpand(element.action)"
+                      (click)="expandedElement = expandedElement === element ? null : element">
+                      <i class="fa fa-pen mr-2 text-dark"></i>Edit
+                    </button>
+                    <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded ml-3" (click)="deleteHandler(element.action)">
+                      <i class="fa fa-trash mr-2 text-dark"></i>Delete
+                    </button>
+                  </td>
+                </ng-container>
 
-              <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-              <ng-container matColumnDef="expandedDetail">
-                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-                  <div class="example-element-detail"
-                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    <div class="example-element-description">
-                      <ng-container [ngSwitch]="routeData.page">
-                        <div *ngSwitchCase="'Template'" [item]="routeData">
-                          <app-notification-template [currentData]="detailComponentData"
-                            *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                          </app-notification-template>
-                        </div>
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <ng-container matColumnDef="expandedDetail">
+                  <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                    <div class="example-element-detail"
+                      [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      <div class="example-element-description">
+                        <ng-container [ngSwitch]="routeData.page">
+                          <div *ngSwitchCase="'Template'" [item]="routeData">
+                            <app-notification-template [currentData]="detailComponentData"
+                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                            </app-notification-template>
+                          </div>
 
-                        <div *ngSwitchCase="'Schedule'" [item]="routeData">
-                          <app-notification-schedule [currentData]="detailComponentData"
-                            *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                          </app-notification-schedule>
-                        </div>
+                          <div *ngSwitchCase="'Schedule'" [item]="routeData">
+                            <app-notification-schedule [currentData]="detailComponentData"
+                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                            </app-notification-schedule>
+                          </div>
 
-                        <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
-                      </ng-container>
+                          <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
+                        </ng-container>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </ng-container>
+                  </td>
+                </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
-                [class.example-expanded-row]="expandedElement === element">
-              </tr>
-              <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-            </table>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+                  [class.example-expanded-row]="expandedElement === element">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+              </table>
+            </ng-template>
+            <ng-template #elsePart>
+              <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+                <ng-container matColumnDef="schedule">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Schedule Name</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.schedule}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="templateUsed">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Template Used</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.templateUsed}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="type">
+                  <th scope="col" mat-header-cell *matHeaderCellDef>Type</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.type}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="scheduleId">
+                  <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Action</th>
+                  <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-center">
+                    <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded" (click)="onTableExpand(element.action)"
+                      (click)="expandedElement = expandedElement === element ? null : element">
+                      <i class="fa fa-pen mr-2 text-dark"></i>Edit
+                    </button>
+                    <button class="border-0 pb-1 pl-2 pr-2 pt-1 rounded ml-3" (click)="deleteHandler(element.action)">
+                      <i class="fa fa-trash mr-2 text-dark"></i>Delete
+                    </button>
+                  </td>
+                </ng-container>
+
+                <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+                <ng-container matColumnDef="expandedDetail">
+                  <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                    <div class="example-element-detail"
+                      [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                      <div class="example-element-description">
+                        <ng-container [ngSwitch]="routeData.page">
+                          <div *ngSwitchCase="'Template'" [item]="routeData">
+                            <app-notification-template [currentData]="detailComponentData"
+                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                            </app-notification-template>
+                          </div>
+
+                          <div *ngSwitchCase="'Schedule'" [item]="routeData">
+                            <app-notification-schedule [currentData]="detailComponentData"
+                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                            </app-notification-schedule>
+                          </div>
+
+                          <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+                  [class.example-expanded-row]="expandedElement === element">
+                </tr>
+                <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+              </table>
+            </ng-template>
           </div>
         </form>
         <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>

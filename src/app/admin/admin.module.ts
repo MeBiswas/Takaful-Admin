@@ -21,6 +21,7 @@ import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
 import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
 import { DeleteUserComponent } from '../shared/dialog/delete-user/delete-user.component';
 import { AddTemplateComponent } from '../shared/dialog/add-template/add-template.component';
+import { AddScheduleComponent } from '../shared/dialog/add-schedule/add-schedule.component';
 // Widgets
 import { SaleWidgetComponent } from '../widgets/sale-widget/sale-widget.component';
 import { NoteWidgetComponent } from '../widgets/note-widget/note-widget.component';
@@ -60,6 +61,7 @@ import { NotificationScheduleComponent } from '../basket-details/notification-sc
     IssueWidgetComponent,
     QuoteWidgetComponent,
     AddTemplateComponent,
+    AddScheduleComponent,
     AssistMarketComponent,
     BasketWidgetComponent,
     PaymentFailedComponent,
