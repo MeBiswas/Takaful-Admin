@@ -69,20 +69,26 @@ body {
   font-weight: 400;
   font-family: "hind_vadodara";
 }
-
+/* Toaster Style */
 #toast-container > .toast-error:before,
 #toast-container > .toast-success:before {
   content: "";
 }
-
+/* Sidebar Link Style */
 .menu_title {
   cursor: pointer;
 }
-
+/* Input Field Error Style */
 .error {
   width: 100%;
   font-size: 80%;
   color: #dc3545;
   text-align: left;
   margin-top: 0.25rem;
+}
+/* No Data Found Style */
+.no-data-found img {
+  height: auto;
+  max-width: 300px;
+  margin-bottom: 6%;
 }

@@ -8,6 +8,7 @@ import { Filter } from '../../model/filter';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  userData;
   filter = 'Weekly';
 
   filters: Filter[] = [
@@ -17,7 +18,15 @@ export class DashboardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  // LifeCycle Method
+  ngOnInit(): void {
+    this.getAuthData();
+  }
+
+  // Getting Data
+  private getAuthData() {
+    this.userData = JSON.parse(sessionStorage.getItem('auth'));
+  }
 
   onFilterChanged(value) {
     // console.log('Filter Change', value);

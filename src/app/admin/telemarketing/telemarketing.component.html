@@ -34,7 +34,14 @@
   <div class="row">
     <div class="col-lg-12">
       <ng-template [ngIf]="dataSource.data.length === 0" [ngIfElse]="elseBlock">
-        <h1>No Data</h1>
+        <div class="container">
+          <div class="align-items-center justify-content-center row vh-100">
+            <div class="col-md-4 text-center no-data-found">
+              <img class="img-fluid " src="assets/img/no-data-found.png">
+              <h1 class="font-30 mt-2">Sorry. No Data Inside!</h1>
+            </div>
+          </div>
+        </div>
       </ng-template>
       <ng-template #elseBlock>
         <div class="responsive-table-custom">

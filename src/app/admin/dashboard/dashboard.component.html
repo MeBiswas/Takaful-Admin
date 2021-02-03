@@ -5,7 +5,7 @@
       <div class="row first_row mb-4 mt-4">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
           <div class="section-header-breadcrumb-content">
-            <h1 class="font-23 mb-1">Hello, Mr Admin!</h1>
+            <h1 class="font-23 mb-1">Hello, Mr {{userData.userName}}!</h1>
             <span class="text-muted font-weight-bolder">Welcome back to insurance portal Admin</span>
             <form #filterForm="ngForm">
               <select [(ngModel)]="filter" name="Filter" (ngModelChange)="onFilterChanged($event)"
