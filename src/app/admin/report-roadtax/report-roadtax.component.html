@@ -16,14 +16,14 @@
       <form [formGroup]="searchForm" (ngSubmit)="submitHandler(searchForm.valid)" class="d-flex justify-content-center">
         <div class="col-md-4 form-group pr-0">
           <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
-          <input type="text" placeholder="ABC 1234" formControlName="search" class="btn-lg form-control pl-5 w-100">
+          <input type="text" placeholder="ABC 1234" formControlName="search" class="form-control pl-5 w-100">
           <div *ngIf="search.invalid && (search.dirty || search.touched)">
             <div *ngIf="search.errors.required" class="error">Please Enter Car Registeration Number</div>
             <div *ngIf="search.errors.pattern" class="error">Please Enter Valid Registeration Number</div>
           </div>
         </div>
         <div class="col-auto form-group pl-3">
-          <button type="submit" class="btn btn-info btn-lg shadow-none">Search</button>
+          <button type="submit" class="btn btn-info shadow-none report-roadtax-btn">Search</button>
         </div>
       </form>
     </div>
