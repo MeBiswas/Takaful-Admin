@@ -51,6 +51,7 @@ export class MarketingComponent implements OnInit, OnChanges {
   ];
 
   callStatusList: Filter[] = [
+    { option: 'Follow Up', value: 'Follow Up' },
     { option: 'No Answer', value: 'No Answer' },
     { option: 'Not Interested', value: 'Not Interested' },
     { option: 'Not In Service', value: 'Not In Service' },

@@ -90,7 +90,7 @@
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-3 col-form-label">Remarks</label>
         <div class="col-sm-9">
-          <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
+          <textarea class="form-control" rows="3" formControlName="remarks" readonly></textarea>
         </div>
       </div>
     </div>
@@ -101,10 +101,12 @@
       <div class="form-group row  pl-4 pr-5">
         <label class="col-sm-4 col-form-label font-weight-bold">1. To Customer</label>
         <div class="col-sm-8 pl-0">
-          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
-            <img class="pr-2" src="assets/img/icons/phone_icon.png" />Call
+          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+            *ngIf="phoneNo !== null">
+            <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{phoneNo}}
           </button>
-          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+            *ngIf="phoneNo !== null">
             <img class="pr-2" src="assets/img/icons/sms.png" />SMS
           </button>
           <button type="button" class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
@@ -113,12 +115,12 @@
           </button>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
           <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
           <button type="submit" class="bg-green btn text-white w-25">Update</button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </form>

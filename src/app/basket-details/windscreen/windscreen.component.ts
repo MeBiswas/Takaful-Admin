@@ -21,6 +21,7 @@ const numeric = /^[0-9]*$/;
 })
 export class WindscreenComponent implements OnInit {
   @Input() currentData: string;
+  phoneNo;
   email: string;
   datePipeString: string;
   actionList: Filter[] = [
@@ -86,6 +87,7 @@ export class WindscreenComponent implements OnInit {
       (res) => {
         this.assignData(res.list[0]);
         this.email = res.list[0].email;
+        this.phoneNo = res.list[0].phoneNo;
         res ? this._spin.hide() : null;
         console.log('ehte aa', this.email);
       },

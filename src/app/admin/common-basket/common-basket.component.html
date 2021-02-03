@@ -141,9 +141,9 @@
                       </div>
 
                       <div *ngSwitchCase="'Market Value'" [item]="routeData">
-                        <app-assist-ncd [currentData]="detailComponentData"
+                        <app-assist-market [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
-                        </app-assist-ncd>
+                        </app-assist-market>
                       </div>
 
                       <div *ngSwitchCase="'Refund'" [item]="routeData">

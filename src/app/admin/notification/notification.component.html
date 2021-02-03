@@ -45,13 +45,6 @@
         <form>
           <div class="responsive-table-custom">
             <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
-              <ng-container matColumnDef="check">
-                <th scope="col" mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
-                  <input type="checkbox" value="element.check" (click)="clickHandler(element)">
-                </td>
-              </ng-container>
-
               <ng-container matColumnDef="template">
                 <th scope="col" mat-header-cell *matHeaderCellDef>Template</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600 text-info">{{element.template}}

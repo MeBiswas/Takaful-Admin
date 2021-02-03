@@ -32,13 +32,7 @@ export class NotificationComponent implements OnInit {
     { value: 'Monthly', option: 'Monthly' },
   ];
 
-  displayedColumns: string[] = [
-    'check',
-    'template',
-    'message',
-    'type',
-    'templateId',
-  ];
+  displayedColumns: string[] = ['template', 'message', 'type', 'templateId'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -88,7 +82,7 @@ export class NotificationComponent implements OnInit {
   // Adding Checkbox Column Data
   private addTableColumnData(d) {
     let newArr = [...d];
-    this.listData = newArr.map((item) => (item = { ...item, check: false }));
+    this.listData = newArr.map((item) => (item = { ...item }));
     this.dataSource.data = this.listData;
   }
 
@@ -105,11 +99,5 @@ export class NotificationComponent implements OnInit {
   // Filter Event
   onFilterChanged(e) {
     this.notificationRequest();
-  }
-
-  clickHandler(e) {
-    e.check = !e.check;
-    let i = this.dataSource.data.indexOf(e);
-    this.dataSource.data[i] = e;
   }
 }
