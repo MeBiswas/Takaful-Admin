@@ -172,17 +172,28 @@
     <div class="form-group row  pl-4">
       <label class="col-sm-4 col-form-label font-weight-bold">To Customer</label>
       <div class="col-sm-8 pl-0">
-        <!-- <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
-          <img class="pr-2" src="assets/img/icons/phone_icon.png" />Call
-        </button>
-        <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
-          <img class="pr-2" src="assets/img/icons/sms.png" />SMS
-        </button>
-        <button type="button" class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-          data-toggle="modal" data-target="#new_email_Modal">
-          <img class="pr-2" src="assets/img/icons/email.png" />Muz90@gmail.com
-        </button> -->
-        <div class="row">
+        <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <label class="form-check-label">
+            <input class="form-check-input d-none" type="radio" name="action" value="Email" formControlName="action"
+              data-toggle="modal" data-target="#new_email_Modal" (click)="addNewItem(basketDetailForm.value.email)">
+            <img class="pr-2" src="assets/img/icons/email.png" />Muz90@gmail.com
+          </label>
+        </div>
+        <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <label class="form-check-label">
+            <input class="form-check-input d-none" type="radio" name="action" value="Call" formControlName="action">
+            <img class="pr-2" src="assets/img/icons/phone_icon.png" />0187383829
+          </label>
+        </div>
+        <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+          <label class="form-check-label">
+            <input class="form-check-input d-none" type="radio" name="action" value="SMS" formControlName="action">
+            <img class="pr-2" src="assets/img/icons/sms.png" />SMS
+          </label>
+        </div>
+
+
+        <!-- <div class="row">
           <div class="col-4">
             <input class="form-check-input" type="radio" name="action" id="action1" value="Call"
               formControlName="action">
@@ -208,7 +219,7 @@
           <div *ngIf="action.invalid && (action.dirty || action.touched)">
             <div *ngIf="action.errors.required" class="error">Action is required</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="row">

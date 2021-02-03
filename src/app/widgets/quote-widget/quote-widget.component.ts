@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -22,6 +24,7 @@ export class QuoteWidgetComponent implements OnInit {
   quoteStatisticsUrl = '/admin/dashboard/totalquotation';
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -42,10 +45,17 @@ export class QuoteWidgetComponent implements OnInit {
     this._spin.show();
     this._admin.postApiWithAuth(this.quoteStatisticsUrl, data).subscribe(
       (res) => {
-        this.totalQuotationResponseData = {
-          ...this.totalQuotationResponseData,
-          ...res,
-        };
+        if (res.status.code === 0) {
+          this.totalQuotationResponseData = {
+            ...this.totalQuotationResponseData,
+            ...res,
+          };
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
         res ? this._spin.hide() : null;
       },
       (err) => {

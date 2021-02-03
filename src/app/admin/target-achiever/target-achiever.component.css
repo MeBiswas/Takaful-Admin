@@ -28,12 +28,13 @@ tr.mat-header-row {
   border-left: hidden;
   border-right: hidden;
 }
-.cstm-form {
-  height: 34px;
-  border-radius: 9px;
-  text-align: center;
-  text-align: -webkit-center;
-  border: 1px solid #d5d5d5;
+.cstm-form input:focus {
+  border-color: #e4e6fc;
+}
+.cstm-form .form-control,
+.cstm-form .input-group .input-group-prepend .input-group-text {
+  height: 35px;
+  border: 1px solid #ccc;
 }
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 768px) {

@@ -13,7 +13,7 @@ import { AdminService } from '../../services/admin/admin.service';
 import { PasswordValidator } from '../../validators/password.validator';
 // Regex Patterns
 const alphaPattern = /^[a-zA-Z ]*$/;
-const unamePattern = /^[a-zA-Z0-9_]*$/;
+const unamePattern = /^[a-zA-Z0-9_ ]*$/;
 const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 @Component({
@@ -89,8 +89,15 @@ export class AccountSettingsComponent implements OnInit {
       })
       .subscribe(
         (res) => {
+          if (res.status.code === 0) {
+            this.accountSettingForm.patchValue({ ...res });
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
           res ? this._spin.hide() : null;
-          this.accountSettingForm.patchValue({ ...res });
         },
         (err) => {
           err ? this._spin.hide() : null;
@@ -103,7 +110,14 @@ export class AccountSettingsComponent implements OnInit {
   private getRoleList() {
     this._admin.getApiWithAuth(this.roleListURL).subscribe(
       (res) => {
-        this.roles = [...res.roleList];
+        if (res.status.code === 0) {
+          this.roles = [...res.roleList];
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
       },
       (err) => {
         this._toast.error('Oops! Something went wrong.');
@@ -125,8 +139,15 @@ export class AccountSettingsComponent implements OnInit {
       .postApiWithAuth(this.userUpdateURL, { ...d, role: d.roleName })
       .subscribe(
         (res) => {
-          this._toast.success('Updated Successfully');
-          this._router.navigate(['/admin/dashboard']);
+          if (res.status.code === 0) {
+            this._toast.success('Updated Successfully');
+            this._router.navigate(['/admin/dashboard']);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
         },
         (err) => {
           this._toast.error('Oops! Something went wrong.');

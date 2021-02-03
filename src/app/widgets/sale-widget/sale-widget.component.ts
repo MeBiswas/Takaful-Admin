@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -22,6 +24,7 @@ export class SaleWidgetComponent implements OnInit {
   saleStatisticUrl = '/admin/dashboard/usertarget';
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -35,10 +38,17 @@ export class SaleWidgetComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(this.saleStatisticUrl).subscribe(
       (res) => {
-        this.saleStatisticResponseData = {
-          ...this.saleStatisticResponseData,
-          ...res,
-        };
+        if (res.status.code === 0) {
+          this.saleStatisticResponseData = {
+            ...this.saleStatisticResponseData,
+            ...res,
+          };
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
         res ? this._spin.hide() : null;
       },
       (err) => {

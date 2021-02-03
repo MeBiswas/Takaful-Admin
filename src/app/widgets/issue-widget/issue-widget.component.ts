@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -25,6 +27,7 @@ export class IssueWidgetComponent implements OnInit {
   };
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -64,10 +67,17 @@ export class IssueWidgetComponent implements OnInit {
       .postApiWithAuth(this.mostRecentIssuesUrl, this.mostRecentIssuesData)
       .subscribe(
         (res) => {
-          this.recentIssuesResponseData = {
-            ...this.recentIssuesResponseData,
-            ...res,
-          };
+          if (res.status.code === 0) {
+            this.recentIssuesResponseData = {
+              ...this.recentIssuesResponseData,
+              ...res,
+            };
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
           res ? this._spin.hide() : null;
         },
         (err) => {

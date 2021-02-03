@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -21,6 +23,7 @@ export class NoteWidgetComponent implements OnInit {
   coverNoteStatisticUrl = '/admin/dashboard/covernotestatistic';
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -41,10 +44,17 @@ export class NoteWidgetComponent implements OnInit {
     this._spin.show();
     this._admin.postApiWithAuth(this.coverNoteStatisticUrl, data).subscribe(
       (res) => {
-        this.coverNoteStatisticResponseData = {
-          ...this.coverNoteStatisticResponseData,
-          ...res,
-        };
+        if (res.status.code === 0) {
+          this.coverNoteStatisticResponseData = {
+            ...this.coverNoteStatisticResponseData,
+            ...res,
+          };
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
         res ? this._spin.hide() : null;
       },
       (err) => {

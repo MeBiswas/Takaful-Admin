@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -34,6 +36,7 @@ export class UserManagementComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
     private _spin: NgxSpinnerService
@@ -54,8 +57,15 @@ export class UserManagementComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(this.userListURL + p).subscribe(
       (res) => {
+        if (res.status.code === 0) {
+          this.addActionData(res.userList);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
         res ? this._spin.hide() : null;
-        this.addActionData(res.userList);
       },
       (err) => {
         err ? this._spin.hide() : null;

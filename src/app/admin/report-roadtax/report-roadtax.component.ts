@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -57,6 +59,7 @@ export class ReportRoadtaxComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _date: DatePipe,
     private _fb: FormBuilder,
     private _admin: AdminService,
@@ -94,6 +97,9 @@ export class ReportRoadtaxComponent implements OnInit {
           if (res.status.code === 0) {
             this.assignData(res.list[0]);
             this.reportDetail = res.list[0].vehiclePlateNo;
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
           } else {
             this._toast.error('Oops! Something went wrong.');
           }

@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Interface
 import { Filter } from '../../model/filter';
+// Spinner
+import { NgxSpinnerService } from 'ngx-spinner';
 // Material Table Dependencies
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -49,7 +53,12 @@ export class TargetAchieverComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private _admin: AdminService, private _toast: ToastrService) {}
+  constructor(
+    private _router: Router,
+    private _admin: AdminService,
+    private _toast: ToastrService,
+    private _spin: NgxSpinnerService
+  ) {}
 
   // LifeCycle Method
   ngOnInit(): void {
@@ -63,13 +72,23 @@ export class TargetAchieverComponent implements OnInit {
 
   // Achiever List Service
   private achieverList(f) {
+    this._spin.show();
     this._admin
       .postApiWithAuth(this.achievementListURL, { month: f })
       .subscribe(
         (res) => {
-          this.addActionData(res.list);
+          if (res.status.code === 0) {
+            this.addActionData(res.list);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
         },
         (err) => {
+          err ? this._spin.hide() : null;
           this._toast.error('Oops! Something went wrong.');
         }
       );
