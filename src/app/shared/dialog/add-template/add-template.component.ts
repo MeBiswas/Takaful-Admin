@@ -24,7 +24,7 @@ export class AddTemplateComponent implements OnInit {
   templateType: string = 'Email';
   addTemplateURL: string = '/admin/createtemplate';
 
-  AddTemplateForm = this._fb.group({
+  addTemplateForm = this._fb.group({
     message: [''],
     type: ['', Validators.required],
     template: ['', [Validators.required, Validators.pattern(pattern)]],
@@ -46,17 +46,17 @@ export class AddTemplateComponent implements OnInit {
 
   // Form Field Getter
   get template() {
-    return this.AddTemplateForm.get('template');
+    return this.addTemplateForm.get('template');
   }
   get type() {
-    return this.AddTemplateForm.get('type');
+    return this.addTemplateForm.get('type');
   }
 
   // Submit Handler
   submitHandler(v) {
     !v
       ? this._toast.error('Please fill all required fields')
-      : this.addTemplate(this.AddTemplateForm.value);
+      : this.addTemplate(this.addTemplateForm.value);
   }
 
   // Add Template Service
@@ -91,7 +91,7 @@ export class AddTemplateComponent implements OnInit {
 
   // Close Modal Method
   closeModal(): void {
-    this.AddTemplateForm.setValue({
+    this.addTemplateForm.setValue({
       type: [''],
       message: [''],
       template: [''],

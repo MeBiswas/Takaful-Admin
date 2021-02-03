@@ -45,6 +45,8 @@ export class NotificationComponent implements OnInit {
   listData: any = [];
   filter = 'Monthly';
   notificationURL: string;
+  detailComponentData = '';
+  deleteTableDataURL: string;
   dataSource = new MatTableDataSource();
   userID = JSON.parse(sessionStorage.getItem('auth')).userId;
 
@@ -80,8 +82,10 @@ export class NotificationComponent implements OnInit {
       this.routeData = { ...data };
     });
     this.routeData.page === 'Template'
-      ? (this.notificationURL = '/admin/templatelist')
-      : (this.notificationURL = '/admin/schedulelist');
+      ? ((this.notificationURL = '/admin/templatelist'),
+        (this.deleteTableDataURL = '/admin/deletetemplate'))
+      : ((this.notificationURL = '/admin/schedulelist'),
+        (this.deleteTableDataURL = '/admin/deleteschedule'));
   }
 
   // Achiever List Service
@@ -106,10 +110,35 @@ export class NotificationComponent implements OnInit {
     );
   }
 
+  // Delete Service Handler
+  deleteHandler(d) {
+    this._spin.show();
+    this._admin.deleteApiWithAuth(this.deleteTableDataURL, d).subscribe(
+      (res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
+          this._toast.error('Oops! Something went wrong.');
+        }
+        res ? this._spin.hide() : null;
+      },
+      (err) => {
+        err ? this._spin.hide() : null;
+        this._toast.error('Oops! Something went wrong.');
+      }
+    );
+  }
+
   // Adding Checkbox Column Data
   private addTableColumnData(d) {
     let newArr = [...d];
-    this.listData = newArr.map((item) => (item = { ...item }));
+    this.listData = newArr.map((item) => (item = { ...item, action: item }));
     this.dataSource.data = this.listData;
   }
 
@@ -126,5 +155,10 @@ export class NotificationComponent implements OnInit {
   // Filter Event
   onFilterChanged(e) {
     this.notificationRequest();
+  }
+
+  // On Table Expand Event
+  onTableExpand(d) {
+    this.detailComponentData = d;
   }
 }
