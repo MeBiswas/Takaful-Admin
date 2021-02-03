@@ -2,7 +2,7 @@
   <div class="modal left fade" id="add_template_model" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form class="h-100" [formGroup]="AddTemplateForm">
+      <form class="h-100" [formGroup]="AddTemplateForm" (ngSubmit)="submitHandler(AddTemplateForm.valid)">
         <div class="modal-content">
           <div class="modal-header pb-3 pt-2">
             <h4 class="font-15 text-white modal-title">Add Template</h4>
@@ -11,16 +11,23 @@
             <div class="form-group row mt-3">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Template</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="type">
+                <input type="text" class="form-control" formControlName="template">
+                <div *ngIf="template.invalid && (template.dirty || template.touched)">
+                  <div *ngIf="template.errors.required" class="error">Template is required</div>
+                  <div *ngIf="template.errors.pattern" class="error">Invalid Template</div>
+                </div>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Type</label>
               <div class="col-sm-9">
-                <select class="form-control" formControlName="template">
+                <select class="form-control" formControlName="type">
                   <option [disabled]="true" value="" selected>Select Type</option>
                   <option *ngFor="let type of templateTypeList" value="{{type.value}}">{{type.option}}</option>
                 </select>
+                <div *ngIf="type.invalid && (type.dirty || type.touched)">
+                  <div *ngIf="type.errors.required" class="error">Type is required</div>
+                </div>
               </div>
             </div>
             <div class="form-group row">
@@ -30,10 +37,9 @@
               </div>
             </div>
           </div>
-          {{AddTemplateForm.value | json}}
           <div class="justify-content-center modal-footer">
             <button type="button" class="bg-transparent border-0 btn btn-secondary shadow-none text-dark"
-              data-dismiss="modal">Cancel</button>
+              data-dismiss="modal" (click)="closeModal()" #closeBtn>Cancel</button>
             <button type="submit" class="pl-5 pr-5 btn btn-info shadow-none">Add</button>
           </div>
         </div>

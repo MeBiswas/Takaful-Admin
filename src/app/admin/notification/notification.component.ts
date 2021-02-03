@@ -14,13 +14,32 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
+// Animations
+import {
+  state,
+  style,
+  animate,
+  trigger,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class NotificationComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   routeData;
   search = '';
   listData: any = [];
@@ -35,8 +54,6 @@ export class NotificationComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['template', 'message', 'type', 'templateId'];
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private _router: Router,
