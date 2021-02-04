@@ -141,7 +141,7 @@
             <div class="form-group row  pl-4 pr-5 mt-3">
               <label class="col-sm-4 col-form-label font-weight-bold">Status</label>
               <div class="col-sm-6">
-                <select class="font-weight-600 form-control" formControlName="status">
+                <select class="font-weight-600 form-control" formControlName="action">
                   <option selected value="null" disabled>Select Status</option>
                   <option *ngFor="let status of statusList" value="{{status.value}}">{{status.option}}</option>
                 </select>
@@ -150,21 +150,64 @@
                 </div>
               </div>
             </div>
-            <div class="form-group row  pl-4 pr-5">
-              <label class="col-sm-4 col-form-label font-weight-bold"> </label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="Amount" formControlName="amount">
-                <div *ngIf="amount.invalid && (amount.dirty || amount.touched)">
-                  <div *ngIf="amount.errors.required" class="error">Amount is required</div>
+
+            <ng-container [ngSwitch]="actionSelector">
+
+              <div *ngSwitchCase="'Refund'" [item]="actionSelector">
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Amount" formControlName="refundAmount">
+                    <div *ngIf="rAmount.invalid && (rAmount.dirty || rAmount.touched)">
+                      <div *ngIf="rAmount.errors.required" class="error">Amount is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" formControlName="refundRemark"></textarea>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group row  pl-4 pr-5">
-              <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
-              <div class="col-sm-6">
-                <textarea class="form-control" formControlName="remarks"></textarea>
+
+              <div *ngSwitchCase="'Topup'" [item]="actionSelector">
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Amount" formControlName="topupAmount">
+                    <div *ngIf="tAmount.invalid && (tAmount.dirty || tAmount.touched)">
+                      <div *ngIf="tAmount.errors.required" class="error">Amount is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" formControlName="topupRemark"></textarea>
+                  </div>
+                </div>
               </div>
-            </div>
+
+              <div *ngSwitchCase="'Blacklisted'" [item]="actionSelector">
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="Amount" formControlName="blacklistedAmount">
+                    <div *ngIf="bAmount.invalid && (bAmount.dirty || bAmount.touched)">
+                      <div *ngIf="bAmount.errors.required" class="error">Amount is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row  pl-4 pr-5">
+                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" formControlName="blacklistedRemark"></textarea>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
             <div class="row">
               <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
                 <button (click)="resetHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>

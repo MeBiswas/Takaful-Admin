@@ -120,6 +120,7 @@
           </select>
 
           <ng-container [ngSwitch]="actionSelector">
+
             <div *ngSwitchCase="'Refund'" [item]="actionSelector">
               <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
                 formControlName="refundAmount">
@@ -129,6 +130,7 @@
               </div>
               <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="refundRemark"></textarea>
             </div>
+
             <div *ngSwitchCase="'Topup'" [item]="actionSelector">
               <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
                 formControlName="topupAmount">
@@ -138,6 +140,7 @@
               </div>
               <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="topupRemark"></textarea>
             </div>
+
           </ng-container>
         </div>
       </div>

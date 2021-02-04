@@ -23,6 +23,7 @@ const pattern = /[A-Z]{3}\s[0-9]{4}/;
 })
 export class ReportRoadtaxComponent implements OnInit {
   reportDetail = null;
+  actionSelector: string;
   reportRoadTaxURL = '/admin/reportroadtax/';
 
   statusList: Filter[] = [
@@ -42,7 +43,6 @@ export class ReportRoadtaxComponent implements OnInit {
     phoneNo: [null],
     carMake: [null],
     carSpec: [null],
-    remarks: [null],
     address1: [null],
     carModel: [null],
     coverage: [null],
@@ -50,12 +50,18 @@ export class ReportRoadtaxComponent implements OnInit {
     postcode: [null],
     coverType: [null],
     sumInsured: [null],
+    topupRemark: [null],
     customerName: [null],
+    refundRemark: [null],
     effectiveDate: [null],
     vehiclePlateNo: [null],
     yearManufacture: [null],
+    blacklistedRemark: [null],
     status: [null, Validators.required],
-    amount: [null, Validators.required],
+    action: [null, Validators.required],
+    topupAmount: [null, Validators.required],
+    refundAmount: [null, Validators.required],
+    blacklistedAmount: [null, Validators.required],
   });
 
   constructor(
@@ -76,8 +82,14 @@ export class ReportRoadtaxComponent implements OnInit {
   get status() {
     return this.reportDetailForm.get('status');
   }
-  get amount() {
-    return this.reportDetailForm.get('amount');
+  get tAmount() {
+    return this.reportDetailForm.get('topupAmount');
+  }
+  get rAmount() {
+    return this.reportDetailForm.get('refundAmount');
+  }
+  get bAmount() {
+    return this.reportDetailForm.get('blacklistedAmount');
   }
 
   // Form Submit Hander
@@ -96,6 +108,7 @@ export class ReportRoadtaxComponent implements OnInit {
         (res) => {
           if (res.status.code === 0) {
             this.assignData(res.list[0]);
+            this.actionSelector = res.list[0].action;
             this.reportDetail = res.list[0].vehiclePlateNo;
           } else if (res.status.code === 401) {
             this._router.navigate(['/auth/login']);
@@ -122,6 +135,33 @@ export class ReportRoadtaxComponent implements OnInit {
       ),
     };
     this.reportDetailForm.patchValue({ ...d });
+  }
+
+  // On Action Selector Change
+  onActionSelectorChanged(e) {
+    this.actionSelector = e;
+    if (e === 'Reund') {
+      this.reportDetailForm.patchValue({
+        topupRemark: null,
+        topupAmount: null,
+        blacklistedRemark: null,
+        blacklistedAmount: null,
+      });
+    } else if (e === 'Topup') {
+      this.reportDetailForm.patchValue({
+        refundRemark: null,
+        refundAmount: null,
+        blacklistedRemark: null,
+        blacklistedAmount: null,
+      });
+    } else if (e === 'Blacklisted') {
+      this.reportDetailForm.patchValue({
+        topupRemark: null,
+        topupAmount: null,
+        refundRemark: null,
+        refundAmount: null,
+      });
+    }
   }
 
   // Report Form Submit Handler
