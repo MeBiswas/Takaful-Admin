@@ -1,10 +1,4 @@
-import {
-  Input,
-  OnInit,
-  ViewChild,
-  Component,
-  AfterContentChecked,
-} from '@angular/core';
+import { Input, OnInit, ViewChild, Component, OnChanges } from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Spinner
@@ -19,7 +13,7 @@ import { AdminService } from '../../../services/admin/admin.service';
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.css'],
 })
-export class EmailComponent implements OnInit, AfterContentChecked {
+export class EmailComponent implements OnInit, OnChanges {
   @Input() data;
   @ViewChild('closeBtn') closeBtn;
 
@@ -41,7 +35,7 @@ export class EmailComponent implements OnInit, AfterContentChecked {
   ngOnInit(): void {}
 
   // LifeCycle Method
-  ngAfterContentChecked() {
+  ngOnChanges() {
     this.emailForm.patchValue({ ...this.data });
   }
 
@@ -61,21 +55,26 @@ export class EmailComponent implements OnInit, AfterContentChecked {
     height: '200px',
     placeholder: '',
     toolbar: [
-      ['misc', ['undo', 'redo']],
+      ['edit', ['undo', 'redo']],
+      ['headline', ['style']],
       [
-        'font',
+        'style',
         [
           'bold',
+          'clear',
           'italic',
           'underline',
-          'strikethrough',
-          'superscript',
           'subscript',
-          'clear',
+          'superscript',
+          'strikethrough',
         ],
       ],
-      ['fontsize', ['fontsize', 'color']],
-      ['para', ['ul', 'ol', 'paragraph']],
+      ['fontface', ['fontname']],
+      ['textsize', ['fontsize', 'color']],
+      ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+      ['table', ['table']],
+      ['insert', ['link']],
+      ['view', ['fullscreen', 'codeview']],
     ],
     fontNames: [
       'Helvetica',

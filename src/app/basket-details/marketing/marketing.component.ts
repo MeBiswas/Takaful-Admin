@@ -26,7 +26,8 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class MarketingComponent implements OnInit, OnChanges {
   @Input() currentData: string;
-  @Output() userEmail = new EventEmitter<string>();
+  @Output() userData = new EventEmitter<any>();
+
   datePipeString: string;
   basketDetailURL = '/admin/marketing/details/';
   updateDetailURL = '/admin/marketing/update';
@@ -156,9 +157,10 @@ export class MarketingComponent implements OnInit, OnChanges {
     this.basketDetailForm.patchValue({ ...d });
   }
 
-  // Output Method
-  addNewItem(value: string) {
-    this.userEmail.emit(value);
+  // Emitting Event
+  sendUserData(e, p) {
+    let data = { email: e, phoneNo: p };
+    this.userData.emit(data);
   }
 
   // Form Reset Handler

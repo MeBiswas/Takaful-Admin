@@ -41,7 +41,7 @@ export class TelemarketingComponent implements OnInit, AfterViewInit {
   basket: any = [];
   filter = 'monthly';
   detailComponentData = '';
-  emailData: any = { email: '' };
+  data: any = { email: '', phoneNo: null };
   dataSource = new MatTableDataSource();
   telemarketingURL = '/admin/marketing/list/';
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -80,8 +80,8 @@ export class TelemarketingComponent implements OnInit, AfterViewInit {
   }
 
   // Getting Data from Child
-  addItem(d: string) {
-    this.emailData.email = d;
+  addData(d) {
+    this.data = d;
   }
 
   // Filter Event

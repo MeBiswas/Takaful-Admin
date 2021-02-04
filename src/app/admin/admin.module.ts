@@ -36,7 +36,6 @@ import { UrgentTaxComponent } from '../basket-details/urgent-tax/urgent-tax.comp
 import { WindscreenComponent } from '../basket-details/windscreen/windscreen.component';
 import { UrgentRiskComponent } from '../basket-details/urgent-risk/urgent-risk.component';
 import { AssistMarketComponent } from '../basket-details/assist-market/assist-market.component';
-import { PaymentFailedComponent } from '../basket-details/payment-failed/payment-failed.component';
 import { NotificationTemplateComponent } from '../basket-details/notification-template/notification-template.component';
 import { NotificationScheduleComponent } from '../basket-details/notification-schedule/notification-schedule.component';
 
@@ -64,7 +63,6 @@ import { NotificationScheduleComponent } from '../basket-details/notification-sc
     AddScheduleComponent,
     AssistMarketComponent,
     BasketWidgetComponent,
-    PaymentFailedComponent,
     NotificationTemplateComponent,
     NotificationScheduleComponent,
   ],

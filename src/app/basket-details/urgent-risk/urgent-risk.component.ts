@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+// Route
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -56,6 +58,7 @@ export class UrgentRiskComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _fb: FormBuilder,
     private _datePipe: DatePipe,
     private _admin: AdminService,
@@ -90,8 +93,18 @@ export class UrgentRiskComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
-        this.assignData(res.list[0]);
-        this.actionSelector = res.list[0].action;
+        if (res.status.code === 200) {
+          if (res.list === null) {
+            this.errorHandler(res.list, res.status.message);
+          } else {
+            this.assignData(res.list[0]);
+            this.actionSelector = res.list[0].action;
+          }
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+        } else {
+          this._toast.warning(res.status.message);
+        }
         res ? this._spin.hide() : null;
       },
       (err) => {
@@ -142,5 +155,18 @@ export class UrgentRiskComponent implements OnInit {
   // Reload Handler
   reloadHandler() {
     window.location.reload();
+  }
+
+  // Handling Unexpected Errors
+  private errorHandler(e, m) {
+    switch (e) {
+      case null:
+        this._toast.error(m);
+        break;
+
+      default:
+        this._toast.error('Oops! Something went wrong.');
+        break;
+    }
   }
 }

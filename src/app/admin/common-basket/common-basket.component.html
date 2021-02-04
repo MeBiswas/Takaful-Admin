@@ -157,6 +157,12 @@
                         </app-windscreen>
                       </div>
 
+                      <div *ngSwitchCase="'Payment Failed'" [item]="routeData">
+                        <app-urgent-ncd [currentData]="detailComponentData"
+                          *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
+                        </app-urgent-ncd>
+                      </div>
+
                       <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
                     </ng-container>
                   </div>

@@ -175,7 +175,8 @@
         <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
           <label class="form-check-label">
             <input class="form-check-input d-none" type="radio" name="action" value="Email" formControlName="action"
-              data-toggle="modal" data-target="#new_email_Modal" (click)="addNewItem(basketDetailForm.value.email)">
+              data-toggle="modal" data-target="#new_email_Modal"
+              (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
             <img class="pr-2" src="assets/img/icons/email.png" />Muz90@gmail.com
           </label>
         </div>
@@ -187,7 +188,9 @@
         </div>
         <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
           <label class="form-check-label">
-            <input class="form-check-input d-none" type="radio" name="action" value="SMS" formControlName="action">
+            <input class="form-check-input d-none" type="radio" name="action" value="SMS" formControlName="action"
+              data-toggle="modal" data-target="#sms_chat_model"
+              (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
             <img class="pr-2" src="assets/img/icons/sms.png" />SMS
           </label>
         </div>

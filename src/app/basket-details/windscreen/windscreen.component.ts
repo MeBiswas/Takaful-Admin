@@ -89,7 +89,6 @@ export class WindscreenComponent implements OnInit {
         this.email = res.list[0].email;
         this.phoneNo = res.list[0].phoneNo;
         res ? this._spin.hide() : null;
-        console.log('ehte aa', this.email);
       },
       (err) => {
         err ? this._spin.hide() : null;

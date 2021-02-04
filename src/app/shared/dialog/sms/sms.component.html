@@ -2,40 +2,18 @@
   <div class="modal left fade" id="sms_chat_model" tabindex="" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <form class="h-100">
+      <form class="h-100" [formGroup]="smsForm" (ngSubmit)="onSubmit(smsForm.valid)">
         <div class="modal-content">
           <div class="modal-header pb-3 pt-2">
-            <h4 class="font-21 modal-title">SMS Task Schedule</h4>
+            <h4 class="font-21 modal-title">Send SMS</h4>
           </div>
           <div class="modal-body">
-
             <div class="form-group row mt-3">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Phone No :</label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control" placeholder="01126114152">
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-info pb-1 pt-2 shadow-none" data-toggle="modal"
-                  data-target="#email_task_schedule_Modal">
-                  <img alt="image" src="assets/img/icons/add.png">
-                </button>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"> </label>
               <div class="col-sm-9">
-                <textarea class="form-control"></textarea>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-sm-3 col-form-label"></label>
-              <div class="col-sm-9">
-                <div class="form-check-inline">
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" value="">Click here for send all customer email or
-                    can add manually.
-                  </label>
+                <input type="text" class="form-control" formControlName="phoneNo">
+                <div *ngIf="phn.invalid && (phn.dirty || phn.touched)">
+                  <div *ngIf="phn.errors.required" class="error">Phone Number is required</div>
                 </div>
               </div>
             </div>
@@ -43,21 +21,24 @@
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Date : </label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="28/08/2020">
+                <input type="text" class="form-control" value="{{today | date: 'dd MMM yyyy'}}" readonly>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-3 col-form-label">Messages :</label>
               <div class="col-sm-9">
-                <textarea class="form-control"
-                  placeholder="Hai.selamat datang ke All Takaful..jika anda berminat layari www.alltakaful.com. Terima Kasih."></textarea>
+                <textarea class="form-control" formControlName="message"></textarea>
+                <div *ngIf="msg.invalid && (msg.dirty || msg.touched)">
+                  <div *ngIf="msg.errors.required" class="error">Message is required</div>
+                  <div *ngIf="msg.errors.pattern" class="error">Message must not contain any special characters</div>
+                </div>
               </div>
             </div>
           </div>
           <div class="justify-content-center modal-footer">
             <button type="button" class="bg-transparent border-0 btn btn-secondary shadow-none text-dark"
-              data-dismiss="modal">Cancel</button>
+              data-dismiss="modal" (click)="closeModal()" #closeBtn>Cancel</button>
             <button type="submit" class="btn btn-info shadow-none w-25">Submit</button>
           </div>
         </div>

@@ -54,7 +54,6 @@ export class NotificationScheduleComponent implements OnInit {
   // LifeCycle Method
   ngOnChanges() {
     this.basketDetailForm.patchValue({ ...this.currentData });
-    console.log('ethe aa', this.currentData);
   }
 
   // Form Field Getter
