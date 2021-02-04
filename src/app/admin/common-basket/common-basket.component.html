@@ -91,10 +91,9 @@
             </ng-container>
 
             <ng-container matColumnDef="status">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Status </th>
-              <td mat-cell *matCellDef="let element">
-                <button
-                  class="bg-amber btn rounded-pill width-per-100 text-dark font-weight-600">{{element.status}}</button>
+              <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef> Status </th>
+              <td class="text-center" mat-cell *matCellDef="let element">
+                <button class="bg-amber btn pl-4 pr-4 rounded-pill text-dark">{{element.status}}</button>
               </td>
             </ng-container>
 

@@ -93,3 +93,7 @@ tr.mat-header-row {
     width: 1000px;
   }
 }
+
+button:focus {
+  outline: none;
+}

@@ -23,18 +23,21 @@
   right: 0;
 }
 .add_template_model .modal-content {
-  border-radius: 0;
   border: none;
+  border-top-left-radius: calc(0.3rem - -5px);
+  border-top-right-radius: calc(0.3rem - -5px);
 }
 .add_template_model .modal-header {
   border-bottom-color: #748296;
-  background-color: #748296;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
+  background-color: #1baa9e !important;
+  border-top-left-radius: calc(0.3rem - -5px);
+  border-top-right-radius: calc(0.3rem - -5px);
 }
 .add_template_model .modal-footer {
   border-bottom-color: #fff;
-  background-color: #fff;
+  background-color: #f6f6f6 !important;
+  border-bottom-left-radius: calc(0.3rem - -5px);
+  border-bottom-right-radius: calc(0.3rem - -5px);
 }
 .add_template_model .modal-content textarea.form-control {
   min-height: 120px !important;
