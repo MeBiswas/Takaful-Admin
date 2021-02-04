@@ -1,1 +1,69 @@
-<p>notification-schedule works!</p>
+<h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4 pt-2 pb-2">Edit Schedule</h2>
+<form [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
+  <div class="pl-4 row">
+    <div class="col-md-6 border-right pl-4 pr-5">
+      <div class="form-group row mt-3">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Schedule Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" formControlName="schedule">
+          <input type="hidden" class="form-control" formControlName="scheduleId">
+          <div *ngIf="schedule.invalid && (schedule.dirty || schedule.touched)">
+            <div *ngIf="schedule.errors.required" class="error">Schedule Name is required</div>
+            <div *ngIf="schedule.errors.pattern" class="error">Invalid Schedule Name</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Type</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="type">
+            <option [disabled]="true" value="" selected>Select Type</option>
+            <option *ngFor="let type of templateTypeList" value="{{type.value}}">{{type.option}}</option>
+          </select>
+          <div *ngIf="type.invalid && (type.dirty || type.touched)">
+            <div *ngIf="type.errors.required" class="error">Type is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Start Date</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" formControlName="startDate">
+          <div *ngIf="start.invalid && (start.dirty || start.touched)">
+            <div *ngIf="start.errors.required" class="error">Start Date is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">End Date</label>
+        <div class="col-sm-9">
+          <input type="date" class="form-control" formControlName="endDate">
+          <div *ngIf="end.invalid && (end.dirty || end.touched)">
+            <div *ngIf="end.errors.required" class="error">End Date is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 col-form-label">Template</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="templateId">
+            <option [disabled]="true" value="null" selected>Select Template</option>
+            <option *ngFor="let type of templateList" value="{{type.value}}">{{type.option}}</option>
+          </select>
+          <div *ngIf="template.invalid && (template.dirty || template.touched)">
+            <div *ngIf="template.errors.required" class="error">Template is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
+          <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
+          <button type="submit" class="bg-green btn text-white w-25">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

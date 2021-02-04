@@ -47,6 +47,7 @@
       <ng-template #elseBlock>
         <form>
           <div class="responsive-table-custom">
+            <!-- Template Table -->
             <ng-template [ngIf]="routeData.page === 'Template'" [ngIfElse]="elsePart">
               <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
                 <ng-container matColumnDef="template">
@@ -84,21 +85,9 @@
                     <div class="example-element-detail"
                       [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                       <div class="example-element-description">
-                        <ng-container [ngSwitch]="routeData.page">
-                          <div *ngSwitchCase="'Template'" [item]="routeData">
-                            <app-notification-template [currentData]="detailComponentData"
-                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                            </app-notification-template>
-                          </div>
-
-                          <div *ngSwitchCase="'Schedule'" [item]="routeData">
-                            <app-notification-schedule [currentData]="detailComponentData"
-                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                            </app-notification-schedule>
-                          </div>
-
-                          <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
-                        </ng-container>
+                        <app-notification-template [currentData]="detailComponentData"
+                          *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                        </app-notification-template>
                       </div>
                     </div>
                   </td>
@@ -111,6 +100,7 @@
                 <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
               </table>
             </ng-template>
+            <!-- Schedule Table -->
             <ng-template #elsePart>
               <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
                 <ng-container matColumnDef="schedule">
@@ -148,21 +138,9 @@
                     <div class="example-element-detail"
                       [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                       <div class="example-element-description">
-                        <ng-container [ngSwitch]="routeData.page">
-                          <div *ngSwitchCase="'Template'" [item]="routeData">
-                            <app-notification-template [currentData]="detailComponentData"
-                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                            </app-notification-template>
-                          </div>
-
-                          <div *ngSwitchCase="'Schedule'" [item]="routeData">
-                            <app-notification-schedule [currentData]="detailComponentData"
-                              *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
-                            </app-notification-schedule>
-                          </div>
-
-                          <h1 *ngSwitchDefault [item]="currentItem">Default Detail Component</h1>
-                        </ng-container>
+                        <app-notification-schedule [currentData]="detailComponentData"
+                          *ngIf="detailComponentData !== '' && detailComponentData === element.action ">
+                        </app-notification-schedule>
                       </div>
                     </div>
                   </td>
