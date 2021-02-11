@@ -143,4 +143,9 @@ export class UrgentNcdComponent implements OnInit {
   reloadHandler() {
     window.location.reload();
   }
+
+  // Redirect to Link
+  goToLink(url: string) {
+    window.open(url, '_blank');
+  }
 }

@@ -59,6 +59,7 @@ export class AssistNcdComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onDataChange(this.currentData);
   }
@@ -95,5 +96,15 @@ export class AssistNcdComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Reload Handler
+  reloadHandler() {
+    window.location.reload();
+  }
+
+  // Redirect to Link
+  goToLink(url: string) {
+    window.open(url, '_blank');
   }
 }

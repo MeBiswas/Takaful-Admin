@@ -87,4 +87,14 @@ export class AssistMarketComponent implements OnInit {
     };
     this.basketDetailForm.patchValue({ ...d });
   }
+
+  // Reload Handler
+  reloadHandler() {
+    window.location.reload();
+  }
+
+  // Redirect to Link
+  goToLink(url: string) {
+    window.open(url, '_blank');
+  }
 }

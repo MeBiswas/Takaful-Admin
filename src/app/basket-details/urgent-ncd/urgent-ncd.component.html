@@ -101,13 +101,15 @@
       <div class="form-group row  pl-4 pr-5">
         <label class="col-sm-5 col-form-label font-weight-bold">1. Check & Update (NCD)</label>
         <div class="col-sm-5">
-          <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
+          <a (click)="goToLink('https://www.mycarinfo.com.my/ncdcheck/online')"
+            class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
         </div>
       </div>
       <div class="form-group row  pl-4 pr-5">
         <label class="col-sm-5 col-form-label font-weight-bold">2. Requote</label>
         <div class="col-sm-5">
-          <button class="bg-light-blue border-0 btn btn-lg text-white">Click Here</button>
+          <a (click)="goToLink('https://www.oto.my/tool/road-tax-calculator/')"
+            class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
         </div>
       </div>
       <div class="form-group row  pl-4 pr-5">
@@ -146,8 +148,8 @@
       </div>
       <div class="row">
         <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-          <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
           <button type="submit" class="bg-green btn text-white w-25">Update</button>
+          <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
         </div>
       </div>
     </div>

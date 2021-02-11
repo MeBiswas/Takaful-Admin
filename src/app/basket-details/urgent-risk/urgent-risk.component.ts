@@ -93,7 +93,7 @@ export class UrgentRiskComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
-        if (res.status.code === 200) {
+        if (res.status.code === 0) {
           if (res.list === null) {
             this.errorHandler(res.list, res.status.message);
           } else {
