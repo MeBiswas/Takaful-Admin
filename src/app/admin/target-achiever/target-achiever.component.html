@@ -41,57 +41,58 @@
         </div>
       </ng-template>
       <ng-template #elseBlock>
-        <form>
+        <form #testForm="ngForm">
           <div class="responsive-table-custom">
             <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
               <ng-container matColumnDef="userId">
-                <th scope="col" mat-header-cell *matHeaderCellDef>User ID</th>
+                <th mat-header-cell *matHeaderCellDef>User ID</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.userId}}</td>
               </ng-container>
 
               <ng-container matColumnDef="role">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Role</th>
+                <th mat-header-cell *matHeaderCellDef>Role</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.role}}</td>
               </ng-container>
 
               <ng-container matColumnDef="department">
-                <th scope="col" mat-header-cell *matHeaderCellDef>Department</th>
+                <th mat-header-cell *matHeaderCellDef>Department</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">{{element.department}}</td>
               </ng-container>
 
               <ng-container matColumnDef="target">
-                <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Target</th>
+                <th class="text-center" mat-header-cell *matHeaderCellDef>Target</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
                   <div class="d-flex justify-content-center cstm-form">
                     <div class="input-group w-50">
-                      <input type="text" class="form-control text-center" name="achiever" [(ngModel)]="element.target">
+                      <input type="text" class="form-control text-center" #target="ngModel" name="target{{element.id}}"
+                        [(ngModel)]="element.target">
                     </div>
                   </div>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="achiever">
-                <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Achiever</th>
+                <th class="text-center" mat-header-cell *matHeaderCellDef>Achiever</th>
                 <td mat-cell *matCellDef="let element" class="font-14 font-weight-600">
                   <div class="d-flex justify-content-center cstm-form">
                     <div class="input-group w-50">
-                      <input type="text" class="form-control text-center" name="achiever"
-                        [(ngModel)]="element.achiever">
+                      <input type="text" class="form-control text-center" #achiever="ngModel"
+                        name="achiever{{element.id}}" [(ngModel)]="element.achiever">
                     </div>
                   </div>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="action">
-                <th class="text-center" scope="col" mat-header-cell *matHeaderCellDef>Action</th>
+                <th class="text-center" mat-header-cell *matHeaderCellDef>Action</th>
                 <td class="text-center" mat-cell *matCellDef="let element">
                   <button class="bg-green btn font-weight-600 pl-4 pr-4 rounded-pill text-white"
-                    (click)="updateHandler(element.action, element.target, element.achiever)">Update</button>
+                    (click)="edited(element)">Update</button>
                 </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></tr>
             </table>
           </div>
         </form>

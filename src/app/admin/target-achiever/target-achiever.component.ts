@@ -14,12 +14,17 @@ import { MatTableDataSource } from '@angular/material/table';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
+import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-target-achiever',
   templateUrl: './target-achiever.component.html',
   styleUrls: ['./target-achiever.component.css'],
 })
 export class TargetAchieverComponent implements OnInit {
+  @ViewChild('testForm') testForm: NgForm;
+  editedData: any = [];
+
   search = '';
   listData: any = [];
   filter = 'January';
@@ -97,8 +102,11 @@ export class TargetAchieverComponent implements OnInit {
   // Adding Table Action Column Data
   addActionData(d) {
     let newArr = [...d];
-    this.listData = newArr.map((item) => (item = { ...item, action: item }));
+    this.listData = newArr.map(
+      (item, index) => (item = { ...item, action: item, id: index })
+    );
     this.dataSource.data = [...this.listData];
+    console.log('Datasource', this.dataSource.data);
   }
 
   // Pagination Event
@@ -117,23 +125,32 @@ export class TargetAchieverComponent implements OnInit {
   }
 
   // Update Button Handler
-  updateHandler(d, t, a) {
-    d = { ...d, target: t, achiever: a };
+  updateHandler(id, t, a) {
+    this._spin.show();
     this._admin
       .postApiWithAuth(this.updateAchievementURL, {
-        userId: d.userId,
-        target: parseFloat(d.target),
-        achiever: parseFloat(d.achiever),
+        userId: id,
+        target: parseFloat(t),
+        achiever: parseFloat(a),
       })
       .subscribe(
         (res) => {
+          res ? this._spin.hide() : null;
           if (res.status.code === 0) {
             this._toast.success('Successfully Updated');
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
           }
         },
         (err) => {
+          err ? this._spin.hide() : null;
           this._toast.error('Oops! Something went wrong.');
         }
       );
+  }
+
+  edited(user) {
+    this.updateHandler(user.userId, user.target, user.achiever);
   }
 }
