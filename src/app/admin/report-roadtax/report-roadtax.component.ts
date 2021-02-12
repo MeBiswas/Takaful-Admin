@@ -173,7 +173,7 @@ export class ReportRoadtaxComponent implements OnInit {
 
   // Submit Service Handler
   private submitReport() {
-    console.log('ethe aa', this.reportDetailForm.value.status);
+    // console.log('ethe aa', this.reportDetailForm.value.status);
   }
 
   // Form Reset Handler

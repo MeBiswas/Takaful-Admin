@@ -1,3 +1,13 @@
+<!-- Email Modal Starts -->
+<app-email [data]="data"></app-email>
+<!-- Email Modal Ends -->
+<!-- SMS Modal Starts -->
+<app-sms [data]="data"></app-sms>
+<!-- SMS Modal Ends -->
+<!-- Call Modal Starts -->
+<app-call [data]="data"></app-call>
+<!-- Call Modal Ends -->
+
 <div class="second_top_bar bg-white p-10">
   <div class="container">
     <div class="row">
@@ -134,7 +144,7 @@
                       </div>
 
                       <div *ngSwitchCase="'Roadtax'" [item]="routeData">
-                        <app-urgent-tax [currentData]="detailComponentData"
+                        <app-urgent-tax (userData)="addData($event)" [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
                         </app-urgent-tax>
                       </div>

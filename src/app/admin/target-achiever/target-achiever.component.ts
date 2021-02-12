@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+// Form
+import { NgForm } from '@angular/forms';
 // Router
 import { Router } from '@angular/router';
 // Toaster
@@ -14,20 +16,21 @@ import { MatTableDataSource } from '@angular/material/table';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
-import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-target-achiever',
   templateUrl: './target-achiever.component.html',
   styleUrls: ['./target-achiever.component.css'],
 })
 export class TargetAchieverComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild('testForm') testForm: NgForm;
-  editedData: any = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   search = '';
+  d = new Date();
   listData: any = [];
   filter = 'January';
+  editedData: any = [];
   dataSource = new MatTableDataSource();
   achievementListURL = '/admin/achievementlist';
   updateAchievementURL = '/admin/updateachievement';
@@ -56,8 +59,6 @@ export class TargetAchieverComponent implements OnInit {
     'action',
   ];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   constructor(
     private _router: Router,
     private _admin: AdminService,
@@ -73,6 +74,7 @@ export class TargetAchieverComponent implements OnInit {
   // LifeCycle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   // Achiever List Service
@@ -106,7 +108,6 @@ export class TargetAchieverComponent implements OnInit {
       (item, index) => (item = { ...item, action: item, id: index })
     );
     this.dataSource.data = [...this.listData];
-    console.log('Datasource', this.dataSource.data);
   }
 
   // Pagination Event
@@ -122,6 +123,11 @@ export class TargetAchieverComponent implements OnInit {
   // Filter Event
   onFilterChanged(e) {
     this.achieverList(e);
+  }
+
+  // Handling Input Data
+  edited(user) {
+    this.updateHandler(user.userId, user.target, user.achiever);
   }
 
   // Update Button Handler
@@ -148,9 +154,5 @@ export class TargetAchieverComponent implements OnInit {
           this._toast.error('Oops! Something went wrong.');
         }
       );
-  }
-
-  edited(user) {
-    this.updateHandler(user.userId, user.target, user.achiever);
   }
 }

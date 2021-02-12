@@ -106,15 +106,21 @@
     <div class="form-group row  pl-4 pr-5">
       <label class="col-sm-4 col-form-label font-weight-bold">2. To Customer </label>
       <div class="col-sm-8">
-        <button class="bg-light border-0 btn mr-1 form-group rounded-pill text-dark text-white" *ngIf="phoneNo">
+        <a class="bg-light border-0 btn mr-1 form-group rounded-pill text-dark text-white" *ngIf="phoneNo"
+          data-toggle="modal" data-target="#callModal"
+          (click)="sendUserData(basketDetailForm.value.customerName, basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
           <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{phoneNo}}
-        </button>
-        <button class="bg-light border-0 btn mr-1 form-group rounded-pill text-dark text-white" *ngIf="email">
+        </a>
+        <a class="bg-light border-0 btn mr-1 form-group rounded-pill text-dark text-white" data-toggle="modal"
+          data-target="#new_email_Modal" *ngIf="email"
+          (click)="sendUserData(basketDetailForm.value.customerName, basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
           <img class="pr-2" src="assets/img/icons/email.png" />{{email}}
-        </button>
-        <button class="bg-light border-0 btn form-group rounded-pill text-dark text-white" *ngIf="phoneNo">
+        </a>
+        <a class="bg-light border-0 btn form-group rounded-pill text-dark text-white" data-toggle="modal"
+          data-target="#sms_chat_model" *ngIf="phoneNo"
+          (click)="sendUserData(basketDetailForm.value.customerName, basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
           <img class="pr-2" src="assets/img/icons/sms.png" />SMS
-        </button>
+        </a>
       </div>
     </div>
     <div class="form-group row  pl-4 pr-5">

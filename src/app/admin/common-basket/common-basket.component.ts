@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
 // Toaster
@@ -46,6 +46,7 @@ export class CommonBasketComponent implements OnInit {
   basketURL: string = '';
   detailComponentData = '';
   dataSource = new MatTableDataSource();
+  data: any = { name: '', email: '', phoneNo: null };
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   filters: Filter[] = [
@@ -80,6 +81,11 @@ export class CommonBasketComponent implements OnInit {
   // LifeCyle Method
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  // Getting Data from Child
+  addData(d) {
+    this.data = d;
   }
 
   // Getting Page Data from Route

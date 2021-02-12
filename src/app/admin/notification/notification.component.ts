@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild, AfterViewInit } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
 // Toaster
@@ -38,16 +38,17 @@ import {
     ]),
   ],
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
   routeData;
   search = '';
   modalID: string;
   listData: any = [];
   filter = 'Monthly';
-  notificationURL: string;
   detailComponentData = '';
   deleteTableDataURL: string;
+  notificationURL: string = '';
   dataSource = new MatTableDataSource();
   userID = JSON.parse(sessionStorage.getItem('auth')).userId;
 
@@ -69,7 +70,6 @@ export class NotificationComponent implements OnInit {
   // LifeCycle Method
   ngOnInit(): void {
     this.getRouteData();
-    this.notificationRequest();
   }
 
   // LifeCycle Method
@@ -82,20 +82,30 @@ export class NotificationComponent implements OnInit {
     this.activatedroute.data.subscribe((data) => {
       this.routeData = { ...data };
     });
-    this.routeData.page === 'Template'
-      ? ((this.modalID = '#add_template_model'),
-        (this.notificationURL = '/admin/templatelist'),
-        (this.deleteTableDataURL = '/admin/deletetemplate'),
-        (this.displayedColumns = ['template', 'message', 'type', 'templateId']))
-      : ((this.modalID = '#add_schedule_model'),
-        (this.notificationURL = '/admin/schedulelist'),
-        (this.deleteTableDataURL = '/admin/deleteschedule'),
-        (this.displayedColumns = [
+    switch (this.routeData.page) {
+      case 'Template':
+        this.modalID = '#add_template_model';
+        this.notificationURL = '/admin/templatelist';
+        this.deleteTableDataURL = '/admin/deletetemplate';
+        this.displayedColumns = ['template', 'message', 'type', 'templateId'];
+        break;
+
+      case 'Schedule':
+        this.modalID = '#add_schedule_model';
+        this.notificationURL = '/admin/schedulelist';
+        this.deleteTableDataURL = '/admin/deleteschedule';
+        this.displayedColumns = [
           'schedule',
           'templateUsed',
           'type',
           'scheduleId',
-        ]));
+        ];
+        break;
+
+      default:
+        break;
+    }
+    this.notificationRequest();
   }
 
   // Achiever List Service

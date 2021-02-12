@@ -20,10 +20,10 @@ import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // NGRX
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './store';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({

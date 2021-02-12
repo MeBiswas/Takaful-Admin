@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
+// Pipe
+import { DatePipe } from '@angular/common';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Interface
@@ -21,8 +23,10 @@ const pattern = /^[a-zA-Z0-9 ]*$/;
 })
 export class AddScheduleComponent implements OnInit {
   @ViewChild('closeBtn') closeBtn;
+
   getTemplateListURL: string = '/admin/templatelist';
   createScheduleURL: string = '/admin/createschedule';
+  today = this._date.transform(new Date(), 'yyyy-MM-dd');
 
   templateList: Filter[] = [];
   templateTypeList: Filter[] = [
@@ -32,14 +36,15 @@ export class AddScheduleComponent implements OnInit {
 
   addScheduleForm = this._fb.group({
     type: ['', Validators.required],
-    endDate: ['', Validators.required],
-    startDate: ['', Validators.required],
     templateId: [null, Validators.required],
+    endDate: [this.today, Validators.required],
+    startDate: [this.today, Validators.required],
     scheduleName: ['', [Validators.required, Validators.pattern(pattern)]],
   });
 
   constructor(
     private _router: Router,
+    private _date: DatePipe,
     private _fb: FormBuilder,
     private _admin: AdminService,
     private _toast: ToastrService,

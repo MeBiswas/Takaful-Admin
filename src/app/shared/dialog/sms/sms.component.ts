@@ -18,8 +18,9 @@ const msgPattern = /^[a-zA-Z0-9_ ]*$/;
 export class SmsComponent implements OnInit, OnChanges {
   @Input() data;
   @ViewChild('closeBtn') closeBtn;
-  smsURL: string = '/message/sms';
+
   today: number = Date.now();
+  smsURL: string = '/message/sms';
 
   smsForm = this._fb.group({
     phoneNo: ['', Validators.required],
@@ -55,6 +56,7 @@ export class SmsComponent implements OnInit, OnChanges {
       : this.sendSMS(this.smsForm.value);
   }
 
+  // Service Handler
   private sendSMS(v) {
     this._spin.show();
     this._admin.postApiWithAuth(this.smsURL, v).subscribe(

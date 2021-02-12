@@ -294,7 +294,7 @@ div.dataTables_wrapper div.dataTables_info {
 }
 
 .select-certificate-modal .modal-content {
-  background: url(../img/box_a14.png) no-repeat center;
+  /* background: url(../img/box_a14.png) no-repeat center; */
   background-size: cover;
 }
 

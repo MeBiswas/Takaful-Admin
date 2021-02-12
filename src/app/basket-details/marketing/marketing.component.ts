@@ -29,8 +29,8 @@ export class MarketingComponent implements OnInit, OnChanges {
   @Output() userData = new EventEmitter<any>();
 
   datePipeString: string;
-  basketDetailURL = '/admin/marketing/details/';
   updateDetailURL = '/admin/marketing/update';
+  basketDetailURL = '/admin/marketing/details/';
 
   paymentMethodList: Filter[] = [
     { option: 'Online Banking', value: 'Online Banking' },

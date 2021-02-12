@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+  Component,
+  EventEmitter,
+} from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -19,8 +26,10 @@ const numeric = /^[0-9]*$/;
   templateUrl: './urgent-tax.component.html',
   styleUrls: ['./urgent-tax.component.css'],
 })
-export class UrgentTaxComponent implements OnInit {
+export class UrgentTaxComponent implements OnInit, OnChanges {
   @Input() currentData: string;
+  @Output() userData = new EventEmitter<any>();
+
   email = null;
   phoneNo = null;
   datePipeString: string;
@@ -117,6 +126,12 @@ export class UrgentTaxComponent implements OnInit {
     this.basketDetailForm.patchValue({ ...d });
   }
 
+  // Emitting Event
+  sendUserData(n, e, p) {
+    let data = { name: n, email: e, phoneNo: p };
+    this.userData.emit(data);
+  }
+
   // On Action Selector Change
   onActionSelectorChanged(e) {
     this.actionSelector = e;
@@ -140,7 +155,7 @@ export class UrgentTaxComponent implements OnInit {
 
   // Update Form Handler
   updateHandler() {
-    console.log('Update Handler Method');
+    // console.log('Update Handler Method');
   }
 
   // Reload Handler

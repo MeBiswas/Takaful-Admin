@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 // Router
 import { Router } from '@angular/router';
+// Pipe
+import { DatePipe } from '@angular/common';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Interface
@@ -41,6 +43,7 @@ export class NotificationScheduleComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _date: DatePipe,
     private _fb: FormBuilder,
     private _admin: AdminService,
     private _toast: ToastrService,
@@ -53,7 +56,7 @@ export class NotificationScheduleComponent implements OnInit {
 
   // LifeCycle Method
   ngOnChanges() {
-    this.basketDetailForm.patchValue({ ...this.currentData });
+    this.assignFormData({ ...this.currentData });
   }
 
   // Form Field Getter
@@ -71,6 +74,16 @@ export class NotificationScheduleComponent implements OnInit {
   }
   get template() {
     return this.basketDetailForm.get('templateId');
+  }
+
+  // Form Field Setter
+  private assignFormData(d) {
+    d = {
+      ...d,
+      endDate: this._date.transform(new Date(d.endDate), 'yyyy-MM-dd'),
+      startDate: this._date.transform(new Date(d.startDate), 'yyyy-MM-dd'),
+    };
+    this.basketDetailForm.patchValue({ ...d });
   }
 
   // Setting Template List
@@ -112,28 +125,31 @@ export class NotificationScheduleComponent implements OnInit {
   // Update Service Handler
   private updateSchedule(d) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.updateScheduleURL, d).subscribe(
-      (res) => {
-        console.log('Response', res);
-        // if (res.status.code === 0) {
-        //   this._toast.success(res.status.message);
-        //   setTimeout(function () {
-        //     window.location.reload();
-        //   }, 1000);
-        // } else if (res.status.code === 401) {
-        //   this._router.navigate(['/auth/login']);
-        //   this._toast.warning(res.status.message);
-        // } else {
-        //   this._toast.error('Oops! Something went wrong.');
-        // }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        console.log('Error', err);
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin
+      .postApiWithAuth(this.updateScheduleURL, {
+        ...d,
+        scheduleName: d.schedule,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 
   // Reload Handler
