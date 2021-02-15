@@ -114,8 +114,11 @@
       <div class="form-group row  pl-4 pr-5">
         <label class="col-sm-5 col-form-label font-weight-bold">3. Send Link to Customer</label>
         <div class="col-sm-6">
-          <button class="bg-light border-0 btn btn-lg form-group rounded-pill text-dark text-white"><img class="pr-2"
-              src="assets/img/icons/whatsapp.png" />SEND WHATSAPP</button>
+          <button class="bg-light border-0 btn btn-lg form-group rounded-pill text-dark text-white"
+            (click)="whatsAppCall(basketDetailForm.value.vehiclePlateNo)">
+            <img class="pr-2" src="assets/img/icons/whatsapp.png" />
+            SEND WHATSAPP
+          </button>
         </div>
       </div>
       <div class="row">

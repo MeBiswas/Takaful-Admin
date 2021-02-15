@@ -127,7 +127,16 @@ export class TargetAchieverComponent implements OnInit {
 
   // Handling Input Data
   edited(user) {
-    this.updateHandler(user.userId, user.target, user.achiever);
+    const id = user.userId;
+    const target =
+      user.target.split(' ')[0] === 'RM'
+        ? user.target.split(' ')[1]
+        : user.target.split(' ')[0];
+    const achiever =
+      user.achiever.split(' ')[0] === 'RM'
+        ? user.achiever.split(' ')[1]
+        : user.achiever.split(' ')[0];
+    this.updateHandler(id, target, achiever);
   }
 
   // Update Button Handler

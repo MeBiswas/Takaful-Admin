@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -19,6 +21,7 @@ export class AssistMarketComponent implements OnInit {
   @Input() currentData: string;
   datePipeString: string;
 
+  whatsAppURL = '/message/wa';
   basketDetailURL = '/admin/dashboard/followup/details/';
 
   basketDetailForm = this._fb.group({
@@ -41,6 +44,7 @@ export class AssistMarketComponent implements OnInit {
   });
 
   constructor(
+    private _router: Router,
     private _fb: FormBuilder,
     private _datePipe: DatePipe,
     private _admin: AdminService,
@@ -86,6 +90,31 @@ export class AssistMarketComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Whatsapp Call Service
+  whatsAppCall(v) {
+    this._admin
+      .postApiWithAuth(this.whatsAppURL, {
+        plateNo: v,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 
   // Reload Handler
