@@ -6,6 +6,8 @@ import {
   Component,
   EventEmitter,
 } from '@angular/core';
+// Router
+import { Router } from '@angular/router';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -27,6 +29,7 @@ const numeric = /^[0-9]*$/;
   styleUrls: ['./urgent-tax.component.css'],
 })
 export class UrgentTaxComponent implements OnInit, OnChanges {
+  @Input() page: string;
   @Input() currentData: string;
   @Output() userData = new EventEmitter<any>();
 
@@ -34,13 +37,14 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
   phoneNo = null;
   datePipeString: string;
   actionSelector: string;
+  basketCancelURL = '/admin/closebasket';
+  basketDetailUpdateURL = '/admin/updatebasket';
+  basketDetailURL = '/admin/dashboard/followup/details/';
 
   actionList: Filter[] = [
     { value: 'Topup', option: 'Topup' },
     { value: 'Refund', option: 'Refund' },
   ];
-
-  basketDetailURL = '/admin/dashboard/followup/details/';
 
   basketDetailForm = this._fb.group({
     nric: [''],
@@ -62,11 +66,12 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
     effectiveDate: [''],
     vehiclePlateNo: [''],
     action: ['', Validators.required],
-    topupAmount: ['', [Validators.required, Validators.pattern(numeric)]],
-    refundAmount: ['', [Validators.required, Validators.pattern(numeric)]],
+    topupAmount: ['', Validators.pattern(numeric)],
+    refundAmount: ['', Validators.pattern(numeric)],
   });
 
   constructor(
+    private _router: Router,
     private _fb: FormBuilder,
     private _datePipe: DatePipe,
     private _admin: AdminService,
@@ -150,16 +155,84 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
   submitHandler(v) {
     !v
       ? this._toast.warning('Please fill all required fields')
-      : this.updateHandler();
+      : this.updateHandler(this.basketDetailForm.value);
   }
 
   // Update Form Handler
-  updateHandler() {
-    // console.log('Update Handler Method');
+  updateHandler(v) {
+    if (this.page !== 'Endorsement') {
+      const plateNo = v.vehiclePlateNo;
+      const action = v.action;
+      const amount = v.topupAmount
+        ? parseFloat(v.topupAmount)
+        : parseFloat(v.refundAmount);
+      const remarks = v.topupRemark ? v.topupRemark : v.refundRemark;
+      amount
+        ? this.updateService(plateNo, action, amount, remarks)
+        : this._toast.warning('Please fill all required fields');
+    }
   }
 
-  // Reload Handler
-  reloadHandler() {
-    window.location.reload();
+  // Update Service Call
+  updateService(p, a, amt, r) {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketDetailUpdateURL, {
+        plateNo: p,
+        action: a,
+        amount: amt,
+        remarks: r,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
+  }
+
+  // Cancel Handler Service
+  cancelService(v) {
+    if (this.page !== 'Endorsement') {
+      this._spin.show();
+      this._admin
+        .postApiWithAuth(this.basketCancelURL, {
+          plateNo: v,
+        })
+        .subscribe(
+          (res) => {
+            if (res.status.code === 0) {
+              this._toast.success(res.status.message);
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            } else if (res.status.code === 401) {
+              this._router.navigate(['/auth/login']);
+              this._toast.warning(res.status.message);
+            } else {
+              this._toast.error('Oops! Something went wrong.');
+            }
+            res ? this._spin.hide() : null;
+          },
+          (err) => {
+            err ? this._spin.hide() : null;
+            this._toast.error('Oops! Something went wrong.');
+          }
+        );
+    }
   }
 }

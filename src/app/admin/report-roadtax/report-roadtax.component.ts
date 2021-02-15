@@ -14,7 +14,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 // Pattern
-const pattern = /[A-Z]{3}\s[0-9]{4}/;
+const pattern = /^[a-zA-Z0-9 ]*$/;
 
 @Component({
   selector: 'app-report-roadtax',

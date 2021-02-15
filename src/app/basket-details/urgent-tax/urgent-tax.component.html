@@ -128,7 +128,7 @@
       <div class="col-sm-8">
         <select class="form-control w-75 form-group" formControlName="action"
           (ngModelChange)="onActionSelectorChanged($event)">
-          <option disabled selected value=''>Select</option>
+          <option disabled selected value=null>Select</option>
           <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
         </select>
 
@@ -138,7 +138,6 @@
               formControlName="refundAmount">
             <div *ngIf="refundAmount.invalid && (refundAmount.dirty || refundAmount.touched)">
               <div *ngIf="refundAmount.errors.pattern" class="error">Invalid Amount</div>
-              <div *ngIf="refundAmount.errors.required" class="error">Amount is required</div>
             </div>
             <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="refundRemark"></textarea>
           </div>
@@ -147,7 +146,6 @@
               formControlName="topupAmount">
             <div *ngIf="topupAmount.invalid && (topupAmount.dirty || topupAmount.touched)">
               <div *ngIf="topupAmount.errors.pattern" class="error">Invalid Amount</div>
-              <div *ngIf="topupAmount.errors.required" class="error">Amount is required</div>
             </div>
             <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="topupRemark"></textarea>
           </div>
@@ -157,7 +155,8 @@
     <div class="row">
       <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
         <button type="submit" class="bg-green btn text-white w-25">Update</button>
-        <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
+        <button type="button" (click)="cancelService(basketDetailForm.value.vehiclePlateNo)"
+          class="btn bg-transparent border-0 w-25">Cancel</button>
       </div>
     </div>
   </div>

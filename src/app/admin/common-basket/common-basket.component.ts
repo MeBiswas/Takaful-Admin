@@ -38,7 +38,7 @@ import {
     ]),
   ],
 })
-export class CommonBasketComponent implements OnInit {
+export class CommonBasketComponent implements OnInit, AfterViewInit {
   routeData;
   search = '';
   basket: any = [];
