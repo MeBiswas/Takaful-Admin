@@ -10,7 +10,7 @@ import { Filter } from '../../model/filter';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
 // Form
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 // Service
 import { AdminService } from '../../services/admin/admin.service';
 
@@ -20,10 +20,13 @@ import { AdminService } from '../../services/admin/admin.service';
   styleUrls: ['./assist-ncd.component.css'],
 })
 export class AssistNcdComponent implements OnInit {
+  @Input() page: string;
   @Input() currentData: string;
 
   datePipeString: string;
   whatsAppURL = '/message/wa';
+  basketCancelURL = '/admin/closebasket';
+  basketDetailUpdateURL = '/admin/updatebasket';
   basketDetailURL = '/admin/dashboard/followup/details/';
 
   ncdList: Filter[] = [
@@ -35,6 +38,7 @@ export class AssistNcdComponent implements OnInit {
   ];
 
   basketDetailForm = this._fb.group({
+    ncd: ['0'],
     nric: [''],
     email: [''],
     status: [''],
@@ -128,9 +132,81 @@ export class AssistNcdComponent implements OnInit {
       );
   }
 
-  // Reload Handler
-  reloadHandler() {
-    window.location.reload();
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler(this.basketDetailForm.value);
+  }
+
+  // Update Form Handler
+  updateHandler(v) {
+    if (this.page !== 'Endorsement') {
+      const plateNo = v.vehiclePlateNo;
+      const ncd = parseFloat(v.ncd);
+      this.updateService(plateNo, ncd);
+    }
+  }
+
+  // Update Service Call
+  updateService(p, n) {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketDetailUpdateURL, {
+        ncd: n,
+        plateNo: p,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
+  }
+
+  // Cancel Handler Service
+  cancelService(v) {
+    if (this.page !== 'Endorsement') {
+      this._spin.show();
+      this._admin
+        .postApiWithAuth(this.basketCancelURL, {
+          plateNo: v,
+        })
+        .subscribe(
+          (res) => {
+            if (res.status.code === 0) {
+              this._toast.success(res.status.message);
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            } else if (res.status.code === 401) {
+              this._router.navigate(['/auth/login']);
+              this._toast.warning(res.status.message);
+            } else {
+              this._toast.error('Oops! Something went wrong.');
+            }
+            res ? this._spin.hide() : null;
+          },
+          (err) => {
+            err ? this._spin.hide() : null;
+            this._toast.error('Oops! Something went wrong.');
+          }
+        );
+    }
   }
 
   // Redirect to Link

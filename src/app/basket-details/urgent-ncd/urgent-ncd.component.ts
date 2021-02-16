@@ -74,7 +74,6 @@ export class UrgentNcdComponent implements OnInit {
   // LifeCycle Method
   ngOnChanges() {
     this.onDataChange(this.currentData);
-    console.log('ethe aa', this.page);
   }
 
   // Form Field Getter

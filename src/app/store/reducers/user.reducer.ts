@@ -1,6 +1,4 @@
 import { Action } from '@ngrx/store';
-// User Interface
-import { IUser } from 'src/app/model/user';
 // User Actions
 import { UserActions, UserActionTypes } from '../actions/user.actions';
 
@@ -12,29 +10,17 @@ export interface State {
 }
 
 export const initialState: State = {
-  user: [],
+  user: null,
   error: '',
 };
 
 export function reducer(state = initialState, action: UserActions): State {
   switch (action.type) {
-    case UserActionTypes.LoadUsers:
+    case UserActionTypes.LoadUser:
       return {
         ...state,
-      };
-
-    case UserActionTypes.LoadUsersSuccess:
-      return {
-        ...state,
-        user: [...action.payload.data.userList],
+        user: action.payload,
         error: '',
-      };
-
-    case UserActionTypes.LoadUsersFailure:
-      return {
-        ...state,
-        user: [],
-        error: action.payload.error,
       };
 
     default:

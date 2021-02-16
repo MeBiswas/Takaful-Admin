@@ -8,7 +8,7 @@
             <h1 class="font-23 mb-1">Hello, Mr {{userData.userName}}!</h1>
             <span class="text-muted font-weight-bolder">Welcome back to insurance portal Admin</span>
             <form #filterForm="ngForm">
-              <select [(ngModel)]="filter" name="Filter" (ngModelChange)="onFilterChanged($event)"
+              <select [(ngModel)]="filter" name="Filter"
                 class="filter-select-dashboard font-weight-600 float-lg-right float-md-right form-control mt-lg-5 mt-md-5 mt-sm-2 width-per-35">
                 <option *ngFor="let item of filters" [value]="item.value">{{item.option}}</option>
               </select>

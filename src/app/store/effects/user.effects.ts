@@ -15,16 +15,16 @@ import { mergeMap, map, catchError } from 'rxjs/Operators';
 export class UserEffects {
   constructor(private actions$: Actions, private _users: AdminService) {}
 
-  @Effect()
-  loadUser$: Observable<Action> = this.actions$.pipe(
-    ofType(userActions.UserActionTypes.LoadUsers),
-    mergeMap((action) =>
-      this._users.getUsersList().pipe(
-        map((user) => new userActions.LoadUsersSuccess({ data: user })),
-        catchError((err) =>
-          of(new userActions.LoadUsersFailure({ error: err }))
-        )
-      )
-    )
-  );
+  // @Effect()
+  // loadUser$: Observable<Action> = this.actions$.pipe(
+  //   ofType(userActions.UserActionTypes.LoadUsers),
+  //   mergeMap((action) =>
+  //     this._users.getUsersList().pipe(
+  //       map((user) => new userActions.LoadUsersSuccess({ data: user })),
+  //       catchError((err) =>
+  //         of(new userActions.LoadUsersFailure({ error: err }))
+  //       )
+  //     )
+  //   )
+  // );
 }

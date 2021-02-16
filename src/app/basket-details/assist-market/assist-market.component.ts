@@ -18,10 +18,13 @@ import { AdminService } from '../../services/admin/admin.service';
   styleUrls: ['./assist-market.component.css'],
 })
 export class AssistMarketComponent implements OnInit {
+  @Input() page: string;
   @Input() currentData: string;
-  datePipeString: string;
 
+  datePipeString: string;
   whatsAppURL = '/message/wa';
+  basketCancelURL = '/admin/closebasket';
+  basketDetailUpdateURL = '/admin/updatebasket';
   basketDetailURL = '/admin/dashboard/followup/details/';
 
   basketDetailForm = this._fb.group({
@@ -38,6 +41,7 @@ export class AssistMarketComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
+    marketValue: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
@@ -117,9 +121,84 @@ export class AssistMarketComponent implements OnInit {
       );
   }
 
-  // Reload Handler
-  reloadHandler() {
-    window.location.reload();
+  // Form Submit Handler
+  submitHandler(v) {
+    !v
+      ? this._toast.warning('Please fill all required fields')
+      : this.updateHandler(this.basketDetailForm.value);
+  }
+
+  // Update Form Handler
+  updateHandler(v) {
+    if (this.page !== 'Endorsement') {
+      const plateNo = v.vehiclePlateNo;
+      const marketValue = parseFloat(v.marketValue);
+
+      marketValue
+        ? this.updateService(plateNo, marketValue)
+        : this._toast.warning('Please fill all required fields');
+    }
+  }
+
+  // Update Service Call
+  updateService(p, mV) {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketDetailUpdateURL, {
+        plateNo: p,
+        marketValue: mV,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
+  }
+
+  // Cancel Handler Service
+  cancelService(v) {
+    if (this.page !== 'Endorsement') {
+      this._spin.show();
+      this._admin
+        .postApiWithAuth(this.basketCancelURL, {
+          plateNo: v,
+        })
+        .subscribe(
+          (res) => {
+            if (res.status.code === 0) {
+              this._toast.success(res.status.message);
+              setTimeout(function () {
+                window.location.reload();
+              }, 1000);
+            } else if (res.status.code === 401) {
+              this._router.navigate(['/auth/login']);
+              this._toast.warning(res.status.message);
+            } else {
+              this._toast.error('Oops! Something went wrong.');
+            }
+            res ? this._spin.hide() : null;
+          },
+          (err) => {
+            err ? this._spin.hide() : null;
+            this._toast.error('Oops! Something went wrong.');
+          }
+        );
+    }
   }
 
   // Redirect to Link

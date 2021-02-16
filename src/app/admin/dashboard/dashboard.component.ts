@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+// Store
+import { Store, select } from '@ngrx/store';
 // Interface
 import { Filter } from '../../model/filter';
+// Selectors
+import * as fromUser from '../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,10 +20,11 @@ export class DashboardComponent implements OnInit {
     { value: 'Monthly', option: 'This Month' },
   ];
 
-  constructor() {}
+  constructor(private _store: Store) {}
 
   // LifeCycle Method
   ngOnInit(): void {
+    this.storeData();
     this.getAuthData();
   }
 
@@ -28,7 +33,10 @@ export class DashboardComponent implements OnInit {
     this.userData = JSON.parse(sessionStorage.getItem('auth'));
   }
 
-  onFilterChanged(value) {
-    // console.log('Filter Change', value);
+  // Selector to get Data
+  private storeData() {
+    this._store.pipe(select(fromUser.getUser)).subscribe((user) => {
+      // console.log('ethe aa', user);
+    });
   }
 }

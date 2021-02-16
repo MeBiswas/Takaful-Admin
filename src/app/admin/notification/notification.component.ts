@@ -48,16 +48,14 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   filter = 'Monthly';
   detailComponentData = '';
   deleteTableDataURL: string;
+  displayedColumns: string[];
   notificationURL: string = '';
   dataSource = new MatTableDataSource();
-  userID = JSON.parse(sessionStorage.getItem('auth')).userId;
 
   filters: Filter[] = [
     { value: 'Weekly', option: 'Weekly' },
     { value: 'Monthly', option: 'Monthly' },
   ];
-
-  displayedColumns: string[];
 
   constructor(
     private _router: Router,
