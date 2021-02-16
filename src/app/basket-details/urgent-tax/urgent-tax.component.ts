@@ -33,8 +33,6 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
   @Input() currentData: string;
   @Output() userData = new EventEmitter<any>();
 
-  email = null;
-  phoneNo = null;
   datePipeString: string;
   actionSelector: string;
   basketCancelURL = '/admin/closebasket';
@@ -107,8 +105,6 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
-        this.email = res.list[0].email;
-        this.phoneNo = res.list[0].phoneNo;
         this.actionSelector = res.list[0].action;
         res ? this._spin.hide() : null;
       },
@@ -132,8 +128,8 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
   }
 
   // Emitting Event
-  sendUserData(n, e, p) {
-    let data = { name: n, email: e, phoneNo: p };
+  sendUserData(e, p) {
+    let data = { email: e, phoneNo: p };
     this.userData.emit(data);
   }
 

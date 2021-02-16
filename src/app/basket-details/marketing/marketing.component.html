@@ -177,13 +177,13 @@
             <input class="form-check-input d-none" type="radio" name="action" value="Email" formControlName="action"
               data-toggle="modal" data-target="#new_email_Modal"
               (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
-            <img class="pr-2" src="assets/img/icons/email.png" />Muz90@gmail.com
+            <img class="pr-2" src="assets/img/icons/email.png" />{{basketDetailForm.value.email}}
           </label>
         </div>
         <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
           <label class="form-check-label">
             <input class="form-check-input d-none" type="radio" name="action" value="Call" formControlName="action">
-            <img class="pr-2" src="assets/img/icons/phone_icon.png" />0187383829
+            <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{basketDetailForm.value.phoneNo}}
           </label>
         </div>
         <div class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
@@ -194,35 +194,6 @@
             <img class="pr-2" src="assets/img/icons/sms.png" />SMS
           </label>
         </div>
-
-
-        <!-- <div class="row">
-          <div class="col-4">
-            <input class="form-check-input" type="radio" name="action" id="action1" value="Call"
-              formControlName="action">
-            <label class="form-check-label" for="action1">
-              Call
-            </label>
-          </div>
-          <div class="col-4">
-            <input class="form-check-input" type="radio" name="action" id="action2" value="SMS"
-              formControlName="action">
-            <label class="form-check-label" for="action2">
-              SMS
-            </label>
-          </div>
-          <div class="col-4">
-            <input class="form-check-input" type="radio" name="action" id="action3" value="Email"
-              formControlName="action" data-toggle="modal" data-target="#new_email_Modal"
-              (click)="addNewItem(basketDetailForm.value.email)">
-            <label class="form-check-label" for="action3">
-              Email
-            </label>
-          </div>
-          <div *ngIf="action.invalid && (action.dirty || action.touched)">
-            <div *ngIf="action.errors.required" class="error">Action is required</div>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="row">

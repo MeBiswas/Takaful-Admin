@@ -16,7 +16,6 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { AdminRoutingModule, RoutingComponents } from './admin-routing.module';
 // Dialog
 import { SmsComponent } from '../shared/dialog/sms/sms.component';
-import { CallComponent } from '../shared/dialog/call/call.component';
 import { EmailComponent } from '../shared/dialog/email/email.component';
 import { AddUserComponent } from '../shared/dialog/add-user/add-user.component';
 import { EditUserComponent } from '../shared/dialog/edit-user/edit-user.component';
@@ -43,7 +42,6 @@ import { NotificationScheduleComponent } from '../basket-details/notification-sc
 @NgModule({
   declarations: [
     SmsComponent,
-    CallComponent,
     EmailComponent,
     HeaderComponent,
     SidebarComponent,

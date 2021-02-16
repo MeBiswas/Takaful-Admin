@@ -64,6 +64,7 @@ export class MarketingComponent implements OnInit, OnChanges {
     nric: [null],
     model: [null],
     email: [null],
+    action: [null],
     chasis: [null],
     remarks: [null],
     phoneNo: [null],
@@ -77,7 +78,6 @@ export class MarketingComponent implements OnInit, OnChanges {
     yearManufacture: [null],
     telemarketingStatus: [null],
     ncd: [null, Validators.required],
-    action: [null, Validators.required],
     callStatus: [null, Validators.required],
     takafulType: [null, Validators.required],
     followUpDate: [null, Validators.required],
@@ -181,7 +181,6 @@ export class MarketingComponent implements OnInit, OnChanges {
     this._admin
       .postApiWithAuth(this.updateDetailURL, {
         ncd: this.basketDetailForm.value.ncd,
-        action: this.basketDetailForm.value.action,
         remarks: this.basketDetailForm.value.remarks,
         plateNo: this.basketDetailForm.value.carRegister,
         callStatus: this.basketDetailForm.value.callStatus,

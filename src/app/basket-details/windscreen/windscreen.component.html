@@ -101,26 +101,55 @@
       <div class="form-group row  pl-4 pr-5">
         <label class="col-sm-4 col-form-label font-weight-bold">1. To Customer</label>
         <div class="col-sm-8 pl-0">
-          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-            *ngIf="phoneNo !== null">
-            <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{phoneNo}}
-          </button>
-          <button class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-            *ngIf="phoneNo !== null">
+
+          <div *ngIf="basketDetailForm.value.phoneNo !== null"
+            class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <label class="form-check-label">
+              <input class="form-check-input d-none" type="radio" name="action" value="Email" formControlName="action"
+                data-toggle="modal" data-target="#new_email_Modal"
+                (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
+              <img class="pr-2" src="assets/img/icons/email.png" />{{basketDetailForm.value.email}}
+            </label>
+          </div>
+
+          <div *ngIf="basketDetailForm.value.phoneNo !== null"
+            class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <label class="form-check-label">
+              <input class="form-check-input d-none" type="radio" name="action" value="Call" formControlName="action">
+              <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{basketDetailForm.value.phoneNo}}
+            </label>
+          </div>
+
+          <div *ngIf="basketDetailForm.value.email !== null"
+            class="form-check-inline bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <label class="form-check-label">
+              <input class="form-check-input d-none" type="radio" name="action" value="SMS" formControlName="action"
+                data-toggle="modal" data-target="#sms_chat_model"
+                (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
+              <img class="pr-2" src="assets/img/icons/sms.png" />SMS
+            </label>
+          </div>
+
+
+
+          <!-- <a *ngIf="basketDetailForm.value.phoneNo !== null"
+            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
+            <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{basketDetailForm.value.phoneNo}}
+          </a>
+          <a *ngIf="basketDetailForm.value.phoneNo !== null" data-toggle="modal" data-target="#sms_chat_model"
+            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+            (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
             <img class="pr-2" src="assets/img/icons/sms.png" />SMS
-          </button>
-          <button type="button" class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-            data-toggle="modal" data-target="#new_email_Modal" *ngIf="email !== null">
-            <img class="pr-2" src="assets/img/icons/email.png" />{{email}}
-          </button>
+          </a>
+          <a *ngIf="basketDetailForm.value.email !== null" data-toggle="modal" data-target="#new_email_Modal"
+            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
+            (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
+            <img class="pr-2" src="assets/img/icons/email.png" />{{basketDetailForm.value.email}}
+          </a> -->
+
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-          <button (click)="reloadHandler()" class="btn bg-transparent border-0 w-25">Cancel</button>
-          <button type="submit" class="bg-green btn text-white w-25">Update</button>
-        </div>
-      </div> -->
+
     </div>
   </div>
 </form>

@@ -4,9 +4,6 @@
 <!-- SMS Modal Starts -->
 <app-sms [data]="data"></app-sms>
 <!-- SMS Modal Ends -->
-<!-- Call Modal Starts -->
-<app-call [data]="data"></app-call>
-<!-- Call Modal Ends -->
 
 <div class="second_top_bar bg-white p-10">
   <div class="container">
@@ -163,7 +160,7 @@
                       </div>
 
                       <div *ngSwitchCase="'Claim Windscreen'" [item]="routeData">
-                        <app-windscreen [currentData]="detailComponentData"
+                        <app-windscreen (userData)="addData($event)" [currentData]="detailComponentData"
                           *ngIf="detailComponentData !== '' && detailComponentData === element.vehiclePlateNo ">
                         </app-windscreen>
                       </div>

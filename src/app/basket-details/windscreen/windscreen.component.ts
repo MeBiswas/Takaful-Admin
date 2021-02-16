@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Input,
+  OnInit,
+  Output,
+  Component,
+  OnChanges,
+  EventEmitter,
+} from '@angular/core';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
 // Pipe
@@ -19,10 +26,10 @@ const numeric = /^[0-9]*$/;
   templateUrl: './windscreen.component.html',
   styleUrls: ['./windscreen.component.css'],
 })
-export class WindscreenComponent implements OnInit {
+export class WindscreenComponent implements OnInit, OnChanges {
   @Input() currentData: string;
-  phoneNo;
-  email: string;
+  @Output() userData = new EventEmitter<any>();
+
   datePipeString: string;
   actionList: Filter[] = [
     { value: 'topup', option: 'Topup' },
@@ -34,6 +41,7 @@ export class WindscreenComponent implements OnInit {
   basketDetailForm = this._fb.group({
     nric: [''],
     email: [''],
+    action: [''],
     status: [''],
     remarks: [''],
     phoneNo: [''],
@@ -45,12 +53,11 @@ export class WindscreenComponent implements OnInit {
     coverType: [''],
     principal: [''],
     sumInsured: [''],
+    actionAmount: [''],
     actionRemark: [''],
     customerName: [''],
     effectiveDate: [''],
     vehiclePlateNo: [''],
-    action: ['', Validators.required],
-    actionAmount: ['', [Validators.required, Validators.pattern(numeric)]],
   });
 
   constructor(
@@ -86,8 +93,6 @@ export class WindscreenComponent implements OnInit {
     this._admin.getApiWithAuth(u).subscribe(
       (res) => {
         this.assignData(res.list[0]);
-        this.email = res.list[0].email;
-        this.phoneNo = res.list[0].phoneNo;
         res ? this._spin.hide() : null;
       },
       (err) => {
@@ -97,7 +102,7 @@ export class WindscreenComponent implements OnInit {
     );
   }
 
-  // Assigning default Data to Form
+  // Manipulating Form Data
   assignData(d) {
     d = {
       ...d,
@@ -107,6 +112,12 @@ export class WindscreenComponent implements OnInit {
       ),
     };
     this.basketDetailForm.patchValue({ ...d });
+  }
+
+  // Emitting Event
+  sendUserData(e, p) {
+    let data = { email: e, phoneNo: p };
+    this.userData.emit(data);
   }
 
   // Form Submit Handler

@@ -46,7 +46,7 @@ export class CommonBasketComponent implements OnInit, AfterViewInit {
   basketURL: string = '';
   detailComponentData = '';
   dataSource = new MatTableDataSource();
-  data: any = { name: '', email: '', phoneNo: null };
+  data: any = { email: '', phoneNo: null };
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   filters: Filter[] = [
