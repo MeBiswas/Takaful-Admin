@@ -129,16 +129,10 @@ export class MarketingComponent implements OnInit, OnChanges {
   // Service Call
   private getDetailData(u: string) {
     this._spin.show();
-    this._admin.getApiWithAuth(u).subscribe(
-      (res) => {
-        this.assignData(res);
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin.getApiWithAuth(u).subscribe((res) => {
+      this.assignData(res);
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Assigning default Data to Form
@@ -176,6 +170,7 @@ export class MarketingComponent implements OnInit, OnChanges {
       : this.updateHandler();
   }
 
+  // Service Handler
   private updateHandler() {
     this._spin.show();
     this._admin
@@ -188,20 +183,14 @@ export class MarketingComponent implements OnInit, OnChanges {
         followUpDate: this.basketDetailForm.value.followUpDate,
         paymentMethod: this.basketDetailForm.value.paymentMethod,
       })
-      .subscribe(
-        (res) => {
-          res ? this._spin.hide() : null;
-          res.status.code === 0
-            ? this._toast.success(res.status.message)
-            : this._toast.warning(res.status.message);
-          setTimeout(() => {
-            this.resetHandler();
-          }, 1000);
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
-          this._toast.error('Oops! Something went wrong.');
-        }
-      );
+      .subscribe((res) => {
+        res ? this._spin.hide() : null;
+        res.status.code === 0
+          ? this._toast.success(res.status.message)
+          : this._toast.warning(res.status.message);
+        setTimeout(() => {
+          this.resetHandler();
+        }, 1000);
+      });
   }
 }

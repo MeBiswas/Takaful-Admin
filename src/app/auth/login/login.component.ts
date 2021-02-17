@@ -51,25 +51,19 @@ export class LoginComponent implements OnInit {
   // Login Service
   loginUser(d) {
     this._spin.show();
-    this._auth.loginRequest(this.url, d).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this._toast.success(res.status.message);
-          localStorage.setItem('token', res.user.accessToken);
-          sessionStorage.setItem('auth', JSON.stringify(res.user));
-          this._store.dispatch(new UserActions.LoadUser(res.user));
-          this._router.navigate(['/admin/dashboard']);
-        } else {
-          this._data.data = res.status;
-          this._toast.warning(res.status.message);
-          this._router.navigate(['/auth/invalid']);
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error(err.status.message);
+    this._auth.loginRequest(this.url, d).subscribe((res) => {
+      if (res.status.code === 0) {
+        this._toast.success(res.status.message);
+        localStorage.setItem('token', res.user.accessToken);
+        sessionStorage.setItem('auth', JSON.stringify(res.user));
+        this._store.dispatch(new UserActions.LoadUser(res.user));
+        this._router.navigate(['/admin/dashboard']);
+      } else {
+        this._data.data = res.status;
+        this._toast.warning(res.status.message);
+        this._router.navigate(['/auth/invalid']);
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 }

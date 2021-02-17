@@ -82,23 +82,17 @@ export class TargetAchieverComponent implements OnInit {
     this._spin.show();
     this._admin
       .postApiWithAuth(this.achievementListURL, { month: f })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this.addActionData(res.list);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this.addActionData(res.list);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Adding Table Action Column Data
@@ -148,20 +142,14 @@ export class TargetAchieverComponent implements OnInit {
         target: parseFloat(t),
         achiever: parseFloat(a),
       })
-      .subscribe(
-        (res) => {
-          res ? this._spin.hide() : null;
-          if (res.status.code === 0) {
-            this._toast.success('Successfully Updated');
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          }
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
-          this._toast.error('Oops! Something went wrong.');
+      .subscribe((res) => {
+        res ? this._spin.hide() : null;
+        if (res.status.code === 0) {
+          this._toast.success('Successfully Updated');
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
         }
-      );
+      });
   }
 }

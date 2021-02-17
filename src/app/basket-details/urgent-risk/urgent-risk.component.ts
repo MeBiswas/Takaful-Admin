@@ -93,27 +93,21 @@ export class UrgentRiskComponent implements OnInit {
   // Service Call
   private getDetailData(u: string) {
     this._spin.show();
-    this._admin.getApiWithAuth(u).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          if (res.list === null) {
-            this.errorHandler(res.list, res.status.message);
-          } else {
-            this.assignData(res.list[0]);
-            this.actionSelector = res.list[0].action;
-          }
-        } else if (res.status.code === 401) {
-          this._router.navigate(['/auth/login']);
+    this._admin.getApiWithAuth(u).subscribe((res) => {
+      if (res.status.code === 0) {
+        if (res.list === null) {
+          this.errorHandler(res.list, res.status.message);
         } else {
-          this._toast.warning(res.status.message);
+          this.assignData(res.list[0]);
+          this.actionSelector = res.list[0].action;
         }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+      } else {
+        this._toast.warning(res.status.message);
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Assigning default Data to Form
@@ -172,26 +166,20 @@ export class UrgentRiskComponent implements OnInit {
         amount: amt,
         remarks: r,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Cancel Handler Service
@@ -201,26 +189,20 @@ export class UrgentRiskComponent implements OnInit {
       .postApiWithAuth(this.basketCancelURL, {
         plateNo: v,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Handling Unexpected Errors

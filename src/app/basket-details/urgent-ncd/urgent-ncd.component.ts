@@ -93,17 +93,11 @@ export class UrgentNcdComponent implements OnInit {
   // Service Call
   private getDetailData(u: string) {
     this._spin.show();
-    this._admin.getApiWithAuth(u).subscribe(
-      (res) => {
-        this.assignData(res.list[0]);
-        this.actionSelector = res.list[0].action;
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin.getApiWithAuth(u).subscribe((res) => {
+      this.assignData(res.list[0]);
+      this.actionSelector = res.list[0].action;
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Assigning default Data to Form
@@ -162,26 +156,20 @@ export class UrgentNcdComponent implements OnInit {
         amount: amt,
         remarks: r,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Cancel Handler Service
@@ -191,26 +179,20 @@ export class UrgentNcdComponent implements OnInit {
       .postApiWithAuth(this.basketCancelURL, {
         plateNo: v,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Redirect to Link

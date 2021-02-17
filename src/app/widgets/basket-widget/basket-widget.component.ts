@@ -15,12 +15,11 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class BasketWidgetComponent implements OnInit {
   @Input() _filter: string;
+  basketStatisticsUrl = '/admin/dashboard/basketstatistic';
 
   basketStatisticsResponseData = {
     list: [],
   };
-
-  basketStatisticsUrl = '/admin/dashboard/basketstatistic';
 
   constructor(
     private _router: Router,
@@ -31,19 +30,23 @@ export class BasketWidgetComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onFilterValueChange(this._filter);
   }
 
+  // Filteration Handler
   onFilterValueChange(value) {
     let data = { filter: value };
     this.getBasketStatistics(data);
   }
 
+  // Service Handler
   getBasketStatistics(data) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.basketStatisticsUrl, data).subscribe(
-      (res) => {
+    this._admin
+      .postApiWithAuth(this.basketStatisticsUrl, data)
+      .subscribe((res) => {
         if (res.status.code === 0) {
           this.basketStatisticsResponseData = { ...res };
         } else if (res.status.code === 401) {
@@ -53,11 +56,6 @@ export class BasketWidgetComponent implements OnInit {
           this._toast.error('Oops! Something went wrong.');
         }
         res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+      });
   }
 }

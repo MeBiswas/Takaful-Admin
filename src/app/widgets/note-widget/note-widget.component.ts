@@ -15,12 +15,11 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class NoteWidgetComponent implements OnInit {
   @Input() _filter: string;
+  coverNoteStatisticUrl = '/admin/dashboard/covernotestatistic';
 
   coverNoteStatisticResponseData = {
     list: [],
   };
-
-  coverNoteStatisticUrl = '/admin/dashboard/covernotestatistic';
 
   constructor(
     private _router: Router,
@@ -31,19 +30,23 @@ export class NoteWidgetComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onFilterValueChange(this._filter);
   }
 
+  // Filteration Handler
   onFilterValueChange(value) {
     let data = { filter: value };
     this.getCoverNoteStatistics(data);
   }
 
+  // Service Handler
   getCoverNoteStatistics(data) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.coverNoteStatisticUrl, data).subscribe(
-      (res) => {
+    this._admin
+      .postApiWithAuth(this.coverNoteStatisticUrl, data)
+      .subscribe((res) => {
         if (res.status.code === 0) {
           this.coverNoteStatisticResponseData = {
             ...this.coverNoteStatisticResponseData,
@@ -56,11 +59,6 @@ export class NoteWidgetComponent implements OnInit {
           this._toast.error('Oops! Something went wrong.');
         }
         res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+      });
   }
 }

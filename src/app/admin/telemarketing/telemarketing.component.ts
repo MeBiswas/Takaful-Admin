@@ -92,8 +92,9 @@ export class TelemarketingComponent implements OnInit, AfterViewInit {
   // Service Call to get Table Data
   private getTableData(filter) {
     this._spin.show();
-    this._admin.getApiWithAuth(this.telemarketingURL + filter).subscribe(
-      (res) => {
+    this._admin
+      .getApiWithAuth(this.telemarketingURL + filter)
+      .subscribe((res) => {
         if (res.status.code === 0) {
           this.dataSource.data = res.telemarketingList;
         } else if (res.status.code === 401) {
@@ -103,12 +104,7 @@ export class TelemarketingComponent implements OnInit, AfterViewInit {
           this._toast.error('Oops! Something went wrong.');
         }
         res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+      });
   }
 
   // Pagination Event

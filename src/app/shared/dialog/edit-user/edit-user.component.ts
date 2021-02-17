@@ -83,16 +83,10 @@ export class EditUserComponent implements OnInit, OnChanges {
   // Role List Service
   private getRoleList() {
     this._spin.show();
-    this._admin.getApiWithAuth(this.roleListURL).subscribe(
-      (res) => {
-        res ? this._spin.hide() : null;
-        this.roles = [...res.roleList];
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin.getApiWithAuth(this.roleListURL).subscribe((res) => {
+      res ? this._spin.hide() : null;
+      this.roles = [...res.roleList];
+    });
   }
 
   // Submit Method
@@ -105,23 +99,17 @@ export class EditUserComponent implements OnInit, OnChanges {
   // Edit User Service
   private editUser(d) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.updateUserURL, d).subscribe(
-      (res) => {
-        res ? this._spin.hide() : null;
-        if (res.status.code === 0) {
-          this._toast.success('User updated successfully');
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        } else {
-          this._toast.warning(res.status.message);
-        }
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
+    this._admin.postApiWithAuth(this.updateUserURL, d).subscribe((res) => {
+      res ? this._spin.hide() : null;
+      if (res.status.code === 0) {
+        this._toast.success('User updated successfully');
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      } else {
+        this._toast.warning(res.status.message);
       }
-    );
+    });
     this.closeModal();
   }
 

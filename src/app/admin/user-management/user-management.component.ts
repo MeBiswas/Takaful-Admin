@@ -55,23 +55,17 @@ export class UserManagementComponent implements OnInit {
   // Service Handler
   getTableData(p) {
     this._spin.show();
-    this._admin.getApiWithAuth(this.userListURL + p).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this.addActionData(res.userList);
-        } else if (res.status.code === 401) {
-          this._router.navigate(['/auth/login']);
-          this._toast.warning(res.status.message);
-        } else {
-          this._toast.error('Oops! Something went wrong.');
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
+    this._admin.getApiWithAuth(this.userListURL + p).subscribe((res) => {
+      if (res.status.code === 0) {
+        this.addActionData(res.userList);
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+        this._toast.warning(res.status.message);
+      } else {
         this._toast.error('Oops! Something went wrong.');
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Filter Table data as per input search

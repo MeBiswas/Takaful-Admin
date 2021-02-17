@@ -108,25 +108,19 @@ export class ReportRoadtaxComponent implements OnInit {
       .getApiWithAuth(
         this.reportRoadTaxURL + this.searchForm.value.search.toUpperCase()
       )
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this.assignData(res.list[0]);
-            this.actionSelector = res.list[0].action;
-            this.reportDetail = res.list[0].vehiclePlateNo;
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this.assignData(res.list[0]);
+          this.actionSelector = res.list[0].action;
+          this.reportDetail = res.list[0].vehiclePlateNo;
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Assigning default Data to Form
@@ -213,26 +207,20 @@ export class ReportRoadtaxComponent implements OnInit {
         amount: amt,
         remarks: r,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Cancel Handler Service
@@ -242,25 +230,19 @@ export class ReportRoadtaxComponent implements OnInit {
       .postApiWithAuth(this.basketCancelURL, {
         plateNo: v,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 }

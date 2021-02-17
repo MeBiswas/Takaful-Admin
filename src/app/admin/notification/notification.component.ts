@@ -109,30 +109,25 @@ export class NotificationComponent implements OnInit, AfterViewInit {
   // Achiever List Service
   private notificationRequest() {
     this._spin.show();
-    this._admin.getApiWithAuth(this.notificationURL).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this.addTableColumnData(res.list);
-        } else if (res.status.code === 401) {
-          this._router.navigate(['/auth/login']);
-          this._toast.warning(res.status.message);
-        } else {
-          this._toast.error('Oops! Something went wrong.');
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
+    this._admin.getApiWithAuth(this.notificationURL).subscribe((res) => {
+      if (res.status.code === 0) {
+        this.addTableColumnData(res.list);
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+        this._toast.warning(res.status.message);
+      } else {
         this._toast.error('Oops! Something went wrong.');
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Delete Service Handler
   deleteHandler(d) {
     this._spin.show();
-    this._admin.deleteApiWithAuth(this.deleteTableDataURL, d).subscribe(
-      (res) => {
+    this._admin
+      .deleteApiWithAuth(this.deleteTableDataURL, d)
+      .subscribe((res) => {
         if (res.status.code === 0) {
           this._toast.success(res.status.message);
           setTimeout(function () {
@@ -145,12 +140,7 @@ export class NotificationComponent implements OnInit, AfterViewInit {
           this._toast.error('Oops! Something went wrong.');
         }
         res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+      });
   }
 
   // Adding Checkbox Column Data

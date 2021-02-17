@@ -16,6 +16,7 @@ export class InvalidComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // Click Handler
   clickHandler() {
     this._router.navigate(['/auth/login']);
   }

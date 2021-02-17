@@ -123,23 +123,17 @@ export class CommonBasketComponent implements OnInit, AfterViewInit {
   private getTableData(filter) {
     this._spin.show();
     let d = this.tableBodyData(this.routeData, filter);
-    this._admin.postApiWithAuth(this.basketURL, d).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this.dataSource.data = res.list;
-        } else if (res.status.code === 401) {
-          this._router.navigate(['/auth/login']);
-          this._toast.warning(res.status.message);
-        } else {
-          this._toast.error('Oops! Something went wrong.');
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
+    this._admin.postApiWithAuth(this.basketURL, d).subscribe((res) => {
+      if (res.status.code === 0) {
+        this.dataSource.data = res.list;
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+        this._toast.warning(res.status.message);
+      } else {
         this._toast.error('Oops! Something went wrong.');
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Pagination Event

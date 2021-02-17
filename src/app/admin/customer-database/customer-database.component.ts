@@ -69,23 +69,17 @@ export class CustomerDatabaseComponent implements OnInit, AfterViewInit {
       .postApiWithAuth(this.databaseURL, {
         filter: f,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this.dataSource.data = [...res.list];
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this.dataSource.data = [...res.list];
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Filter Table with Search Input

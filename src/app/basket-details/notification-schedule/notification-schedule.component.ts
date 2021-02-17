@@ -96,23 +96,17 @@ export class NotificationScheduleComponent implements OnInit {
   // Getting Template List
   private getTemplateList() {
     this._spin.show();
-    this._admin.getApiWithAuth(this.getTemplateListURL).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this.setTemplateList(res.list);
-        } else if (res.status.code === 401) {
-          this._router.navigate(['/auth/login']);
-          this._toast.warning(res.status.message);
-        } else {
-          this._toast.error('Oops! Something went wrong.');
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
+    this._admin.getApiWithAuth(this.getTemplateListURL).subscribe((res) => {
+      if (res.status.code === 0) {
+        this.setTemplateList(res.list);
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+        this._toast.warning(res.status.message);
+      } else {
         this._toast.error('Oops! Something went wrong.');
       }
-    );
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Submit Handler
@@ -130,26 +124,20 @@ export class NotificationScheduleComponent implements OnInit {
         ...d,
         scheduleName: d.schedule,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success(res.status.message);
-            setTimeout(function () {
-              window.location.reload();
-            }, 1000);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success(res.status.message);
+          setTimeout(function () {
+            window.location.reload();
+          }, 1000);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 
   // Reload Handler

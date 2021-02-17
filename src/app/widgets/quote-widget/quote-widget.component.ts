@@ -15,13 +15,12 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class QuoteWidgetComponent implements OnInit {
   @Input() _filter: string;
+  quoteStatisticsUrl = '/admin/dashboard/totalquotation';
 
   totalQuotationResponseData = {
     totalQuotation: null,
     totalCoverNote: null,
   };
-
-  quoteStatisticsUrl = '/admin/dashboard/totalquotation';
 
   constructor(
     private _router: Router,
@@ -32,19 +31,23 @@ export class QuoteWidgetComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // LifeCycle Method
   ngOnChanges() {
     this.onFilterValueChange(this._filter);
   }
 
+  // Filteration Handler
   onFilterValueChange(value) {
     let data = { filter: value };
     this.getQuoteStatistics(data);
   }
 
+  // Service Handler
   getQuoteStatistics(data) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.quoteStatisticsUrl, data).subscribe(
-      (res) => {
+    this._admin
+      .postApiWithAuth(this.quoteStatisticsUrl, data)
+      .subscribe((res) => {
         if (res.status.code === 0) {
           this.totalQuotationResponseData = {
             ...this.totalQuotationResponseData,
@@ -57,11 +60,6 @@ export class QuoteWidgetComponent implements OnInit {
           this._toast.error('Oops! Something went wrong.');
         }
         res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+      });
   }
 }

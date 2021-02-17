@@ -15,12 +15,11 @@ import { AdminService } from '../../services/admin/admin.service';
 })
 export class IssueWidgetComponent implements OnInit {
   today: number = Date.now();
+  mostRecentIssuesUrl = '/admin/dashboard/recentissues';
 
   recentIssuesResponseData = {
     recentList: [],
   };
-
-  mostRecentIssuesUrl = '/admin/dashboard/recentissues';
 
   mostRecentIssuesData = {
     date: '',
@@ -33,10 +32,12 @@ export class IssueWidgetComponent implements OnInit {
     private _spin: NgxSpinnerService
   ) {}
 
+  // LifeCycle Method
   ngOnInit() {
     this.getMostRecentIssues();
   }
 
+  // Date Format Handler
   getDateFormat() {
     let months = [
       '01',
@@ -60,30 +61,25 @@ export class IssueWidgetComponent implements OnInit {
     return date;
   }
 
+  // Service Handler
   getMostRecentIssues() {
     this._spin.show();
     this.mostRecentIssuesData.date = this.getDateFormat();
     this._admin
       .postApiWithAuth(this.mostRecentIssuesUrl, this.mostRecentIssuesData)
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this.recentIssuesResponseData = {
-              ...this.recentIssuesResponseData,
-              ...res,
-            };
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this.recentIssuesResponseData = {
+            ...this.recentIssuesResponseData,
+            ...res,
+          };
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+        res ? this._spin.hide() : null;
+      });
   }
 }

@@ -59,23 +59,17 @@ export class SmsComponent implements OnInit, OnChanges {
   // Service Handler
   private sendSMS(v) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.smsURL, v).subscribe(
-      (res) => {
-        res ? this._spin.hide() : null;
-        if (res.status.code === 0) {
-          this._toast.success(res.status.message);
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        } else {
-          this._toast.warning(res.status.message);
-        }
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
+    this._admin.postApiWithAuth(this.smsURL, v).subscribe((res) => {
+      res ? this._spin.hide() : null;
+      if (res.status.code === 0) {
+        this._toast.success(res.status.message);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      } else {
+        this._toast.warning(res.status.message);
       }
-    );
+    });
     this.closeModal();
   }
 

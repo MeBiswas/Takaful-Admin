@@ -87,42 +87,31 @@ export class AccountSettingsComponent implements OnInit {
       .postApiWithAuth(this.userDetailURL, {
         userId: this.userID,
       })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this.accountSettingForm.patchValue({ ...res });
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-          res ? this._spin.hide() : null;
-        },
-        (err) => {
-          err ? this._spin.hide() : null;
-          this._toast.error('Oops! Something went wrong.');
-        }
-      );
-  }
-
-  // Role List Service
-  private getRoleList() {
-    this._admin.getApiWithAuth(this.roleListURL).subscribe(
-      (res) => {
+      .subscribe((res) => {
         if (res.status.code === 0) {
-          this.roles = [...res.roleList];
+          this.accountSettingForm.patchValue({ ...res });
         } else if (res.status.code === 401) {
           this._router.navigate(['/auth/login']);
           this._toast.warning(res.status.message);
         } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      },
-      (err) => {
+        res ? this._spin.hide() : null;
+      });
+  }
+
+  // Role List Service
+  private getRoleList() {
+    this._admin.getApiWithAuth(this.roleListURL).subscribe((res) => {
+      if (res.status.code === 0) {
+        this.roles = [...res.roleList];
+      } else if (res.status.code === 401) {
+        this._router.navigate(['/auth/login']);
+        this._toast.warning(res.status.message);
+      } else {
         this._toast.error('Oops! Something went wrong.');
       }
-    );
+    });
   }
 
   // Submit Handler
@@ -137,22 +126,17 @@ export class AccountSettingsComponent implements OnInit {
     this._spin.show();
     this._admin
       .postApiWithAuth(this.userUpdateURL, { ...d, role: d.roleName })
-      .subscribe(
-        (res) => {
-          if (res.status.code === 0) {
-            this._toast.success('Updated Successfully');
-            this._router.navigate(['/admin/dashboard']);
-          } else if (res.status.code === 401) {
-            this._router.navigate(['/auth/login']);
-            this._toast.warning(res.status.message);
-          } else {
-            this._toast.error('Oops! Something went wrong.');
-          }
-        },
-        (err) => {
+      .subscribe((res) => {
+        if (res.status.code === 0) {
+          this._toast.success('Updated Successfully');
+          this._router.navigate(['/admin/dashboard']);
+        } else if (res.status.code === 401) {
+          this._router.navigate(['/auth/login']);
+          this._toast.warning(res.status.message);
+        } else {
           this._toast.error('Oops! Something went wrong.');
         }
-      );
+      });
     this._spin.hide();
   }
 

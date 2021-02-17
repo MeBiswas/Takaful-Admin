@@ -32,4 +32,10 @@ export class AdminService {
     };
     return this.http.delete(environment.apiURL + url, this.httpNewOptions);
   }
+
+  public logout() {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('auth');
+    window.location.reload();
+  }
 }

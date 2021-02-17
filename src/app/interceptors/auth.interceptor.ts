@@ -6,7 +6,7 @@ import {
   HttpHandler,
   HttpInterceptor,
 } from '@angular/common/http';
-// Observable Service
+// RxJS Service
 import { Observable } from 'rxjs';
 // Services
 import { AdminService } from '../services/admin/admin.service';

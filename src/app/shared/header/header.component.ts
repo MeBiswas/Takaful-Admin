@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   userData;
 
-  constructor() {}
+  constructor(private _admin: AdminService) {}
 
   // LifeCycle Method
   ngOnInit(): void {
@@ -22,8 +23,6 @@ export class HeaderComponent implements OnInit {
 
   // Logging Out
   logout() {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('auth');
-    window.location.reload();
+    this._admin.logout();
   }
 }

@@ -77,16 +77,10 @@ export class AddUserComponent implements OnInit {
   // Role List Service
   private getRoleList() {
     this._spin.show();
-    this._admin.getApiWithAuth(this.roleListURL).subscribe(
-      (res) => {
-        this.roles = [...res.roleList];
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
-      }
-    );
+    this._admin.getApiWithAuth(this.roleListURL).subscribe((res) => {
+      this.roles = [...res.roleList];
+      res ? this._spin.hide() : null;
+    });
   }
 
   // Submit Handler
@@ -99,23 +93,17 @@ export class AddUserComponent implements OnInit {
   // Add User Service
   private addUser(d) {
     this._spin.show();
-    this._admin.postApiWithAuth(this.addUserURL, d).subscribe(
-      (res) => {
-        if (res.status.code === 0) {
-          this._toast.success(res.status.message);
-          setTimeout(function () {
-            window.location.reload();
-          }, 1000);
-        } else {
-          this._toast.warning(res.status.message);
-        }
-        res ? this._spin.hide() : null;
-      },
-      (err) => {
-        err ? this._spin.hide() : null;
-        this._toast.error('Oops! Something went wrong.');
+    this._admin.postApiWithAuth(this.addUserURL, d).subscribe((res) => {
+      if (res.status.code === 0) {
+        this._toast.success(res.status.message);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      } else {
+        this._toast.warning(res.status.message);
       }
-    );
+      res ? this._spin.hide() : null;
+    });
     this.closeModal();
   }
 
