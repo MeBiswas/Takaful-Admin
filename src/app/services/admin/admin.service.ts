@@ -13,32 +13,21 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
+  public getToken() {
+    return localStorage.getItem('token');
+  }
+
   public getApiWithAuth(url): Observable<any> {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }),
-    };
     return this.http.get(environment.apiURL + url, this.httpOptions);
   }
 
   public postApiWithAuth(url, data): Observable<any> {
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }),
-    };
     return this.http.post(environment.apiURL + url, data, this.httpOptions);
   }
 
   public deleteApiWithAuth(url, data): Observable<any> {
     this.httpNewOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }),
+      headers: new HttpHeaders(),
       body: data,
     };
     return this.http.delete(environment.apiURL + url, this.httpNewOptions);

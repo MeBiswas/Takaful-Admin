@@ -10,15 +10,17 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from './guard/auth.guard';
 // Root Component
 import { AppComponent } from './app.component';
-// HTTP Request
-import { HttpClientModule } from '@angular/common/http';
 // Auth Service
 import { AuthService } from './services/auth/auth.service';
+// Interceptors
+import { AuthInterceptor, ErrorInterceptor } from './interceptors';
+// HTTP Module Services
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Routing
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 // Animation Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// NGRX
+// NGRX Services
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './store';
@@ -39,7 +41,13 @@ import { UserEffects } from './store/effects/user.effects';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([UserEffects]),
   ],
-  providers: [DatePipe, AuthGuard, AuthService],
+  providers: [
+    DatePipe,
+    AuthGuard,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
