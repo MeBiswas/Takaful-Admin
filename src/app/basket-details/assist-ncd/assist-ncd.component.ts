@@ -20,7 +20,6 @@ import { AdminService } from '../../services/admin/admin.service';
   styleUrls: ['./assist-ncd.component.css'],
 })
 export class AssistNcdComponent implements OnInit {
-  @Input() page: string;
   @Input() currentData: string;
 
   datePipeString: string;
@@ -141,11 +140,9 @@ export class AssistNcdComponent implements OnInit {
 
   // Update Form Handler
   updateHandler(v) {
-    if (this.page !== 'Endorsement') {
-      const plateNo = v.vehiclePlateNo;
-      const ncd = parseFloat(v.ncd);
-      this.updateService(plateNo, ncd);
-    }
+    const plateNo = v.vehiclePlateNo;
+    const ncd = parseFloat(v.ncd);
+    this.updateService(plateNo, ncd);
   }
 
   // Update Service Call
@@ -180,33 +177,31 @@ export class AssistNcdComponent implements OnInit {
 
   // Cancel Handler Service
   cancelService(v) {
-    if (this.page !== 'Endorsement') {
-      this._spin.show();
-      this._admin
-        .postApiWithAuth(this.basketCancelURL, {
-          plateNo: v,
-        })
-        .subscribe(
-          (res) => {
-            if (res.status.code === 0) {
-              this._toast.success(res.status.message);
-              setTimeout(function () {
-                window.location.reload();
-              }, 1000);
-            } else if (res.status.code === 401) {
-              this._router.navigate(['/auth/login']);
-              this._toast.warning(res.status.message);
-            } else {
-              this._toast.error('Oops! Something went wrong.');
-            }
-            res ? this._spin.hide() : null;
-          },
-          (err) => {
-            err ? this._spin.hide() : null;
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketCancelURL, {
+        plateNo: v,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
             this._toast.error('Oops! Something went wrong.');
           }
-        );
-    }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 
   // Redirect to Link

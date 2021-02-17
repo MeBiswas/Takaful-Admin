@@ -29,7 +29,6 @@ const numeric = /^[0-9]*$/;
   styleUrls: ['./urgent-tax.component.css'],
 })
 export class UrgentTaxComponent implements OnInit, OnChanges {
-  @Input() page: string;
   @Input() currentData: string;
   @Output() userData = new EventEmitter<any>();
 
@@ -156,17 +155,15 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
 
   // Update Form Handler
   updateHandler(v) {
-    if (this.page !== 'Endorsement') {
-      const plateNo = v.vehiclePlateNo;
-      const action = v.action;
-      const amount = v.topupAmount
-        ? parseFloat(v.topupAmount)
-        : parseFloat(v.refundAmount);
-      const remarks = v.topupRemark ? v.topupRemark : v.refundRemark;
-      amount
-        ? this.updateService(plateNo, action, amount, remarks)
-        : this._toast.warning('Please fill all required fields');
-    }
+    const plateNo = v.vehiclePlateNo;
+    const action = v.action;
+    const amount = v.topupAmount
+      ? parseFloat(v.topupAmount)
+      : parseFloat(v.refundAmount);
+    const remarks = v.topupRemark ? v.topupRemark : v.refundRemark;
+    amount
+      ? this.updateService(plateNo, action, amount, remarks)
+      : this._toast.warning('Please fill all required fields');
   }
 
   // Update Service Call
@@ -203,32 +200,30 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
 
   // Cancel Handler Service
   cancelService(v) {
-    if (this.page !== 'Endorsement') {
-      this._spin.show();
-      this._admin
-        .postApiWithAuth(this.basketCancelURL, {
-          plateNo: v,
-        })
-        .subscribe(
-          (res) => {
-            if (res.status.code === 0) {
-              this._toast.success(res.status.message);
-              setTimeout(function () {
-                window.location.reload();
-              }, 1000);
-            } else if (res.status.code === 401) {
-              this._router.navigate(['/auth/login']);
-              this._toast.warning(res.status.message);
-            } else {
-              this._toast.error('Oops! Something went wrong.');
-            }
-            res ? this._spin.hide() : null;
-          },
-          (err) => {
-            err ? this._spin.hide() : null;
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketCancelURL, {
+        plateNo: v,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
             this._toast.error('Oops! Something went wrong.');
           }
-        );
-    }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 }
