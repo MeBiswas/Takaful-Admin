@@ -24,7 +24,9 @@ const pattern = /^[a-zA-Z0-9 ]*$/;
 export class ReportRoadtaxComponent implements OnInit {
   reportDetail = null;
   actionSelector: string;
+  basketCancelURL = '/admin/closebasket';
   reportRoadTaxURL = '/admin/reportroadtax/';
+  basketDetailUpdateURL = '/admin/updatebasket';
 
   statusList: Filter[] = [
     { value: 'Topup', option: 'Topup' },
@@ -39,6 +41,7 @@ export class ReportRoadtaxComponent implements OnInit {
   reportDetailForm = this._fb.group({
     nric: [null],
     email: [null],
+    status: [null],
     chasis: [null],
     phoneNo: [null],
     carMake: [null],
@@ -51,17 +54,16 @@ export class ReportRoadtaxComponent implements OnInit {
     coverType: [null],
     sumInsured: [null],
     topupRemark: [null],
+    topupAmount: [null],
     customerName: [null],
+    refundAmount: [null],
     refundRemark: [null],
     effectiveDate: [null],
     vehiclePlateNo: [null],
     yearManufacture: [null],
+    blacklistedAmount: [null],
     blacklistedRemark: [null],
-    status: [null, Validators.required],
     action: [null, Validators.required],
-    topupAmount: [null, Validators.required],
-    refundAmount: [null, Validators.required],
-    blacklistedAmount: [null, Validators.required],
   });
 
   constructor(
@@ -103,7 +105,9 @@ export class ReportRoadtaxComponent implements OnInit {
   private detailService() {
     this._spin.show();
     this._admin
-      .getApiWithAuth(this.reportRoadTaxURL + this.searchForm.value.search)
+      .getApiWithAuth(
+        this.reportRoadTaxURL + this.searchForm.value.search.toUpperCase()
+      )
       .subscribe(
         (res) => {
           if (res.status.code === 0) {
@@ -140,7 +144,7 @@ export class ReportRoadtaxComponent implements OnInit {
   // On Action Selector Change
   onActionSelectorChanged(e) {
     this.actionSelector = e;
-    if (e === 'Reund') {
+    if (e === 'Refund') {
       this.reportDetailForm.patchValue({
         topupRemark: null,
         topupAmount: null,
@@ -168,17 +172,95 @@ export class ReportRoadtaxComponent implements OnInit {
   reportSubmitHandler(v) {
     !v
       ? this._toast.warning('Please fill all required fields')
-      : this.submitReport();
+      : this.reportHandler(this.reportDetailForm.value);
+  }
+
+  // Report Handler
+  reportHandler(v) {
+    let amount;
+    let remarks;
+    const action = v.action;
+    const plateNo = v.vehiclePlateNo;
+
+    if (v.topupAmount === null && v.refundAmount === null) {
+      amount = parseFloat(v.blacklistedAmount);
+    } else if (v.refundAmount === null && v.blacklistedAmount === null) {
+      amount = parseFloat(v.topupAmount);
+    } else {
+      amount = parseFloat(v.refundAmount);
+    }
+
+    if (v.topupRemark === null && v.refundRemark === null) {
+      remarks = v.blacklistedRemark;
+    } else if (v.refundRemark === null && v.blacklistedRemark === null) {
+      remarks = v.topupRemark;
+    } else {
+      remarks = v.refundRemark;
+    }
+
+    amount
+      ? this.submitReport(plateNo, action, amount, remarks)
+      : this._toast.warning('Please fill all required fields');
   }
 
   // Submit Service Handler
-  private submitReport() {
-    // console.log('ethe aa', this.reportDetailForm.value.status);
+  private submitReport(p, a, amt, r) {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketDetailUpdateURL, {
+        plateNo: p,
+        action: a,
+        amount: amt,
+        remarks: r,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 
-  // Form Reset Handler
-  resetHandler() {
-    this.reportDetailForm.reset();
-    window.location.reload();
+  // Cancel Handler Service
+  cancelService(v) {
+    this._spin.show();
+    this._admin
+      .postApiWithAuth(this.basketCancelURL, {
+        plateNo: v,
+      })
+      .subscribe(
+        (res) => {
+          if (res.status.code === 0) {
+            this._toast.success(res.status.message);
+            setTimeout(function () {
+              window.location.reload();
+            }, 1000);
+          } else if (res.status.code === 401) {
+            this._router.navigate(['/auth/login']);
+            this._toast.warning(res.status.message);
+          } else {
+            this._toast.error('Oops! Something went wrong.');
+          }
+          res ? this._spin.hide() : null;
+        },
+        (err) => {
+          err ? this._spin.hide() : null;
+          this._toast.error('Oops! Something went wrong.');
+        }
+      );
   }
 }

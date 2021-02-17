@@ -226,4 +226,9 @@ export class UrgentTaxComponent implements OnInit, OnChanges {
         }
       );
   }
+
+  // Redirect to Link
+  goToLink(url: string) {
+    window.open(url, '_blank');
+  }
 }
