@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
   routeArr;
+  userData;
   sidebarLinks = [
     {
+      show: false,
       isActive: false,
       meta: 'dashboard',
       route: 'Dashboard',
@@ -21,6 +23,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       meta: 'follow',
       isActive: false,
       hasDropdown: true,
@@ -50,6 +53,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       isActive: false,
       hasDropdown: true,
       meta: 'endorsement',
@@ -88,6 +92,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       meta: 'claim',
       route: 'Claim',
       isActive: false,
@@ -103,6 +108,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       isActive: false,
       meta: 'delivery',
       route: 'Delivery',
@@ -117,6 +123,7 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      show: false,
       meta: 'refund',
       route: 'Refund',
       isActive: false,
@@ -127,6 +134,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       isActive: false,
       hasDropdown: true,
       meta: 'notifications',
@@ -144,6 +152,7 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      show: false,
       isActive: false,
       hasDropdown: false,
       meta: 'telemarketing',
@@ -154,6 +163,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       link: null,
+      show: false,
       meta: 'report',
       route: 'Report',
       isActive: false,
@@ -168,6 +178,7 @@ export class SidebarComponent implements OnInit {
       ],
     },
     {
+      show: false,
       isActive: false,
       hasDropdown: false,
       meta: 'customer-database',
@@ -177,6 +188,7 @@ export class SidebarComponent implements OnInit {
       activeIcon: 'assets/img/icons/folder_icon_active.png',
     },
     {
+      show: false,
       meta: 'user',
       isActive: false,
       hasDropdown: false,
@@ -192,7 +204,14 @@ export class SidebarComponent implements OnInit {
   // LifeCycle Method
   ngOnInit(): void {
     this.routeArr = this._route.url.split('/');
+    this.getAuthData();
     this.activateLink(this.routeArr[2]);
+    this.authorrizedNavigation(this.sidebarLinks);
+  }
+
+  // Getting Data
+  private getAuthData() {
+    this.userData = JSON.parse(sessionStorage.getItem('auth'));
   }
 
   // Activating Link
@@ -201,5 +220,43 @@ export class SidebarComponent implements OnInit {
     i < 0
       ? null
       : (this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive);
+  }
+
+  // Authorized Navigation Handler
+  private authorrizedNavigation(a) {
+    a.map((item) => {
+      switch (this.userData.roleName) {
+        case 'Finance':
+          if (item.meta === 'customer-database') {
+            item.show = !item.show;
+          }
+          break;
+
+        case 'Supervisor':
+          break;
+
+        case 'Administrator':
+          break;
+
+        case 'Telemarketing':
+          if (
+            item.meta === 'user' ||
+            item.meta === 'claim' ||
+            item.meta === 'refund' ||
+            item.meta === 'report' ||
+            item.meta === 'delivery' ||
+            item.meta === 'notifications'
+          ) {
+            item.show = !item.show;
+          }
+          break;
+
+        case 'CustomerService':
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 }

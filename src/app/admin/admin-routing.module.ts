@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// Roles
+import { Role } from '../model/roles';
+// Guard
+import { AuthGuard } from '../guard/auth.guard';
 // Components
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -16,17 +20,23 @@ const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator, Role.Telemarketing] },
     children: [{ path: '', component: DashboardComponent }],
   },
   {
     path: 'user',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [{ path: '', component: UserManagementComponent }],
   },
   {
     path: 'follow',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: 'urgent/ncd',
@@ -73,7 +83,9 @@ const routes: Routes = [
   },
   {
     path: 'endorsement',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: 'urgent/ncd',
@@ -132,7 +144,9 @@ const routes: Routes = [
   },
   {
     path: 'claim',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: 'windscreen',
@@ -146,7 +160,9 @@ const routes: Routes = [
   },
   {
     path: 'refund',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: '',
@@ -159,7 +175,9 @@ const routes: Routes = [
   },
   {
     path: 'notifications',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: 'template',
@@ -181,7 +199,9 @@ const routes: Routes = [
   },
   {
     path: 'telemarketing',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator, Role.Supervisor, Role.Telemarketing] },
     children: [
       {
         path: '',
@@ -194,7 +214,9 @@ const routes: Routes = [
   },
   {
     path: 'report',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: 'roadtax',
@@ -208,7 +230,9 @@ const routes: Routes = [
   },
   {
     path: 'customer-database',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: '',
@@ -221,7 +245,9 @@ const routes: Routes = [
   },
   {
     path: 'settings',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: '',
@@ -231,7 +257,9 @@ const routes: Routes = [
   },
   {
     path: 'target-achievement',
+    canActivate: [AuthGuard],
     component: AdminComponent,
+    data: { roles: [Role.Administrator] },
     children: [
       {
         path: '',

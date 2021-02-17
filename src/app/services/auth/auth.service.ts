@@ -21,4 +21,9 @@ export class AuthService {
   public isLoggedIn() {
     return !!localStorage.getItem('token');
   }
+
+  public userData() {
+    let userData = JSON.parse(sessionStorage.getItem('auth'));
+    return userData;
+  }
 }

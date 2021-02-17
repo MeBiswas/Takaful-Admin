@@ -1,5 +1,5 @@
 <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4 pt-2 pb-2">Car Register #{{currentData}}</h2>
-<form [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
+<form [formGroup]="basketDetailForm">
   <div class="pl-4 row">
     <div class="col-md-6 border-right pl-4 pr-5">
       <div class="form-group row mt-3">
@@ -130,26 +130,8 @@
             </label>
           </div>
 
-
-
-          <!-- <a *ngIf="basketDetailForm.value.phoneNo !== null"
-            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white">
-            <img class="pr-2" src="assets/img/icons/phone_icon.png" />{{basketDetailForm.value.phoneNo}}
-          </a>
-          <a *ngIf="basketDetailForm.value.phoneNo !== null" data-toggle="modal" data-target="#sms_chat_model"
-            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-            (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
-            <img class="pr-2" src="assets/img/icons/sms.png" />SMS
-          </a>
-          <a *ngIf="basketDetailForm.value.email !== null" data-toggle="modal" data-target="#new_email_Modal"
-            class="bg-light mr-1 border-0 btn form-group rounded-pill text-dark text-white"
-            (click)="sendUserData(basketDetailForm.value.email, basketDetailForm.value.phoneNo)">
-            <img class="pr-2" src="assets/img/icons/email.png" />{{basketDetailForm.value.email}}
-          </a> -->
-
         </div>
       </div>
-
     </div>
   </div>
 </form>

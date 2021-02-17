@@ -7,7 +7,7 @@
   </div>
 
   <ul class="sidebar-menu">
-    <li class="dropdown" *ngFor="let link of sidebarLinks; let x = index">
+    <li class="dropdown" *ngFor="let link of sidebarLinks; let x = index" [ngClass]="{'d-none': sidebarLinks[x].show}">
       <div class="float_mini_sidebar">
         <a data-toggle="sidebar">
           <img alt="image" class="active_icon"

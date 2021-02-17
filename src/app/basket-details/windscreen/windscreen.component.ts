@@ -113,21 +113,4 @@ export class WindscreenComponent implements OnInit, OnChanges {
     let data = { email: e, phoneNo: p };
     this.userData.emit(data);
   }
-
-  // Form Submit Handler
-  submitHandler(v) {
-    !v
-      ? this._toast.warning('Please fill all required fields')
-      : this.updateHandler();
-  }
-
-  // Update Form Handler
-  updateHandler() {
-    console.log('Update Handler Method');
-  }
-
-  // Reload Handler
-  reloadHandler() {
-    window.location.reload();
-  }
 }
