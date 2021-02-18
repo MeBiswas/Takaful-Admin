@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// Store
-import { Store } from '@ngrx/store';
 // Router
 import { Router } from '@angular/router';
 // Toaster
@@ -13,8 +11,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 // Provider
 import { DataStorage } from '../../providers/user-data.provider';
-// Actions
-import * as UserActions from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +26,6 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private _store: Store,
     private _router: Router,
     private _fb: FormBuilder,
     private _auth: AuthService,
@@ -56,7 +51,6 @@ export class LoginComponent implements OnInit {
         this._toast.success(res.status.message);
         localStorage.setItem('token', res.user.accessToken);
         localStorage.setItem('auth', JSON.stringify(res.user));
-        this._store.dispatch(new UserActions.LoadUser(res.user));
         this._router.navigate(['/admin/dashboard']);
       } else {
         this._data.data = res.status;

@@ -20,13 +20,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 // Animation Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// NGRX Services
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './store';
-import { environment } from '../environments/environment';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { UserEffects } from './store/effects/user.effects';
 
 @NgModule({
   declarations: [AppComponent, RoutingComponents],
@@ -37,9 +30,6 @@ import { UserEffects } from './store/effects/user.effects';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     DatePipe,
