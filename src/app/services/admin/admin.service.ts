@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // RxJS Service
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 // HTTP Services
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // Environment
@@ -10,7 +11,6 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root',
 })
 export class AdminService {
-  httpOptions: { headers: any };
   httpNewOptions: { headers: any; body: any };
 
   constructor(private http: HttpClient) {}
@@ -25,11 +25,13 @@ export class AdminService {
   }
 
   public getApiWithAuth(url): Observable<any> {
-    return this.http.get(environment.apiURL + url, this.httpOptions);
+    return this.http.get(environment.apiURL + url).pipe(tap((res) => res));
   }
 
   public postApiWithAuth(url, data): Observable<any> {
-    return this.http.post(environment.apiURL + url, data, this.httpOptions);
+    return this.http
+      .post(environment.apiURL + url, data)
+      .pipe(tap((res) => res));
   }
 
   public deleteApiWithAuth(url, data): Observable<any> {
@@ -37,7 +39,9 @@ export class AdminService {
       headers: new HttpHeaders(),
       body: data,
     };
-    return this.http.delete(environment.apiURL + url, this.httpNewOptions);
+    return this.http
+      .delete(environment.apiURL + url, this.httpNewOptions)
+      .pipe(tap((res) => res));
   }
 
   public logout() {

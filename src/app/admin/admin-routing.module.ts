@@ -22,7 +22,6 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
     children: [{ path: '', component: DashboardComponent }],
   },
   {

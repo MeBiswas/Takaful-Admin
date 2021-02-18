@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 // HTTP Services
 import {
+  HttpEvent,
   HttpRequest,
   HttpHandler,
-  HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
 // Toaster
 import { ToastrService } from 'ngx-toastr';
-// RxJS Service
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
 // Spinner
 import { NgxSpinnerService } from 'ngx-spinner';
+// RxJS Service
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 // Services
 import { AdminService } from '../services/admin/admin.service';
 
@@ -29,9 +30,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError((err) => {
-        console.log('ethe aa', err);
-        if ([0, 401, 403].indexOf(err.status) !== -1) {
+      catchError((err: HttpErrorResponse) => {
+        retry(1);
+        if ([401, 403].indexOf(err.status) !== -1) {
           this._spin.hide();
           this._admin.logout();
           this._toast.warning('Your Session has expired. Please Login again.');
