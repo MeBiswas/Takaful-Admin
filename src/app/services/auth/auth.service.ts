@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+// RxJS Service
 import { Observable } from 'rxjs';
+// HTTP Services
 import { HttpClient } from '@angular/common/http';
 // Environment
 import { environment } from '../../../environments/environment';
@@ -20,10 +22,5 @@ export class AuthService {
 
   public isLoggedIn() {
     return !!localStorage.getItem('token');
-  }
-
-  public userData() {
-    let userData = JSON.parse(sessionStorage.getItem('auth'));
-    return userData;
   }
 }

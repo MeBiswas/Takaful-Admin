@@ -30,7 +30,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((err) => {
-        if (err.status === 401) {
+        console.log('ethe aa', err);
+        if ([0, 401, 403].indexOf(err.status) !== -1) {
           this._spin.hide();
           this._admin.logout();
           this._toast.warning('Your Session has expired. Please Login again.');

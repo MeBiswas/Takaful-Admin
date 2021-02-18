@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// Router
+// Router Service
 import { Router } from '@angular/router';
+// Services
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -199,7 +201,7 @@ export class SidebarComponent implements OnInit {
     },
   ];
 
-  constructor(private _route: Router) {}
+  constructor(private _route: Router, private _admin: AdminService) {}
 
   // LifeCycle Method
   ngOnInit(): void {
@@ -211,7 +213,7 @@ export class SidebarComponent implements OnInit {
 
   // Getting Data
   private getAuthData() {
-    this.userData = JSON.parse(sessionStorage.getItem('auth'));
+    this.userData = this._admin.userData();
   }
 
   // Activating Link

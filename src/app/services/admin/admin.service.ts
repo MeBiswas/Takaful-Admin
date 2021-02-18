@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+// RxJS Service
 import { Observable } from 'rxjs';
+// HTTP Services
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // Environment
 import { environment } from '../../../environments/environment';
@@ -15,6 +17,11 @@ export class AdminService {
 
   public getToken() {
     return localStorage.getItem('token');
+  }
+
+  public userData() {
+    let userData = JSON.parse(localStorage.getItem('auth'));
+    return userData;
   }
 
   public getApiWithAuth(url): Observable<any> {
@@ -35,7 +42,7 @@ export class AdminService {
 
   public logout() {
     localStorage.removeItem('token');
-    sessionStorage.removeItem('auth');
+    localStorage.removeItem('auth');
     window.location.reload();
   }
 }

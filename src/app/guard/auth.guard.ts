@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+// Router Services
 import {
   Router,
   CanActivate,
@@ -7,19 +8,24 @@ import {
 } from '@angular/router';
 // Service
 import { AuthService } from '../services/auth/auth.service';
+import { AdminService } from '../services/admin/admin.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private _router: Router, private _auth: AuthService) {}
+  constructor(
+    private _router: Router,
+    private _auth: AuthService,
+    private _admin: AdminService
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
     const currentUser = this._auth.isLoggedIn();
-    const currentUserData = this._auth.userData();
+    const currentUserData = this._admin.userData();
 
     if (currentUser) {
       // Checking if Route is Restricted by Role
@@ -36,7 +42,7 @@ export class AuthGuard implements CanActivate {
     }
 
     // Not Logged In
-    this._router.navigate([''], { queryParams: { returnUrl: state.url } });
+    this._router.navigate(['/auth']);
     return false;
   }
 }

@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   // Getting Data
   private getAuthData() {
-    this.userData = JSON.parse(sessionStorage.getItem('auth'));
+    this.userData = this._admin.userData();
   }
 
   // Logging Out

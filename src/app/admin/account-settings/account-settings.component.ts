@@ -26,8 +26,8 @@ export class AccountSettingsComponent implements OnInit {
   userData = null;
   roleListURL = '/security/rolelist';
   userUpdateURL = '/security/updateuser';
+  userID = this._admin.userData().userId;
   userDetailURL = '/security/userdetails';
-  userID = JSON.parse(sessionStorage.getItem('auth')).userId;
 
   accountSettingForm = this._fb.group(
     {

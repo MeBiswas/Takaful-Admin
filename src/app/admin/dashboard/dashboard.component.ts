@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 // Interface
 import { Filter } from '../../model/filter';
+// Service
+import { AdminService } from '../../services/admin/admin.service';
 // Selectors
 import * as fromUser from '../../store/selectors/user.selectors';
 
@@ -20,7 +22,7 @@ export class DashboardComponent implements OnInit {
     { value: 'Monthly', option: 'This Month' },
   ];
 
-  constructor(private _store: Store) {}
+  constructor(private _store: Store, private _admin: AdminService) {}
 
   // LifeCycle Method
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   // Getting Data
   private getAuthData() {
-    this.userData = JSON.parse(sessionStorage.getItem('auth'));
+    this.userData = this._admin.userData();
   }
 
   // Selector to get Data

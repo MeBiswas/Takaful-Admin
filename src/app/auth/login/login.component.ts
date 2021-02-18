@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       if (res.status.code === 0) {
         this._toast.success(res.status.message);
         localStorage.setItem('token', res.user.accessToken);
-        sessionStorage.setItem('auth', JSON.stringify(res.user));
+        localStorage.setItem('auth', JSON.stringify(res.user));
         this._store.dispatch(new UserActions.LoadUser(res.user));
         this._router.navigate(['/admin/dashboard']);
       } else {
