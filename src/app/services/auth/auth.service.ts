@@ -12,15 +12,15 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+  public isLoggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
   public loginRequest(url, user): Observable<any> {
     return this.http.post(environment.apiURL + url, user);
   }
 
   public forgotPasswordRequest(url, user): Observable<any> {
     return this.http.post(environment.apiURL + url, user);
-  }
-
-  public isLoggedIn() {
-    return !!localStorage.getItem('token');
   }
 }
