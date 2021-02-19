@@ -246,7 +246,6 @@ const routes: Routes = [
     path: 'settings',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
     children: [
       {
         path: '',

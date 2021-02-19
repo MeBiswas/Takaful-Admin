@@ -56,16 +56,14 @@ export class SmsComponent implements OnInit, OnChanges {
       : this.sendSMS(this.smsForm.value);
   }
 
-  // Service Handler
+  // SMS Service Handler
   private sendSMS(v) {
     this._spin.show();
     this._admin.postApiWithAuth(this.smsURL, v).subscribe((res) => {
       res ? this._spin.hide() : null;
       if (res.status.code === 0) {
         this._toast.success(res.status.message);
-        setTimeout(function () {
-          window.location.reload();
-        }, 1000);
+        this.closeModal();
       } else {
         this._toast.warning(res.status.message);
       }

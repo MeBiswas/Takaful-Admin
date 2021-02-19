@@ -50,6 +50,7 @@ export class EmailComponent implements OnInit, OnChanges {
     return this.emailForm.get('message');
   }
 
+  // Summernote Configuration
   config = {
     tabsize: 2,
     height: '200px',
@@ -94,15 +95,14 @@ export class EmailComponent implements OnInit, OnChanges {
       : this.sendEmail(this.emailForm.value);
   }
 
+  // Email Service Handler
   private sendEmail(v) {
     this._spin.show();
     this._admin.postApiWithAuth(this.emailURL, v).subscribe((res) => {
       res ? this._spin.hide() : null;
       if (res.status.code === 0) {
         this._toast.success(res.status.message);
-        setTimeout(function () {
-          window.location.reload();
-        }, 1000);
+        this.closeModal();
       } else {
         this._toast.warning(res.status.message);
       }
