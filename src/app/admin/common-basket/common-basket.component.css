@@ -1,95 +1,95 @@
 .main-content {
-  width: 100%;
-  padding-top: none;
-  position: relative;
-  padding-right: none;
+    width: 100%;
+    padding-top: none;
+    position: relative;
+    padding-right: none;
 }
 
 .second_top_bar {
-  left: 0;
-  right: 0;
-  z-index: 0;
-  width: 100%;
-  padding-top: 15px;
-  position: absolute;
-  padding-bottom: 10px;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    width: 100%;
+    padding-top: 15px;
+    position: absolute;
+    padding-bottom: 10px;
 }
 
 .section {
-  margin-top: 66px;
+    margin-top: 66px;
 }
 
 table {
-  width: 100%;
+    width: 100%;
 }
 
 tr.mat-row {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 tr.example-detail-row {
-  height: 0;
-  padding: 0;
+    height: 0;
+    padding: 0;
 }
 
-tr.example-detail-row > td {
-  padding: 0;
+tr.example-detail-row>td {
+    padding: 0;
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: whitesmoke;
+    background: whitesmoke;
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
+    background: #efefef;
 }
 
 .example-element-row td {
-  border-bottom-width: 0;
+    border-bottom-width: 0;
 }
 
 .example-element-detail {
-  display: flex;
-  overflow: hidden;
+    display: flex;
+    overflow: hidden;
 }
 
 .example-element-description {
-  width: 100%;
+    width: 100%;
 }
 
 tr.mat-header-row {
-  height: 56px;
-  border-top: hidden;
-  border-left: hidden;
-  border-right: hidden;
+    height: 56px;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
 }
 
 @media only screen and (min-device-width: 220px) and (max-device-width: 768px) {
-  h4 {
-    margin-bottom: 0;
-    text-align: center;
-  }
-  .section {
-    margin-top: 185px !important;
-  }
-  .second_top_bar .second_top_bar_title {
-    text-align: center;
-    padding: 5px 0px;
-  }
-  .second_top_bar .search_bar,
-  .second_top_bar .month_bar {
-    margin: 5px 0px;
-  }
-  .second_top_bar .row {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-  .responsive-table-custom {
-    width: 100%;
-    display: block;
-    overflow-x: scroll;
-  }
-  .responsive-table-custom table {
-    width: 1000px;
-  }
+    h4 {
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .section {
+        margin-top: 185px !important;
+    }
+    .second_top_bar .second_top_bar_title {
+        text-align: center;
+        padding: 5px 0px;
+    }
+    .second_top_bar .search_bar,
+    .second_top_bar .month_bar {
+        margin: 5px 0px;
+    }
+    .second_top_bar .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .responsive-table-custom {
+        width: 100%;
+        display: block;
+        overflow-x: scroll;
+    }
+    .responsive-table-custom table {
+        width: 1000px;
+    }
 }

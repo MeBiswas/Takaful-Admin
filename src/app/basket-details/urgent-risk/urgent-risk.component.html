@@ -1,140 +1,137 @@
 <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4">Car Register {{currentData}}</h2>
 <form class="d-flex" [formGroup]="basketDetailForm" (ngSubmit)="submitHandler(basketDetailForm.valid)">
-  <div class="border-right col-md-6 pl-4 pr-5">
-    <div class="form-group row mt-3">
-      <label class="col-sm-3 col-form-label">Car Reg. No.</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="vehiclePlateNo" readonly>
-      </div>
+    <div class="border-right col-md-6 pl-4 pr-5">
+        <div class="form-group row mt-3">
+            <label class="col-sm-3 col-form-label">Car Reg. No.</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="vehiclePlateNo" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Model Car</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="carModel" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="customerName" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">NRIC</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="nric" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Takaful Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="principal" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Cover Type</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="coverType" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Sum Insured</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="sumInsured" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Extra Coverage</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="coverage" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">NCD Effective Date</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="effectiveDate" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Phone Number</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="phoneNo" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="email" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control form-group" formControlName="address1" readonly>
+                <input type="text" class="form-control" formControlName="address2" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Postcode</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="postcode" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Status</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="status" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Remarks</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
+            </div>
+        </div>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Model Car</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="carModel" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Name</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="customerName" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">NRIC</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="nric" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Takaful Name</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="principal" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Cover Type</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="coverType" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Sum Insured</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="sumInsured" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Extra Coverage</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="coverage" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">NCD Effective Date</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="effectiveDate" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Phone Number</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="phoneNo" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Email</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="email" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Address</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control form-group" formControlName="address1" readonly>
-        <input type="text" class="form-control" formControlName="address2" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Postcode</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="postcode" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Status</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="status" readonly>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Remarks</label>
-      <div class="col-sm-9">
-        <textarea class="form-control" rows="3" formControlName="remarks"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group row mt-3 pl-4 pr-5">
-      <label class="col-form-label col-sm-4 font-weight-bold align-self-center">Step Procedure</label>
-    </div>
-    <div class="form-group row pl-4 pr-5">
-      <label class="col-sm-5 col-form-label font-weight-bold">1. Get Approval</label>
-    </div>
-    <div class="form-group row pl-4 pr-5">
-      <label class="col-sm-3 col-form-label font-weight-bold">3. Action</label>
-      <div class="col-sm-9">
-        <select class="form-control w-75 form-group" formControlName="action"
-          (ngModelChange)="onActionSelectorChanged($event)">
+    <div class="col-md-6">
+        <div class="form-group row mt-3 pl-4 pr-5">
+            <label class="col-form-label col-sm-4 font-weight-bold align-self-center">Step Procedure</label>
+        </div>
+        <div class="form-group row pl-4 pr-5">
+            <label class="col-sm-5 col-form-label font-weight-bold">1. Get Approval</label>
+        </div>
+        <div class="form-group row pl-4 pr-5">
+            <label class="col-sm-3 col-form-label font-weight-bold">3. Action</label>
+            <div class="col-sm-9">
+                <select class="form-control w-75 form-group" formControlName="action" (ngModelChange)="onActionSelectorChanged($event)">
           <option disabled selected value='null'>Select</option>
           <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
         </select>
 
-        <ng-container [ngSwitch]="actionSelector">
-          <div *ngSwitchCase="'Refund'" [item]="actionSelector">
-            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
-              formControlName="refundAmount">
-            <div *ngIf="refundAmount.invalid && (refundAmount.dirty || refundAmount.touched)">
-              <div *ngIf="refundAmount.errors.pattern" class="error">Invalid Amount</div>
+                <ng-container [ngSwitch]="actionSelector">
+                    <div *ngSwitchCase="'Refund'" [item]="actionSelector">
+                        <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount" formControlName="refundAmount">
+                        <div *ngIf="refundAmount.invalid && (refundAmount.dirty || refundAmount.touched)">
+                            <div *ngIf="refundAmount.errors.pattern" class="error">Invalid Amount</div>
+                        </div>
+                        <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="refundRemark"></textarea>
+                    </div>
+                    <div *ngSwitchCase="'Topup'" [item]="actionSelector">
+                        <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount" formControlName="topupAmount">
+                        <div *ngIf="topupAmount.invalid && (topupAmount.dirty || topupAmount.touched)">
+                            <div *ngIf="topupAmount.errors.pattern" class="error">Invalid Amount</div>
+                        </div>
+                        <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="topupRemark"></textarea>
+                    </div>
+                </ng-container>
             </div>
-            <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="refundRemark"></textarea>
-          </div>
-          <div *ngSwitchCase="'Topup'" [item]="actionSelector">
-            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
-              formControlName="topupAmount">
-            <div *ngIf="topupAmount.invalid && (topupAmount.dirty || topupAmount.touched)">
-              <div *ngIf="topupAmount.errors.pattern" class="error">Invalid Amount</div>
+        </div>
+        <div class="row">
+            <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
+
+                <button type="button" (click)="cancelService(basketDetailForm.value.vehiclePlateNo)" class="btn bg-transparent border-0 w-25">Cancel</button>
+                <button type="submit" class="bg-green btn text-white w-25">Update</button>
             </div>
-            <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="topupRemark"></textarea>
-          </div>
-        </ng-container>
-      </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-        <button type="submit" class="bg-green btn text-white w-25">Update</button>
-        <button type="button" (click)="cancelService(basketDetailForm.value.vehiclePlateNo)"
-          class="btn bg-transparent border-0 w-25">Cancel</button>
-      </div>
-    </div>
-  </div>
 </form>

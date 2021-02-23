@@ -1,224 +1,220 @@
 <div class="second_top_bar bg-white p-10">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 pl-0 align-self-lg-center">
-        <h4 class="font-17 text-dark page_title">
-          <span class="font-weight-600">Report - </span>
-          <span>Roadtax</span>
-        </h4>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 pl-0 align-self-lg-center left-content">
+                <h4 class="font-17 text-dark page_title">
+                    <span class="font-weight-600">Report - </span>
+                    <span>Roadtax</span>
+                </h4>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <section class="section">
-  <div class="container">
-    <div class="d-block mt-5 row">
-      <form [formGroup]="searchForm" (ngSubmit)="submitHandler(searchForm.valid)" class="d-flex justify-content-center">
-        <div class="col-md-4 form-group pr-0">
-          <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
-          <input type="text" placeholder="ABC 1234" formControlName="search"
-            class="form-control pl-5 w-100 text-uppercase">
-          <div *ngIf="search.invalid && (search.dirty || search.touched)">
-            <div *ngIf="search.errors.required" class="error">Please Enter Car Registeration Number</div>
-            <div *ngIf="search.errors.pattern" class="error">Please Enter Valid Registeration Number</div>
-          </div>
+    <div class="container">
+        <div class="d-block mt-5 row">
+            <form [formGroup]="searchForm" (ngSubmit)="submitHandler(searchForm.valid)" class="d-flex justify-content-center">
+                <div class="col-md-4 form-group pr-0">
+                    <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
+                    <input type="text" placeholder="ABC 1234" formControlName="search" class="form-control pl-5 w-100 text-uppercase">
+                    <div *ngIf="search.invalid && (search.dirty || search.touched)">
+                        <div *ngIf="search.errors.required" class="error">Please Enter Car Registeration Number</div>
+                        <div *ngIf="search.errors.pattern" class="error">Please Enter Valid Registeration Number</div>
+                    </div>
+                </div>
+                <div class="col-auto form-group pl-3">
+                    <button type="submit" class="btn btn-info shadow-none report-roadtax-btn">Search</button>
+                </div>
+            </form>
         </div>
-        <div class="col-auto form-group pl-3">
-          <button type="submit" class="btn btn-info shadow-none report-roadtax-btn">Search</button>
-        </div>
-      </form>
-    </div>
-    <ng-container *ngIf="reportDetail">
-      <div class="bg-white mb-5 row">
-        <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4 w-100">Car Register #{{reportDetail}}</h2>
-        <form [formGroup]="reportDetailForm" class="d-flex w-100"
-          (ngSubmit)="reportSubmitHandler(reportDetailForm.valid)">
-          <div class="border-right col-md-6 pl-4 pr-5">
-            <div class="form-group row mt-3">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Car Reg. No.</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="vehiclePlateNo" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Model Car</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="carModel" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Chasis Engine</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="chasis" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Car Make</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="carMake" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Year Manfacture</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="yearManufacture" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Car Spec</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="carSpec" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="customerName" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">NRIC</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="nric" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Previous takaful insurance</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Cover Type</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="coverType" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Sum Insured</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="sumInsured" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Extra Coverage</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="coverage" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">NCD Effective Date</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="effectiveDate" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="phoneNo" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="email" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control form-group" formControlName="address1" readonly>
-                <input type="text" class="form-control " formControlName="address2" readonly>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label">Postcode</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="postcode" readonly>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group row  pl-4 pr-5 mt-3">
-              <label class="col-sm-4 col-form-label font-weight-bold">Status</label>
-              <div class="col-sm-6">
-                <select class="font-weight-600 form-control" formControlName="action"
-                  (ngModelChange)="onActionSelectorChanged($event)">
+        <ng-container *ngIf="reportDetail">
+            <div class="bg-white mb-5 row">
+                <h2 class="bg-blue-grey font-17 mb-0 p-15 pl-4 w-100">Car Register #{{reportDetail}}</h2>
+                <form [formGroup]="reportDetailForm" class="d-flex w-100" (ngSubmit)="reportSubmitHandler(reportDetailForm.valid)">
+                    <div class="border-right col-md-6 pl-4 pr-5">
+                        <div class="form-group row mt-3">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Car Reg. No.</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="vehiclePlateNo" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Model Car</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="carModel" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Chasis Engine</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="chasis" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Car Make</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="carMake" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Year Manfacture</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="yearManufacture" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Car Spec</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="carSpec" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="customerName" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NRIC</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="nric" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Previous takaful insurance</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Cover Type</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="coverType" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Sum Insured</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="sumInsured" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Extra Coverage</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="coverage" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">NCD Effective Date</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="effectiveDate" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="phoneNo" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="email" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Address</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-group" formControlName="address1" readonly>
+                                <input type="text" class="form-control " formControlName="address2" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Postcode</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" formControlName="postcode" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row  pl-4 pr-5 mt-3">
+                            <label class="col-sm-4 col-form-label font-weight-bold">Status</label>
+                            <div class="col-sm-6">
+                                <select class="font-weight-600 form-control" formControlName="action" (ngModelChange)="onActionSelectorChanged($event)">
                   <option selected value="null" disabled>Select Status</option>
                   <option *ngFor="let status of statusList" value="{{status.value}}">{{status.option}}</option>
                 </select>
-                <div *ngIf="status.invalid && (status.dirty || status.touched)">
-                  <div *ngIf="status.errors.required" class="error">Status is required</div>
-                </div>
-              </div>
+                                <div *ngIf="status.invalid && (status.dirty || status.touched)">
+                                    <div *ngIf="status.errors.required" class="error">Status is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ng-container [ngSwitch]="actionSelector">
+                            <div *ngSwitchCase="'Refund'" [item]="actionSelector">
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Amount" formControlName="refundAmount">
+                                        <div *ngIf="rAmount.invalid && (rAmount.dirty || rAmount.touched)">
+                                            <div *ngIf="rAmount.errors.required" class="error">Amount is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" formControlName="refundRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'Topup'" [item]="actionSelector">
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Amount" formControlName="topupAmount">
+                                        <div *ngIf="tAmount.invalid && (tAmount.dirty || tAmount.touched)">
+                                            <div *ngIf="tAmount.errors.required" class="error">Amount is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" formControlName="topupRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngSwitchCase="'Blacklisted'" [item]="actionSelector">
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold"> </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" placeholder="Amount" formControlName="blacklistedAmount">
+                                        <div *ngIf="bAmount.invalid && (bAmount.dirty || bAmount.touched)">
+                                            <div *ngIf="bAmount.errors.required" class="error">Amount is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row  pl-4 pr-5">
+                                    <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" formControlName="blacklistedRemark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <div class="row">
+                            <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
+                                <button type="submit" class="bg-green btn text-white w-25">Submit</button>
+                                <button (click)="cancelService(reportDetailForm.value.vehiclePlateNo)" class="btn bg-transparent border-0 w-25">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-            <ng-container [ngSwitch]="actionSelector">
-              <div *ngSwitchCase="'Refund'" [item]="actionSelector">
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Amount" formControlName="refundAmount">
-                    <div *ngIf="rAmount.invalid && (rAmount.dirty || rAmount.touched)">
-                      <div *ngIf="rAmount.errors.required" class="error">Amount is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" formControlName="refundRemark"></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div *ngSwitchCase="'Topup'" [item]="actionSelector">
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Amount" formControlName="topupAmount">
-                    <div *ngIf="tAmount.invalid && (tAmount.dirty || tAmount.touched)">
-                      <div *ngIf="tAmount.errors.required" class="error">Amount is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" formControlName="topupRemark"></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div *ngSwitchCase="'Blacklisted'" [item]="actionSelector">
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold"> </label>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control" placeholder="Amount" formControlName="blacklistedAmount">
-                    <div *ngIf="bAmount.invalid && (bAmount.dirty || bAmount.touched)">
-                      <div *ngIf="bAmount.errors.required" class="error">Amount is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row  pl-4 pr-5">
-                  <label class="col-sm-4 col-form-label font-weight-bold">Remarks</label>
-                  <div class="col-sm-6">
-                    <textarea class="form-control" formControlName="blacklistedRemark"></textarea>
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-
-            <div class="row">
-              <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-                <button type="submit" class="bg-green btn text-white w-25">Submit</button>
-                <button (click)="cancelService(reportDetailForm.value.vehiclePlateNo)"
-                  class="btn bg-transparent border-0 w-25">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </ng-container>
-  </div>
+        </ng-container>
+    </div>
 </section>

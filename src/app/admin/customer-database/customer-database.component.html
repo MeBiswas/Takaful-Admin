@@ -1,93 +1,89 @@
 <div class="second_top_bar bg-white p-10">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 pl-0 align-self-lg-center">
-        <h4 class="font-17 text-dark">
-          <span class="font-weight-600">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 pl-0 align-self-lg-center left-content">
+                <h4 class="font-17 text-dark">
+                    <span class="font-weight-600">
             Customer Database
           </span>
-        </h4>
-      </div>
-      <div class="col-md-6 pr-0">
-        <form #filterForm="ngForm">
-          <div class="row">
-            <div class="col-md-8 search_bar">
-              <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
-              <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search"
-                [(ngModel)]="search" (keyup)="searchFor($event.target.value)">
+                </h4>
             </div>
-            <div class="col-md-4 month_bar">
-              <select name="Filter" [(ngModel)]="filter" class="font-weight-600 form-control"
-                (ngModelChange)="onFilterChanged($event)">
+            <div class="col-md-6 pr-0">
+                <form #filterForm="ngForm">
+                    <div class="row">
+                        <div class="col-md-8 search_bar">
+                            <i class="fa-search fas ml-3 position-absolute text-muted mt-3" aria-hidden="true"></i>
+                            <input class="form-control pl-5" type="text" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="search" (keyup)="searchFor($event.target.value)">
+                        </div>
+                        <div class="col-md-4 month_bar">
+                            <select name="Filter" [(ngModel)]="filter" class="font-weight-600 form-control" (ngModelChange)="onFilterChanged($event)">
                 <option *ngFor="let filter of filters" value="{{filter.value}}">{{filter.option}}</option>
               </select>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 <section class="section">
-  <div class="row">
-    <div class="col-lg-12">
-      <ng-template [ngIf]="dataSource.data.length === 0" [ngIfElse]="elseBlock">
-        <div class="container">
-          <div class="align-items-center justify-content-center row vh-100">
-            <div class="col-md-4 text-center no-data-found">
-              <img class="img-fluid " src="assets/img/no-data-found.png">
-              <h1 class="font-30 mt-2">Sorry. No Data Inside!</h1>
-            </div>
-          </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ng-template [ngIf]="dataSource.data.length === 0" [ngIfElse]="elseBlock">
+                <div class="container">
+                    <div class="align-items-center justify-content-center row vh-100">
+                        <div class="col-md-4 text-center no-data-found">
+                            <img class="img-fluid " src="assets/img/no-data-found.png">
+                            <h1 class="font-30 mt-2">Sorry. No Data Inside!</h1>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #elseBlock>
+                <div class="responsive-table-custom">
+                    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
+                        <ng-container matColumnDef="carRegister">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Car Register </th>
+                            <td class="font-14 font-weight-600 text-info" mat-cell *matCellDef="let element"> {{element.carRegister}}
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="customerName">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="principal">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Takaful Name </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.principal}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="expiredDate">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Expired Date </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.expiredDate | date: 'dd MMM YYYY'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="followUpDate">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Follow up Date </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.followUpDate | date: 'dd MMM YYYY'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="phoneNo">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Phone Number </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.phoneNo}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <th scope="col" mat-header-cell *matHeaderCellDef> Email </th>
+                            <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+                    </table>
+                </div>
+                <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
+            </ng-template>
         </div>
-      </ng-template>
-      <ng-template #elseBlock>
-        <div class="responsive-table-custom">
-          <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-bordered">
-            <ng-container matColumnDef="carRegister">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Car Register </th>
-              <td class="font-14 font-weight-600 text-info" mat-cell *matCellDef="let element"> {{element.carRegister}}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="customerName">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Name </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="principal">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Takaful Name </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.principal}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="expiredDate">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Expired Date </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.expiredDate | date: 'dd
-                MMM YYYY'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="followUpDate">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Follow up Date </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.followUpDate | date: 'dd
-                MMM YYYY'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="phoneNo">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Phone Number </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.phoneNo}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="email">
-              <th scope="col" mat-header-cell *matHeaderCellDef> Email </th>
-              <td class="font-14 font-weight-600" mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-          </table>
-        </div>
-        <mat-paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
-      </ng-template>
     </div>
-  </div>
 </section>

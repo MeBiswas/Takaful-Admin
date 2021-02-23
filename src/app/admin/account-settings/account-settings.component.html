@@ -1,98 +1,97 @@
 <section class="section">
-  <div class="pb-5 pr-5 pt-5 row account_page">
-    <div class="col-lg-3 pr-0 left-col">
-      <div class="bg-white h-100 p-4">
-        <h4 class="pt-lg-4 pt-md-4 pt-sm-4 text-center text-warning">Account Settings</h4>
-        <hr>
-      </div>
-    </div>
-    <div class="col-lg-9 account_form_bg right-col">
-      <div class="p-5 custom-padding">
-        <div class="mb-5">
-          <h4 class="font-32 font-weight-bolder">Account Settings</h4>
-          <span class="font-19">Change your Profile User Settings</span>
+    <div class="pb-5 pr-5 row account_page">
+        <div class="col-lg-3 pr-0 left-col">
+            <div class="bg-white h-100 p-4">
+                <h4 class="pt-lg-4 pt-md-4 pt-sm-4 text-center text-warning">Account Settings</h4>
+                <hr>
+            </div>
         </div>
-        <form [formGroup]="accountSettingForm" (ngSubmit)="onSubmit(accountSettingForm.valid)">
-          <div class="form-group row mt-3">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">User Name :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control w-75 full_width" formControlName="userName">
-              <div *ngIf="name.invalid && (name.dirty || name.touched)">
-                <div *ngIf="name.errors.required" class="error">User Name is required</div>
-                <div *ngIf="name.errors.pattern" class="error">Invalid User Name</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">User ID :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control width-per-40 full_width" formControlName="userId">
-              <div *ngIf="id.invalid && (id.dirty || id.touched)">
-                <div *ngIf="id.errors.required" class="error">User ID is required</div>
-                <div *ngIf="id.errors.pattern" class="error">Invalid User ID</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Email :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control w-75 full_width" formControlName="email">
-              <div *ngIf="email.invalid && (email.dirty || email.touched)">
-                <div *ngIf="email.errors.required" class="error">Email is required</div>
-                <div *ngIf="email.errors.pattern" class="error">Invalid Email</div>
-              </div>
-            </div>
-          </div>
-          <input type="hidden" formControlName="roleId">
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Role :</label>
-            <div class="col-sm-9">
-              <select class="form-control custom-select width-per-40 full_width" formControlName="roleName">
+        <div class="col-lg-9 account_form_bg right-col">
+            <div class="p-5 custom-padding">
+                <div class="mb-5">
+                    <h4 class="font-32 font-weight-bolder">Account Settings</h4>
+                    <span class="font-19">Change your Profile User Settings</span>
+                </div>
+                <form [formGroup]="accountSettingForm" (ngSubmit)="onSubmit(accountSettingForm.valid)">
+                    <div class="form-group row mt-3">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">User Name :</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control w-75 full_width" formControlName="userName">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                                <div *ngIf="name.errors.required" class="error">User Name is required</div>
+                                <div *ngIf="name.errors.pattern" class="error">Invalid User Name</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">User ID :</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control width-per-40 full_width" formControlName="userId">
+                            <div *ngIf="id.invalid && (id.dirty || id.touched)">
+                                <div *ngIf="id.errors.required" class="error">User ID is required</div>
+                                <div *ngIf="id.errors.pattern" class="error">Invalid User ID</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Email :</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control w-75 full_width" formControlName="email">
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                                <div *ngIf="email.errors.required" class="error">Email is required</div>
+                                <div *ngIf="email.errors.pattern" class="error">Invalid Email</div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" formControlName="roleId">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Role :</label>
+                        <div class="col-sm-9">
+                            <select class="form-control custom-select width-per-40 full_width" formControlName="roleName">
                 <option [disabled]="true" value="" selected>Select Role</option>
                 <option *ngFor="let role of roles" value={{role}}>{{role}}</option>
               </select>
-              <div *ngIf="role.invalid && (role.dirty || role.touched)">
-                <div *ngIf="role.errors.required" class="error">Role is required</div>
-              </div>
+                            <div *ngIf="role.invalid && (role.dirty || role.touched)">
+                                <div *ngIf="role.errors.required" class="error">Role is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Department :</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control w-75 full_width" formControlName="department">
+                            <div *ngIf="department.invalid && (department.dirty || department.touched)">
+                                <div *ngIf="department.errors.required" class="error">Department is required</div>
+                                <div *ngIf="department.errors.pattern" class="error">Invalid Department</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">New Password :</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control w-75 full_width" formControlName="password">
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                                <div *ngIf="password.errors.minlength" class="error">Password must be at least 8 characters long.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Repeat Password :</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control w-75 full_width" formControlName="repeatPassword">
+                            <div *ngIf="accountSettingForm.errors?.misMatch" class="error">Password and Repeat Password does not match
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9 text-center">
+                            <button type="button" class="pb-1 pl-5 pr-5 pt-1 btn bg-transparent border-0" (click)="cancelHandler()">Cancel</button>
+                            <button type="submit" class="bg-indigo btn pb-1 pl-5 pr-5 pt-1 text-white">Update</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Department :</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control w-75 full_width" formControlName="department">
-              <div *ngIf="department.invalid && (department.dirty || department.touched)">
-                <div *ngIf="department.errors.required" class="error">Department is required</div>
-                <div *ngIf="department.errors.pattern" class="error">Invalid Department</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">New Password :</label>
-            <div class="col-sm-9">
-              <input type="password" class="form-control w-75 full_width" formControlName="password">
-              <div *ngIf="password.invalid && (password.dirty || password.touched)">
-                <div *ngIf="password.errors.minlength" class="error">Password must be at least 8 characters long.</div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label">Repeat Password :</label>
-            <div class="col-sm-9">
-              <input type="password" class="form-control w-75 full_width" formControlName="repeatPassword">
-              <div *ngIf="accountSettingForm.errors?.misMatch" class="error">Password and Repeat Password does not
-                match</div>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-3 col-form-label"></label>
-            <div class="col-sm-9 text-center">
-              <button type="button" class="pb-1 pl-5 pr-5 pt-1 btn bg-transparent border-0"
-                (click)="cancelHandler()">Cancel</button>
-              <button type="submit" class="bg-indigo btn pb-1 pl-5 pr-5 pt-1 text-white">Update</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
 </section>
