@@ -1,3 +1,4 @@
+import { Role } from './../../model/roles';
 import { Component, OnInit } from '@angular/core';
 // Router Service
 import { Router } from '@angular/router';
@@ -12,6 +13,8 @@ import { AdminService } from '../../services/admin/admin.service';
 export class SidebarComponent implements OnInit {
   routeArr;
   userData;
+
+
   sidebarLinks = [
     {
       show: false,
@@ -22,6 +25,7 @@ export class SidebarComponent implements OnInit {
       link: '/admin/dashboard',
       inActiveIcon: 'assets/img/icons/dashboard_icon.png',
       activeIcon: 'assets/img/icons/dashboard_icon_active.png',
+      
     },
     {
       link: null,
@@ -32,6 +36,7 @@ export class SidebarComponent implements OnInit {
       route: 'Follow Up',
       inActiveIcon: 'assets/img/icons/markunread_mail.png',
       activeIcon: 'assets/img/icons/markunread_mail_active.png',
+      
       submenu: [
         {
           title: 'Urgent',
@@ -62,6 +67,7 @@ export class SidebarComponent implements OnInit {
       route: 'Endorsement',
       inActiveIcon: 'assets/img/icons/thumb_up.png',
       activeIcon: 'assets/img/icons/thumb_up_active.png',
+      
       submenu: [
         {
           title: 'Urgent',
@@ -101,6 +107,7 @@ export class SidebarComponent implements OnInit {
       hasDropdown: true,
       inActiveIcon: 'assets/img/icons/verified.png',
       activeIcon: 'assets/img/icons/verified_active.png',
+      
       submenu: [
         {
           title: null,
@@ -132,7 +139,7 @@ export class SidebarComponent implements OnInit {
       hasDropdown: false,
       link: '/admin/refund',
       inActiveIcon: 'assets/img/icons/dollar_icon.png',
-      activeIcon: 'assets/img/icons/dollar_icon_active.png',
+      activeIcon: 'assets/img/icons/dollar_icon_active.png'
     },
     {
       link: null,
@@ -143,6 +150,7 @@ export class SidebarComponent implements OnInit {
       route: 'Notifications',
       inActiveIcon: 'assets/img/icons/maps_ugc.png',
       activeIcon: 'assets/img/icons/maps_ugc_active.png',
+      
       submenu: [
         {
           title: null,
@@ -161,7 +169,8 @@ export class SidebarComponent implements OnInit {
       route: 'Telemarketing',
       link: '/admin/telemarketing',
       inActiveIcon: 'assets/img/icons/headset_mic.png',
-      activeIcon: 'assets/img/icons/headset_mic_active.png',
+      activeIcon: 'assets/img/icons/headset_mic_active.png'
+     
     },
     {
       link: null,
@@ -172,6 +181,7 @@ export class SidebarComponent implements OnInit {
       hasDropdown: true,
       inActiveIcon: 'assets/img/icons/content_icon.png',
       activeIcon: 'assets/img/icons/content_icon_active.png',
+      
       submenu: [
         {
           title: null,
@@ -188,6 +198,7 @@ export class SidebarComponent implements OnInit {
       link: '/admin/customer-database',
       inActiveIcon: 'assets/img/icons/folder_icon.png',
       activeIcon: 'assets/img/icons/folder_icon_active.png',
+      userAccess: [1]
     },
     {
       show: false,
@@ -198,10 +209,11 @@ export class SidebarComponent implements OnInit {
       route: 'User Management',
       inActiveIcon: 'assets/img/icons/admin_user.png',
       activeIcon: 'assets/img/icons/admin_user_active.png',
+      userAccess: [1]
     },
   ];
 
-  constructor(private _route: Router, private _admin: AdminService) {}
+  constructor(private _route: Router, private _admin: AdminService) { }
 
   // LifeCycle Method
   ngOnInit(): void {
@@ -222,38 +234,79 @@ export class SidebarComponent implements OnInit {
     i < 0
       ? null
       : (this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive);
+
+      // console.log('value i =>',i)
   }
 
   // Authorized Navigation Handler
   private authorrizedNavigation(a) {
     a.map((item) => {
+
+      // console.log('master meta ===>', this.userData.roleName)
+      // console.log('master item ===>', item)
       switch (this.userData.roleName) {
         case 'Finance':
-          if (item.meta === 'customer-database') {
+          if (
+            item.meta === 'dashboard' ||
+            item.meta === 'endorsement' ||
+            item.meta === 'follow' ||
+            item.meta === 'user' ||
+            item.meta === 'claim' ||
+            item.meta === 'telemarketing' ||
+            item.meta === 'report' ||
+            item.meta === 'delivery' ||
+            item.meta === 'notifications' ||
+            item.meta === 'customer-database'
+          ) {
             item.show = !item.show;
+            console.log('finance item 1===>', item)
+          }else{
+          
+            console.log('finance item 2===>', item)
+           
           }
+        
           break;
 
         case 'Supervisor':
+          if (item.meta === 'refund') { item.show = !item.show; }
           break;
 
         case 'Administrator':
+
           break;
 
         case 'Telemarketing':
           if (
+            item.meta === 'endorsement' ||
+            item.meta === 'follow' ||
             item.meta === 'user' ||
             item.meta === 'claim' ||
             item.meta === 'refund' ||
             item.meta === 'report' ||
             item.meta === 'delivery' ||
-            item.meta === 'notifications'
+            item.meta === 'notifications' ||
+            item.meta === 'customer-database'
           ) {
             item.show = !item.show;
+
           }
           break;
 
-        case 'CustomerService':
+        case 'Customer Service':
+          if (
+            item.meta === 'dashboard' ||
+            item.meta === 'user' ||
+            item.meta === 'refund' ||
+            item.meta === 'notifications' ||
+            item.meta === 'customer-database' ||
+            item.meta === 'telemarketing'
+
+
+          ) {
+            item.show = !item.show;
+
+          }
           break;
 
         default:

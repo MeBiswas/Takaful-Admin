@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
   // Getting Data
   private getAuthData() {
     this.userData = this._admin.userData();
+
+    console.log('user data =>',this.userData)
   }
 
   // Logging Out

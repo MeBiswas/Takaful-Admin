@@ -1,19 +1,19 @@
 <div id="app">
-  <div class="main-wrapper main-wrapper-1">
+    <div class="main-wrapper main-wrapper-1">
 
-    <!-- Top Bar Code Start -->
-    <app-header></app-header>
-    <!-- Top Bar Code End -->
+        <!-- Top Bar Code Start -->
+        <app-header></app-header>
+        <!-- Top Bar Code End -->
 
-    <!-- left Sidebar Code Start -->
-    <div class="main-sidebar sidebar-style-2">
-      <app-sidebar></app-sidebar>
+        <!-- left Sidebar Code Start -->
+        <div class="main-sidebar sidebar-style-2">
+            <app-sidebar></app-sidebar>
+        </div>
+        <!-- left Sidebar Code End -->
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <!-- left Sidebar Code End -->
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
 </div>

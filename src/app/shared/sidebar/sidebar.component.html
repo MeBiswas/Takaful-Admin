@@ -1,35 +1,33 @@
 <aside id="sidebar-wrapper">
-  <div class="sidebar-brand text-center mt-3 pb-3">
-    <a routerLink="/admin/dashboard">
-      <img alt="image" src="assets/img/logo.png" class="logo-name" />
-      <img alt="image" src="assets/img/mini_logo.png" class="header-logo mini_logo" />
-    </a>
-  </div>
-
-  <ul class="sidebar-menu">
-    <li class="dropdown" *ngFor="let link of sidebarLinks; let x = index" [ngClass]="{'d-none': sidebarLinks[x].show}">
-      <div class="float_mini_sidebar">
-        <a data-toggle="sidebar">
-          <img alt="image" class="active_icon"
-            src="{{sidebarLinks[x].isActive ? sidebarLinks[x].activeIcon : sidebarLinks[x].inActiveIcon}}">
+    <div class="sidebar-brand text-center mt-3 pb-3">
+        <a routerLink="/admin/dashboard">
+            <img alt="image" src="assets/img/logo.png" class="logo-name" />
+            <img alt="image" src="assets/img/mini_logo.png" class="header-logo mini_logo" />
         </a>
-      </div>
-      <a class="nav-link menu_title p-0" *ngIf="sidebarLinks[x].link == null" [ngClass]="{
-        active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown
-      }">
-        <span>{{sidebarLinks[x].route}}</span>
-      </a>
-      <a class="nav-link menu_title p-0" routerLink="{{sidebarLinks[x].link}}" *ngIf="sidebarLinks[x].link !== null"
-        [ngClass]="{active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
-        <span>{{sidebarLinks[x].route}}</span>
-      </a>
-      <ul class="dropdown-menu bg-transparent" *ngFor="let menu of sidebarLinks[x].submenu; let i = index">
-        <span class="font-14 font-weight-600 ml-5 pl-2"
-          *ngIf="sidebarLinks[x].submenu[i].title !== null">{{menu.title}}</span>
-        <li class="pb-0 pt-0" *ngFor="let item of sidebarLinks[x].submenu[i].sublinks">
-          <a class="nav-link" routerLink="{{item.link}}">{{item.title}}</a>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li class="dropdown" *ngFor="let link of sidebarLinks; let x = index" [ngClass]="{'d-none': sidebarLinks[x].show}">
+            <div class="float_mini_sidebar">
+                <a data-toggle="sidebar">
+                    <img alt="image" class="active_icon" src="{{sidebarLinks[x].isActive ? sidebarLinks[x].activeIcon : sidebarLinks[x].inActiveIcon}}">
+                </a>
+            </div>
+            <a class="nav-link menu_title p-0" *ngIf="sidebarLinks[x].link == null" [ngClass]="{
+        active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
+                <span>{{sidebarLinks[x].route}}</span>
+            </a>
+            <a class="nav-link menu_title p-0" routerLink="{{sidebarLinks[x].link}}" *ngIf="sidebarLinks[x].link !== null" [ngClass]="{active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
+                <span>{{sidebarLinks[x].route}}</span>
+                <!-- <p>{{sidebarLinks[x].link}}</p> -->
+            </a>
+            <ul class="dropdown-menu bg-transparent" *ngFor="let menu of sidebarLinks[x].submenu; let i = index">
+                <span class="font-14 font-weight-600 ml-5 pl-2" *ngIf="sidebarLinks[x].submenu[i].title !== null">{{menu.title}}</span>
+                <li class="pb-0 pt-0" *ngFor="let item of sidebarLinks[x].submenu[i].sublinks">
+                    <a class="nav-link" routerLink="{{item.link}}">{{item.title}}</a>
+
+                </li>
+            </ul>
         </li>
-      </ul>
-    </li>
-  </ul>
+    </ul>
 </aside>
