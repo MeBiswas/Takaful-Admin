@@ -101,39 +101,46 @@
             <div class="form-group row  pl-4 pr-5">
                 <label class="col-sm-5 col-form-label font-weight-bold">1. Check & Update (NCD)</label>
                 <div class="col-sm-5">
-                    <a (click)="goToLink('https://www.mycarinfo.com.my/ncdcheck/online')" class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
+                    <a (click)="goToLink('https://www.mycarinfo.com.my/ncdcheck/online')"
+                        class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
                 </div>
             </div>
             <div class="form-group row  pl-4 pr-5">
                 <label class="col-sm-5 col-form-label font-weight-bold">2. Requote</label>
                 <div class="col-sm-5">
-                    <a (click)="goToLink('https://www.oto.my/tool/road-tax-calculator/')" class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
+                    <a (click)="goToLink('https://www.oto.my/tool/road-tax-calculator/')"
+                        class="bg-light-blue border-0 btn btn-lg text-white">Click Here</a>
                 </div>
             </div>
             <div class="form-group row  pl-4 pr-5">
                 <label class="col-sm-5 col-form-label font-weight-bold">3. Action</label>
                 <div class="col-sm-7">
-                    <select class="form-control w-75 form-group" formControlName="action" (ngModelChange)="onActionSelectorChanged($event)">
-            <option disabled selected value='null'>Select</option>
-            <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
-          </select>
+                    <select class="form-control w-75 form-group" formControlName="action"
+                        (ngModelChange)="onActionSelectorChanged($event)">
+                        <option disabled selected value='null'>Select</option>
+                        <option *ngFor="let action of actionList" value="{{action.value}}">{{action.option}}</option>
+                    </select>
 
                     <ng-container [ngSwitch]="actionSelector">
 
                         <div *ngSwitchCase="'Refund'" [item]="actionSelector">
-                            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount" formControlName="refundAmount">
+                            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
+                                formControlName="refundAmount">
                             <div *ngIf="refundAmount.invalid && (refundAmount.dirty || refundAmount.touched)">
                                 <div *ngIf="refundAmount.errors.pattern" class="error">Invalid Amount</div>
                             </div>
-                            <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="refundRemark"></textarea>
+                            <textarea rows="3" class="form-control" placeholder="Remarks"
+                                formControlName="refundRemark"></textarea>
                         </div>
 
                         <div *ngSwitchCase="'Topup'" [item]="actionSelector">
-                            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount" formControlName="topupAmount">
+                            <input type="text" class="form-control w-75 form-group text-muted" placeholder="Amount"
+                                formControlName="topupAmount">
                             <div *ngIf="topupAmount.invalid && (topupAmount.dirty || topupAmount.touched)">
                                 <div *ngIf="topupAmount.errors.pattern" class="error">Invalid Amount</div>
                             </div>
-                            <textarea rows="3" class="form-control" placeholder="Remarks" formControlName="topupRemark"></textarea>
+                            <textarea rows="3" class="form-control" placeholder="Remarks"
+                                formControlName="topupRemark"></textarea>
                         </div>
 
                     </ng-container>
@@ -141,9 +148,9 @@
             </div>
             <div class="row">
                 <div class="bg-light p-15 position-absolute pr-5 text-right w-100" style="bottom:0px;">
-
-                    <button type="button" class="btn bg-transparent border-0 w-25" (click)="cancelService(basketDetailForm.value.vehiclePlateNo)">Cancel</button>
                     <button type="submit" class="bg-green btn text-white w-25">Update</button>
+                    <button type="button" class="btn bg-transparent border-0 w-25"
+                        (click)="cancelService(basketDetailForm.value.vehiclePlateNo)">Cancel</button>
                 </div>
             </div>
         </div>
