@@ -3,5 +3,5 @@ export enum Role {
   Supervisor = 'Supervisor',
   Administrator = 'Administrator',
   Telemarketing = 'Telemarketing',
-  CustomerService = 'CustomerService',
+  CustomerService = 'Customer Service',
 }

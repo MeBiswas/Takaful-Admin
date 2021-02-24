@@ -28,14 +28,14 @@ const routes: Routes = [
     path: 'user',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing ,Role.Supervisor] },
     children: [{ path: '', component: UserManagementComponent }],
   },
   {
     path: 'follow',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing, Role.CustomerService, Role.Supervisor] },
     children: [
       {
         path: 'urgent/ncd',
@@ -84,7 +84,7 @@ const routes: Routes = [
     path: 'endorsement',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing ,Role.CustomerService, Role.Supervisor] },
     children: [
       {
         path: 'urgent/ncd',
@@ -145,7 +145,7 @@ const routes: Routes = [
     path: 'claim',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing, Role.CustomerService, Role.Supervisor] },
     children: [
       {
         path: 'windscreen',
@@ -161,7 +161,7 @@ const routes: Routes = [
     path: 'refund',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing, Role.Finance] },
     children: [
       {
         path: '',
@@ -176,7 +176,7 @@ const routes: Routes = [
     path: 'notifications',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing, Role.Supervisor] },
     children: [
       {
         path: 'template',
@@ -200,7 +200,7 @@ const routes: Routes = [
     path: 'telemarketing',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Supervisor, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Supervisor, Role.Telemarketing, Role.Supervisor] },
     children: [
       {
         path: '',
@@ -215,7 +215,7 @@ const routes: Routes = [
     path: 'report',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing,Role.CustomerService, Role.Supervisor] },
     children: [
       {
         path: 'roadtax',
@@ -231,7 +231,7 @@ const routes: Routes = [
     path: 'customer-database',
     canActivate: [AuthGuard],
     component: AdminComponent,
-    data: { roles: [Role.Administrator, Role.Telemarketing] },
+    data: { roles: [Role.Administrator, Role.Telemarketing, Role.Supervisor] },
     children: [
       {
         path: '',

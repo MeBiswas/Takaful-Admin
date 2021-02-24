@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
       link: '/admin/dashboard',
       inActiveIcon: 'assets/img/icons/dashboard_icon.png',
       activeIcon: 'assets/img/icons/dashboard_icon_active.png',
-      
+
     },
     {
       link: null,
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
       route: 'Follow Up',
       inActiveIcon: 'assets/img/icons/markunread_mail.png',
       activeIcon: 'assets/img/icons/markunread_mail_active.png',
-      
+
       submenu: [
         {
           title: 'Urgent',
@@ -67,7 +67,7 @@ export class SidebarComponent implements OnInit {
       route: 'Endorsement',
       inActiveIcon: 'assets/img/icons/thumb_up.png',
       activeIcon: 'assets/img/icons/thumb_up_active.png',
-      
+
       submenu: [
         {
           title: 'Urgent',
@@ -107,7 +107,7 @@ export class SidebarComponent implements OnInit {
       hasDropdown: true,
       inActiveIcon: 'assets/img/icons/verified.png',
       activeIcon: 'assets/img/icons/verified_active.png',
-      
+
       submenu: [
         {
           title: null,
@@ -134,7 +134,7 @@ export class SidebarComponent implements OnInit {
     {
       show: false,
       meta: 'refund',
-      route: 'Refund',
+      route: 'refund',
       isActive: false,
       hasDropdown: false,
       link: '/admin/refund',
@@ -150,7 +150,7 @@ export class SidebarComponent implements OnInit {
       route: 'Notifications',
       inActiveIcon: 'assets/img/icons/maps_ugc.png',
       activeIcon: 'assets/img/icons/maps_ugc_active.png',
-      
+
       submenu: [
         {
           title: null,
@@ -170,7 +170,7 @@ export class SidebarComponent implements OnInit {
       link: '/admin/telemarketing',
       inActiveIcon: 'assets/img/icons/headset_mic.png',
       activeIcon: 'assets/img/icons/headset_mic_active.png'
-     
+
     },
     {
       link: null,
@@ -181,7 +181,7 @@ export class SidebarComponent implements OnInit {
       hasDropdown: true,
       inActiveIcon: 'assets/img/icons/content_icon.png',
       activeIcon: 'assets/img/icons/content_icon_active.png',
-      
+
       submenu: [
         {
           title: null,
@@ -217,7 +217,11 @@ export class SidebarComponent implements OnInit {
 
   // LifeCycle Method
   ngOnInit(): void {
+
+    
     this.routeArr = this._route.url.split('/');
+
+    console.log('route ==>',this.routeArr[2])
     this.getAuthData();
     this.activateLink(this.routeArr[2]);
     this.authorrizedNavigation(this.sidebarLinks);
@@ -231,19 +235,19 @@ export class SidebarComponent implements OnInit {
   // Activating Link
   private activateLink(p) {
     let i = this.sidebarLinks.findIndex((item) => item.meta === p);
-    i < 0
-      ? null
-      : (this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive);
 
-      // console.log('value i =>',i)
+    
+    i < 0 ? null: (this.sidebarLinks[i].isActive = !this.sidebarLinks[i].isActive);
+
+    // console.log('value i =>',i)
   }
 
   // Authorized Navigation Handler
   private authorrizedNavigation(a) {
     a.map((item) => {
 
-      // console.log('master meta ===>', this.userData.roleName)
-      // console.log('master item ===>', item)
+      console.log('master meta ===>', this.userData.roleName)
+     
       switch (this.userData.roleName) {
         case 'Finance':
           if (
@@ -259,13 +263,9 @@ export class SidebarComponent implements OnInit {
             item.meta === 'customer-database'
           ) {
             item.show = !item.show;
-            console.log('finance item 1===>', item)
-          }else{
-          
-            console.log('finance item 2===>', item)
-           
-          }
-        
+            
+          } 
+
           break;
 
         case 'Supervisor':
