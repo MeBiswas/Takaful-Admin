@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
   sidebarLinks = [
     {
       show: false,
+      disable: false,
       isActive: false,
       meta: 'dashboard',
       route: 'Dashboard',
@@ -30,6 +31,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       meta: 'follow',
       isActive: false,
       hasDropdown: true,
@@ -61,6 +63,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       isActive: false,
       hasDropdown: true,
       meta: 'endorsement',
@@ -101,6 +104,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       meta: 'claim',
       route: 'Claim',
       isActive: false,
@@ -118,6 +122,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       isActive: false,
       meta: 'delivery',
       route: 'Delivery',
@@ -133,6 +138,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       show: false,
+      disable: false,
       meta: 'refund',
       route: 'refund',
       isActive: false,
@@ -144,6 +150,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       isActive: false,
       hasDropdown: true,
       meta: 'notifications',
@@ -164,6 +171,7 @@ export class SidebarComponent implements OnInit {
     {
       show: false,
       isActive: false,
+      disable: false,
       hasDropdown: false,
       meta: 'telemarketing',
       route: 'Telemarketing',
@@ -175,6 +183,7 @@ export class SidebarComponent implements OnInit {
     {
       link: null,
       show: false,
+      disable: false,
       meta: 'report',
       route: 'Report',
       isActive: false,
@@ -191,6 +200,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       show: false,
+      disable: false,
       isActive: false,
       hasDropdown: false,
       meta: 'customer-database',
@@ -202,6 +212,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       show: false,
+      disable: false,
       meta: 'user',
       isActive: false,
       hasDropdown: false,
@@ -246,7 +257,7 @@ export class SidebarComponent implements OnInit {
   private authorrizedNavigation(a) {
     a.map((item) => {
 
-      console.log('master meta ===>', this.userData.roleName)
+      // console.log('master meta ===>', this.userData.roleName)
      
       switch (this.userData.roleName) {
         case 'Finance':
@@ -262,14 +273,22 @@ export class SidebarComponent implements OnInit {
             item.meta === 'notifications' ||
             item.meta === 'customer-database'
           ) {
-            item.show = !item.show;
+
             
+            // item.show = !item.show;
+
+            item.disable = !item.disable;
+            // console.log('item finance ==>',item)
           } 
 
           break;
 
         case 'Supervisor':
-          if (item.meta === 'refund') { item.show = !item.show; }
+          if (item.meta === 'refund') 
+          {
+            //  item.show = !item.show; 
+            item.disable = !item.disable;
+            }
           break;
 
         case 'Administrator':
@@ -288,8 +307,8 @@ export class SidebarComponent implements OnInit {
             item.meta === 'notifications' ||
             item.meta === 'customer-database'
           ) {
-            item.show = !item.show;
-
+            // item.show = !item.show;
+            item.disable = !item.disable;
           }
           break;
 
@@ -304,8 +323,10 @@ export class SidebarComponent implements OnInit {
 
 
           ) {
-            item.show = !item.show;
 
+      
+            // item.show = !item.show;
+            item.disable = !item.disable;
           }
           break;
 

@@ -33,14 +33,23 @@ export class UserManagementComponent implements OnInit {
     'action',
   ];
 
+ 
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private _router: Router,
     private _admin: AdminService,
     private _toast: ToastrService,
-    private _spin: NgxSpinnerService
+    private _spin: NgxSpinnerService,
+
   ) {}
+
+  // pageEvent: MatPaginator;
+  // datasource: null;
+  // pageIndex:number;
+  pageSize:number = 19;
+  // length:number;
 
   // LifeCycle Method
   ngOnInit() {
@@ -57,6 +66,8 @@ export class UserManagementComponent implements OnInit {
     this._spin.show();
     this._admin.getApiWithAuth(this.userListURL + p).subscribe((res) => {
       if (res.status.code === 0) {
+
+        console.log('user list =>',res.userList)
         this.addActionData(res.userList);
       } else if (res.status.code === 401) {
         this._router.navigate(['/auth/login']);
@@ -75,14 +86,20 @@ export class UserManagementComponent implements OnInit {
 
   // Pagination Event
   pageChanged(e) {
+    console.log('page =>',e);
     e.pageIndex > e.previousPageIndex ? this.getTableData(e.pageIndex) : null;
   }
 
   // Adding Table Action Column Data
   addActionData(d) {
+
+    console.log('value d =>',d)
     let newArr = [...d];
     this.users = newArr.map((item) => (item = { ...item, action: item }));
+
+    console.log('value user =>',this.users)
     this.dataSource.data = [...this.dataSource.data, ...this.users];
+
     this.dataSource.data = this.getUniqueListBy(this.dataSource.data, 'email');
   }
 
@@ -99,5 +116,14 @@ export class UserManagementComponent implements OnInit {
   // Filter Array for Unique Objcts
   getUniqueListBy(arr, key) {
     return [...new Map(arr.map((item) => [item[key], item])).values()];
+  }
+
+
+  onPageFired(e){
+    e.pageIndex > e.previousPageIndex ? this.getTableData(e.pageIndex) : null;
+    // this.theHttpService.theGetDataFunction(event.pageIndex).subscribe((data)=>{
+    
+    // this.dataSource = data
+    // })
   }
 }

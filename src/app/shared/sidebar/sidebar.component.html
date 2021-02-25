@@ -13,14 +13,25 @@
                     <img alt="image" class="active_icon" src="{{sidebarLinks[x].isActive ? sidebarLinks[x].activeIcon : sidebarLinks[x].inActiveIcon}}">
                 </a>
             </div>
-            <a class="nav-link menu_title p-0" *ngIf="sidebarLinks[x].link == null" [ngClass]="{
+            <a class="nav-link menu_title p-0 disabled" *ngIf="sidebarLinks[x].link == null && sidebarLinks[x].disable == true" [ngClass]="{
         active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
-                <span>{{sidebarLinks[x].route}}</span>
-
+                <span style="color: gray;">{{sidebarLinks[x].route}}</span>
+                <!-- <span>{{sidebarLinks[x].disable}}</span> -->
             </a>
-            <a class="nav-link menu_title p-0" routerLink="{{sidebarLinks[x].link}}" *ngIf="sidebarLinks[x].link !== null" [ngClass]="{active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
-                <span>{{sidebarLinks[x].route}}</span>
 
+            <a class="nav-link menu_title p-0 " *ngIf="sidebarLinks[x].link == null && sidebarLinks[x].disable == false" [ngClass]="{
+                active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
+                <span>{{sidebarLinks[x].route}}</span>
+                <!-- <span>{{sidebarLinks[x].disable}}</span> -->
+            </a>
+            <a class="nav-link menu_title p-0 disabled" routerLink="{{sidebarLinks[x].link}}" *ngIf="sidebarLinks[x].link !== null && sidebarLinks[x].disable == true" [ngClass]="{active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
+                <span style="color: gray;">{{sidebarLinks[x].route}}</span>
+                <!-- <span>{{sidebarLinks[x].disable}}</span> -->
+            </a>
+
+            <a class="nav-link menu_title p-0 " routerLink="{{sidebarLinks[x].link}}" *ngIf="sidebarLinks[x].link !== null && sidebarLinks[x].disable == false" [ngClass]="{active: sidebarLinks[x].isActive, 'has-dropdown': sidebarLinks[x].hasDropdown}">
+                <span>{{sidebarLinks[x].route}}</span>
+                <!-- <span>{{sidebarLinks[x].disable}}</span> -->
             </a>
             <ul class="dropdown-menu bg-transparent" *ngFor="let menu of sidebarLinks[x].submenu; let i = index">
                 <span class="font-14 font-weight-600 ml-5 pl-2" *ngIf="sidebarLinks[x].submenu[i].title !== null">{{menu.title}}</span>

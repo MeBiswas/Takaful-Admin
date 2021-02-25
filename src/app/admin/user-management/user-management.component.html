@@ -9,76 +9,82 @@
 <!-- User Delete Modal Code Start -->
 
 <section class="section">
-  <div class="section-header">
-    <div class="row">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-        <div class="section-header-breadcrumb-content pb-0">
-          <h1>User Management</h1>
+    <div class="section-header">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="section-header-breadcrumb-content pb-0">
+                    <h1>User Management</h1>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <div class="section-body mt-4 pb-4">
-    <div class="row">
-      <div class="col-12 col-md-12 col-lg-12">
-        <form #filterForm="ngForm" class="form-inline mb-4 user-search-form">
-          <div class="has-search form-group ml-0 mb-2 mb-sm-0 mr-4">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="form-control" placeholder="Search User Name, Email, Role" name="Filter"
-              (keyup)="doFilter($event.target.value)" [(ngModel)]="filter">
-          </div>
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#user-create-modal">
+    <div class="section-body mt-4 pb-4">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <form #filterForm="ngForm" class="form-inline mb-4 user-search-form">
+                    <div class="has-search form-group ml-0 mb-2 mb-sm-0 mr-4">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input type="text" class="form-control" placeholder="Search User Name, Email, Role" name="Filter" (keyup)="doFilter($event.target.value)" [(ngModel)]="filter">
+                    </div>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#user-create-modal">
             <img src="assets/img/icons/addnew_icon.svg"> Add new
           </button>
-        </form>
-      </div>
-      <div class="col-12 col-md-12 col-lg-12">
-        <div class="card">
-          <div class="card-body p-0">
-            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="table table-bordered mb-0">
-              <ng-container matColumnDef="userName">
-                <th scope="col" mat-header-cell *matHeaderCellDef> User Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
-              </ng-container>
+                </form>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="table table-bordered mb-0">
 
-              <ng-container matColumnDef="userId">
-                <th scope="col" mat-header-cell *matHeaderCellDef> User ID </th>
-                <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
-              </ng-container>
 
-              <ng-container matColumnDef="email">
-                <th scope="col" mat-header-cell *matHeaderCellDef> Email </th>
-                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-              </ng-container>
+                            <ng-container matColumnDef="userName">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> User Name </th>
+                                <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
 
-              <ng-container matColumnDef="department">
-                <th scope="col" mat-header-cell *matHeaderCellDef> Department </th>
-                <td mat-cell *matCellDef="let element"> {{element.department}} </td>
-              </ng-container>
+                            </ng-container>
 
-              <ng-container matColumnDef="roleName">
-                <th scope="col" mat-header-cell *matHeaderCellDef> Role </th>
-                <td mat-cell *matCellDef="let element"> {{element.roleName}} </td>
-              </ng-container>
+                            <ng-container matColumnDef="userId">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> User ID </th>
+                                <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+                            </ng-container>
 
-              <ng-container matColumnDef="action">
-                <th scope="col" mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let element" class="d-flex align-items-center">
-                  <i (click)="editDialog(element.action)" class="fa fa-pen mr-4 text-dark" data-toggle="modal"
-                    data-target="#user-edit-modal"></i>
-                  <i (click)="deleteDialog(element.action.userId)" class="fa fa-trash text-dark" data-toggle="modal"
-                    data-target="#user-delete-modal"></i>
-                </td>
-              </ng-container>
+                            <ng-container matColumnDef="email">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> Email </th>
+                                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                            </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-            <mat-paginator [pageSize]="9" (page)="pageChanged($event)"></mat-paginator>
-          </div>
+                            <ng-container matColumnDef="department">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> Department </th>
+                                <td mat-cell *matCellDef="let element"> {{element.department}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="roleName">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> Role </th>
+                                <td mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="action">
+                                <th scope="col" mat-header-cell *matHeaderCellDef> Action </th>
+                                <td mat-cell *matCellDef="let element" class="d-flex align-items-center">
+                                    <i (click)="editDialog(element.action)" class="fa fa-pen mr-4 text-dark" data-toggle="modal" data-target="#user-edit-modal"></i>
+                                    <i (click)="deleteDialog(element.action.userId)" class="fa fa-trash text-dark" data-toggle="modal" data-target="#user-delete-modal"></i>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <!-- <mat-paginator [pageSizeOptions]="[5,10]"></mat-paginator> -->
+                        <mat-paginator #paginator [pageSize]="10" (page)="pageChanged($event)"></mat-paginator>
+                        <!-- <md-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="9" (page)=" pageChanged($event)"> -->
+                        <!-- </md-paginator> -->
+
+                        <!-- <mat-paginator #paginator [pageIndex]="0" [pageSize]="pageSize" (page)="onPageFired($event)">
+                        </mat-paginator> -->
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
